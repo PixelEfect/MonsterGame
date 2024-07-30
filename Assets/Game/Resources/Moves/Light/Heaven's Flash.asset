@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
+  m_Name: Heaven's Flash
+  m_EditorClassIdentifier: 
+  name: Heaven's Flash
+  description: "Calls upon the power of the sky, dealing significant damage and healing
+    nearby allies.\nB\u0142ysk Niebios\r\nPrzywo\u0142uje moc nieba, zadaj\u0105c
+    du\u017Ce obra\u017Cenia oraz lecz\u0105c sojusznik\xF3w w pobli\u017Cu."
+  type: 2
+  power: 50
+  accuracy: 100
+  pp: 15

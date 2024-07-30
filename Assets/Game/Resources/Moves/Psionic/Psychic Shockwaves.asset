@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
-  m_Name: Growl
+  m_Name: Psychic Shockwaves
   m_EditorClassIdentifier: 
-  name: 
-  description: 
-  type: 0
-  power: 0
-  accuracy: 0
-  pp: 0
+  name: Psychic Shockwaves
+  description: "Deals psychic damage, weakening the opponent's mind.\nPsychiczne
+    Wstrz\u0105sy\r\nZadaje obra\u017Cenia psychiczne, os\u0142abiaj\u0105c umys\u0142
+    przeciwnika."
+  type: 5
+  power: 40
+  accuracy: 100
+  pp: 20

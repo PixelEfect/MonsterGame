@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
+  m_Name: Protective Breeze
+  m_EditorClassIdentifier: 
+  name: Protective Breeze
+  description: "Protects allies from damage, reducing the effectiveness of attacks.\r\nWicher
+    Ochronny\r\nChroni sojusznik\xF3w od obra\u017Ce\u0144, zmniejszaj\u0105c skuteczno\u015B\u0107
+    atak\xF3w."
+  type: 16
+  power: 0
+  accuracy: 100
+  pp: 15

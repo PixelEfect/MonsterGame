@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
+  m_Name: Toxic Cloud
+  m_EditorClassIdentifier: 
+  name: Toxic Cloud
+  description: "Creates a cloud of toxic fumes that damages nearby opponents.\r\nZatruta
+    Chmura\r\nTworzy chmur\u0119 toksycznych opar\xF3w, zadaj\u0105c obra\u017Cenia
+    przeciwnikom w pobli\u017Cu."
+  type: 14
+  power: 0
+  accuracy: 100
+  pp: 25

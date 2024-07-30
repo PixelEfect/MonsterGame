@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
+  m_Name: Mind Confusion
+  m_EditorClassIdentifier: 
+  name: Mind Confusion
+  description: "Creates confusion in the opponent's mind, preventing it from attacking
+    for one turn.\r\nZam\u0119t Umys\u0142u\r\nTworzy zam\u0119t w umy\u015Ble przeciwnika,
+    sprawiaj\u0105c \u017Ce nie mo\u017Ce on zaatakowa\u0107 przez jedn\u0105 tur\u0119."
+  type: 5
+  power: 0
+  accuracy: 100
+  pp: 10

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
+  m_Name: Metal Shatter
+  m_EditorClassIdentifier: 
+  name: Metal Shatter
+  description: "Deals high damage by shattering metal components in the enemy's mind.\r\nKruszenie
+    Metalu\r\nZadaje du\u017C\u0105 ilo\u015B\u0107 obra\u017Ce\u0144 przez rozbijanie
+    metalowych element\xF3w umys\u0142u przeciwnika."
+  type: 8
+  power: 70
+  accuracy: 80
+  pp: 20

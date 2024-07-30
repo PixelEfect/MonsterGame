@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
+  m_Name: Sound Shock
+  m_EditorClassIdentifier: 
+  name: Sound Shock
+  description: "Deals damage with a sound wave and weakens the opponent's hearing.\r\nD\u017Awi\u0119kowy
+    Wstrz\u0105s\r\nZadaje obra\u017Cenia fal\u0105 d\u017Awi\u0119kow\u0105, a tak\u017Ce
+    os\u0142abia s\u0142uch przeciwnika."
+  type: 13
+  power: 50
+  accuracy: 90
+  pp: 10

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
+  m_Name: Gust of Wind
+  m_EditorClassIdentifier: 
+  name: Gust of Wind
+  description: "Deals damage and increases the attack speed of allies.\r\nPodmuch
+    Wiatru\r\nZadaje obra\u017Cenia i zwi\u0119ksza szybko\u015B\u0107 atak\xF3w
+    sojusznik\xF3w."
+  type: 16
+  power: 45
+  accuracy: 90
+  pp: 25

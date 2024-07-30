@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
-  m_Name: Tackle
+  m_Name: Shockwave
   m_EditorClassIdentifier: 
-  name: Tackle
-  description: Simple smash
-  type: 1
-  power: 40
-  accuracy: 100
-  pp: 20
+  name: Fala Uderzeniowa
+  description: "Deals water damage and has a chance to reduce the opponent's speed.\r\nFala
+    Uderzeniowa\r\nZadaje obra\u017Cenia wodne, a tak\u017Ce ma szans\u0119 na zredukowanie
+    szybko\u015Bci przeciwnika."
+  type: 11
+  power: 75
+  accuracy: 80
+  pp: 15

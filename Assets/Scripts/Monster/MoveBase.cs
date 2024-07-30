@@ -15,6 +15,7 @@ public class MoveBase : ScriptableObject
     [SerializeField] int power;
     [SerializeField] int accuracy;
     [SerializeField] int pp;
+    [SerializeField] bool isSpiritMove;
 
     public string Name
     {
@@ -39,6 +40,10 @@ public class MoveBase : ScriptableObject
     public int PP
     {
         get { return pp; }
+    }
+    public bool IsSpiritMove
+    {
+        get { return isSpiritMove; }
     }
 
 }

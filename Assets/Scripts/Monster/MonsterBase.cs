@@ -101,20 +101,57 @@ public class LearnableMove
 public enum MonsterType
 {
     None,
-    Normal,
-    Fire,
-    Water,
+    Crystal,
+    Light,
     Electric,
-    Grass,
+    Fire,
+    Psionic,
+    Fear,
+    Earth,
+    Metal,
+    Phantom,
+    Shadow,
+    Water,
     Ice,
-    Fighting,
+    Sound,
     Poison,
-    Ground,
-    Flying,
-    Psychic,
-    Bug,
-    Rock,
-    Ghost,
-    Dragon
+    Wood,
+    Wind,
+    Normal
+}
 
+public class TypeChart
+{
+    static float[][] chart =
+    {
+        //                     CRY   LIG   ELE   FIR   PSI   FEA   EAR   MET   PHA   SHA   WAT   ICE   SOU   POI   WOO   WIN   NOR
+        /*CRY*/ new float[] {  1f,   1f,   1f, 0.5f,   1f,   1f, 0.5f,   2f,   1f,   1f,   1f,   1f,   1f,   1f,   1f,   2f,   1f},
+        /*LIG*/ new float[] {0.5f,   1f,   1f,   1f,   1f,   2f, 0.5f,   1f, 0.5f,   2f,   1f,   2f,   1f,   2f,   1f, 0.5f,   1f},
+        /*ELE*/ new float[] {0.5f,   1f,   1f,   1f,   2f,   1f, 0.5f,   1f,   1f,   1f,   2f,   2f,   1f,   1f, 0.5f,   1f,   1f},
+        /*FIR*/ new float[] {0.5f,   1f, 0.5f,   1f,   1f,   2f, 0.5f,   2f,   1f,   2f, 0.5f,   2f,   1f,   1f,   2f, 0.5f,   1f},
+        /*PSI*/ new float[] {  1f,   1f, 0.5f,   1f,   1f, 0.5f, 0.5f,   2f,   2f,   2f,   1f,   1f,   1f,   1f,   1f,   1f,   1f},
+        /*FEA*/ new float[] {  1f, 0.5f,   1f, 0.5f,   1f,   1f,   1f,   1f,   1f,   2f,   1f,   1f,   2f,   1f,   1f,   1f,   1f},
+        /*EAR*/ new float[] {  1f,   1f,   2f,   2f,   2f,   1f,   1f,   2f,   1f,   1f, 0.5f, 0.5f,   1f,   2f, 0.5f,   0f,   1f},
+        /*MET*/ new float[] {  1f,   1f,   1f, 0.5f, 0.5f,   1f, 0.5f,   1f,   1f,   1f,   1f,   2f,   1f,   2f,   2f,   1f,   1f},
+        /*PHA*/ new float[] {  1f,   2f,   1f,   1f, 0.5f,   2f,   1f,   1f,   1f, 0.5f,   1f,   1f,   1f,   1f,   1f,   1f,   1f},
+        /*SHA*/ new float[] {  2f, 0.5f,   1f,   1f, 0.5f, 0.5f,   1f,   1f,   1f,   1f,   1f,   1f,   2f,   1f,   1f,   2f,   1f},
+        /*WAT*/ new float[] {  1f,   1f, 0.5f,   2f,   1f,   1f,   2f,   1f,   1f,   1f,   1f,   1f,   1f,   1f, 0.5f,   1f,   1f},
+        /*ICE*/ new float[] {  1f,   1f,   1f, 0.5f,   1f,   1f,   2f, 0.5f,   1f,   1f,   1f,   1f, 0.5f,   1f,   2f,   2f,   1f},
+        /*SOU*/ new float[] {  2f,   1f,   1f,   1f, 0.5f, 0.5f,   1f,   1f,   1f, 0.5f,   1f,   2f,   1f,   1f,   1f,   2f,   1f},
+        /*POI*/ new float[] {0.5f,   1f,   1f,   1f,   1f,   1f,   2f, 0.5f,   1f,   1f,   1f,   1f,   1f,   1f,   2f,   2f,   1f},
+        /*WOO*/ new float[] {  2f,   1f,   2f, 0.5f,   1f,   1f,   2f, 0.5f,   1f,   1f,   2f, 0.5f,   1f, 0.5f,   1f,   1f,   1f},
+        /*WIN*/ new float[] {  1f,   2f,   1f,   2f,   1f,   1f,   1f,   1f,   2f, 0.5f,   1f, 0.5f, 0.5f,   1f,   1f,   1f,   1f},
+        /*NOR*/ new float[] {  1f,   1f,   1f,   1f,   1f,   1f,   1f,   1f,   1f,   1f,   1f,   1f,   1f,   1f,   1f,   1f,   1f}
+    };
+
+    public static float GetEffectiveness(MonsterType attackType, MonsterType defenseType)
+    {
+        if (attackType == MonsterType.None || defenseType == MonsterType.None)
+        {
+            return 1;
+        }
+        int row = (int)attackType - 1;
+        int col = (int)defenseType - 1;
+        return chart[row][col];
+    }
 }
