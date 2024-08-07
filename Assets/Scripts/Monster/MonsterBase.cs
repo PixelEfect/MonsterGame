@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Monster", menuName = "Monster/Create new monster")]
 public class MonsterBase : ScriptableObject
 {
-    [SerializeField]string name;
+    [SerializeField] string name;
     
     [SerializeField] string description;
 
@@ -119,6 +119,20 @@ public enum MonsterType
     Wind,
     Normal
 }
+
+public enum Stat
+{
+    Attack,
+    Defense,
+    SpAttack,
+    SpDefense,
+    Speed,
+    
+    //These 2 are not actual stats, they're used to boost the moveAccuracy
+    Accuracu,
+    Evasion
+}
+
 
 public class TypeChart
 {

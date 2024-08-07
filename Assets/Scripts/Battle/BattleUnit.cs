@@ -9,6 +9,16 @@ using Unity.VisualScripting;
 public class BattleUnit : MonoBehaviour
 {
     [SerializeField] bool isPlayerUnit;
+    [SerializeField] BattleHud hud;
+
+    public bool IsPlayerUnit
+    {
+        get { return isPlayerUnit; }
+    }
+    public BattleHud Hud 
+    { 
+        get { return hud; } 
+    }
 
     public Monster Monster {  get; set; }
 
@@ -34,8 +44,16 @@ public class BattleUnit : MonoBehaviour
             image.sprite = Monster.Base.FrontSprite;
         }
 
+        hud.gameObject.SetActive(true);
+        hud.SetData(monster);
+
         image.color = originalColor;
         PlayEnterAnimation();
+    }
+
+    public void Clear()
+    {
+        hud.gameObject.SetActive(false);
     }
 
     public void PlayEnterAnimation()

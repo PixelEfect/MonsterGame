@@ -7,6 +7,11 @@ public class MonsterParty : MonoBehaviour
 {
     [SerializeField] List<Monster> monsters;
 
+    public List<Monster> Monsters
+    {
+        get { return monsters; }
+    }
+
 
     private void Start()
     {

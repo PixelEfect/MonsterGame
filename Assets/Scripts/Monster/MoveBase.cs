@@ -14,8 +14,14 @@ public class MoveBase : ScriptableObject
     [SerializeField] MonsterType type;
     [SerializeField] int power;
     [SerializeField] int accuracy;
+    [SerializeField] bool alwaysHits;
     [SerializeField] int pp;
-    [SerializeField] bool isSpiritMove;
+    [SerializeField] int priority;
+    [SerializeField] MoveCategory category;
+    [SerializeField] MoveEffects effects;
+    [SerializeField] MoveTarget target;
+    [SerializeField] List<SecondaryEffects> secondaries;
+
 
     public string Name
     {
@@ -37,13 +43,89 @@ public class MoveBase : ScriptableObject
     {
         get { return accuracy; }
     }
+    public bool AlwaysHists 
+    {
+        get { return alwaysHits; }
+    }
     public int PP
     {
         get { return pp; }
     }
-    public bool IsSpiritMove
+    public int Priority
     {
-        get { return isSpiritMove; }
+        get { return priority; }
     }
 
+    public MoveCategory Category
+    {
+        get { return category; }
+    }
+    public MoveEffects Effects
+    {
+        get { return effects; }
+    }
+    public MoveTarget Target
+    {
+        get { return target; }
+    }
+    public List<SecondaryEffects> Secondaries
+    {
+        get { return secondaries; }
+    }
 }
+
+[System.Serializable]
+public class MoveEffects
+{
+    [SerializeField] List<StatBoost> boosts;
+    [SerializeField] ConditionID status;
+    [SerializeField] ConditionID volatileStatus;
+    public List<StatBoost> Boosts
+    {
+        get { return boosts; }
+    }
+    public ConditionID Status
+    {
+        get { return status; }
+    }
+    public ConditionID VolatileStatus
+    {
+        get { return volatileStatus; }
+    }
+}
+[System.Serializable]
+public class SecondaryEffects : MoveEffects
+{
+    [SerializeField] int chance;
+    [SerializeField] MoveTarget target;
+
+    public int Chance
+    {
+        get { return chance;}
+    }
+    public MoveTarget Target
+    {
+        get { return target; }
+    }
+}
+
+
+
+[System.Serializable]
+
+public class StatBoost
+{
+    public Stat stat;
+    public int boost;
+}
+
+public enum MoveCategory
+{
+    Physical, Spirit, Status
+}
+
+public enum MoveTarget
+{
+    Foe, Self
+}
+

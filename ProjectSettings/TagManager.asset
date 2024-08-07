@@ -13,9 +13,9 @@ TagManager:
   - UI
   - LongGrass
   - SolidObjects
-  - 
-  - 
-  - 
+  - Interactable
+  - Player
+  - FovLayer
   - 
   - 
   - 
