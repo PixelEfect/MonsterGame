@@ -11,6 +11,14 @@ public class Monster
     [SerializeField] MonsterBase _base;
     [SerializeField] int level;
 
+    public Monster(MonsterBase pBase, int pLevel)
+    {
+        _base = pBase;
+        level = pLevel;
+
+        Init();
+    }
+
     public MonsterBase Base
     {
         get { return _base; }
@@ -20,8 +28,7 @@ public class Monster
     {
         get { return level; }
     }
-
-
+    public int Exp { get; set; }
     public int HP { get; set; }
     public List<Move> Moves { get; set; }
     public Move CurrentMove { get; set; }
@@ -31,7 +38,7 @@ public class Monster
     public int StatusTime { get; set; }
     public Condition VolatileStatus { get; private set; }
     public int VolatileStatusTime { get; set; }
-    public Queue<string> StatusChanges { get; private set; } = new Queue<string>();
+    public Queue<string> StatusChanges { get; private set; }
     public bool HpChanged { get; set; }
 
     public event Action OnStatusChanged;
@@ -51,9 +58,13 @@ public class Monster
                 break;
             }
         }
+
+        Exp = Base.GetExpForLevel(Level);
+
         CalculateStat();
         HP = MaxHp;
 
+        StatusChanges = new Queue<string>();
         ResetStatBoost();
         Status = null;
         VolatileStatus = null;
@@ -130,7 +141,15 @@ public class Monster
         }
     }
 
-
+    public bool CheckForLevelUp()
+    {
+        if (Exp > Base.GetExpForLevel(level + 1))
+        {
+            ++level;
+            return true;
+        }
+        return false;
+    }
     public int Attack 
     {  
         get { return GetStat(Stat.Attack); } 

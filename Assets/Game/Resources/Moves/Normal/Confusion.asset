@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
   m_Name: Confusion
   m_EditorClassIdentifier: 
-  name: Confusion
+  moveName: Confusion
   description: 
   type: 17
   power: 0
   accuracy: 100
   alwaysHits: 0
   pp: 10
+  priority: 0
   category: 2
   effects:
     boosts: []

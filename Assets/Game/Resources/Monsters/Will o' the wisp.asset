@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e35fa25d93f573a4f90506de749727bc, type: 3}
   m_Name: Will o' the wisp
   m_EditorClassIdentifier: 
-  name: Will o' the wisp
+  monsterName: Will-o'-the-wisps
   description: Will-o'-the-wisps are the souls of the dead.
   frontSprite: {fileID: 21300000, guid: 694897e860e411043b57b1d311f711c1, type: 3}
   backSprite: {fileID: 21300000, guid: fbf3bce733737314ab9c6c2192d782d8, type: 3}
@@ -24,6 +24,9 @@ MonoBehaviour:
   spAttack: 65
   spDefense: 65
   speed: 45
+  expYield: 601
+  growthRate: 0
+  catchRate: 1
   learnableMoves:
   - moveBase: {fileID: 11400000, guid: 730be92c11668b340aefc20ca12fe1aa, type: 2}
     level: 1

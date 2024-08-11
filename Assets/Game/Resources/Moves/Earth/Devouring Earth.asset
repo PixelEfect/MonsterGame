@@ -12,11 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
   m_Name: Devouring Earth
   m_EditorClassIdentifier: 
-  name: Devouring Earth
+  moveName: Devouring Earth
   description: "Swallows the opponent into the ground, dealing damage and reducing
     its speed.\nPoch\u0142aniaj\u0105ca Ziemia\r\nWci\u0105ga przeciwnika w gleb\u0119,
     zadaj\u0105c obra\u017Cenia i ograniczaj\u0105c jego szybko\u015B\u0107."
   type: 7
   power: 70
   accuracy: 75
+  alwaysHits: 0
   pp: 15
+  priority: 0
+  category: 0
+  effects:
+    boosts: []
+    status: 0
+    volatileStatus: 0
+  target: 0
+  secondaries: []

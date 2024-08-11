@@ -25,4 +25,16 @@ public class MonsterParty : MonoBehaviour
     {
         return monsters.Where(x => x.HP > 0).FirstOrDefault();
     }
+
+    public void AddMonster(Monster newMonster)
+    {
+        if ( monsters.Count < 6)
+        {
+            monsters.Add(newMonster);
+        }
+        else
+        {
+            //TODO add to the PC once that's implemented
+        }
+    }
 }

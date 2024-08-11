@@ -12,11 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
   m_Name: Strengthened Nature
   m_EditorClassIdentifier: 
-  name: Strengthened Nature
+  moveName: Strengthened Nature
   description: "Increases allies' strength, adding nature damage to their attacks.\r\nWzmocniona
     Natura\r\nZwi\u0119ksza si\u0142\u0119 sojusznik\xF3w, dodaj\u0105c do ich atak\xF3w
     obra\u017Cenia od natury."
   type: 15
   power: 60
   accuracy: 80
+  alwaysHits: 0
   pp: 10
+  priority: 0
+  category: 0
+  effects:
+    boosts: []
+    status: 0
+    volatileStatus: 0
+  target: 0
+  secondaries: []

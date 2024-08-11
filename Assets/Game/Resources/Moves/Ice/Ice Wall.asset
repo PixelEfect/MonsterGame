@@ -12,11 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
   m_Name: Ice Wall
   m_EditorClassIdentifier: 
-  name: Ice Wall
+  moveName: Ice Wall
   description: "Creates an ice wall that reduces damage from attacks for one turn.\r\nLodowy
     Mur\r\nTworzy lodowy mur, kt\xF3ry zmniejsza obra\u017Cenia od atak\xF3w przez
     jedn\u0105 tur\u0119."
   type: 12
   power: 0
   accuracy: 100
+  alwaysHits: 0
   pp: 15
+  priority: 0
+  category: 0
+  effects:
+    boosts: []
+    status: 0
+    volatileStatus: 0
+  target: 0
+  secondaries: []

@@ -12,10 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
   m_Name: Frostbite
   m_EditorClassIdentifier: 
-  name: Frostbite
+  moveName: Frostbite
   description: "Deals damage and may slow down the opponent for several turns.\r\nMr\xF3z\r\nZadaje
     obra\u017Cenia i mo\u017Ce spowolni\u0107 przeciwnika przez kilka tur."
   type: 12
   power: 50
   accuracy: 100
+  alwaysHits: 0
   pp: 15
+  priority: 0
+  category: 0
+  effects:
+    boosts: []
+    status: 0
+    volatileStatus: 0
+  target: 0
+  secondaries: []

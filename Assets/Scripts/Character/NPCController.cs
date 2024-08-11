@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPCController : MonoBehaviour
+public class NPCController : MonoBehaviour, Interactable
 {
     [SerializeField] Dialog dialog;
     [SerializeField] List<Vector2> movementPattern;

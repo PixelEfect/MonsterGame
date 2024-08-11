@@ -12,11 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
   m_Name: Sound Shock
   m_EditorClassIdentifier: 
-  name: Sound Shock
+  moveName: Sound Shock
   description: "Deals damage with a sound wave and weakens the opponent's hearing.\r\nD\u017Awi\u0119kowy
     Wstrz\u0105s\r\nZadaje obra\u017Cenia fal\u0105 d\u017Awi\u0119kow\u0105, a tak\u017Ce
     os\u0142abia s\u0142uch przeciwnika."
   type: 13
   power: 50
   accuracy: 90
+  alwaysHits: 0
   pp: 10
+  priority: 0
+  category: 0
+  effects:
+    boosts: []
+    status: 0
+    volatileStatus: 0
+  target: 0
+  secondaries: []

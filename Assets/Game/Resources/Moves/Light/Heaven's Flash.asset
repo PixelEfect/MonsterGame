@@ -12,11 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
   m_Name: Heaven's Flash
   m_EditorClassIdentifier: 
-  name: Heaven's Flash
+  moveName: Heaven's Flash
   description: "Calls upon the power of the sky, dealing significant damage and healing
     nearby allies.\nB\u0142ysk Niebios\r\nPrzywo\u0142uje moc nieba, zadaj\u0105c
     du\u017Ce obra\u017Cenia oraz lecz\u0105c sojusznik\xF3w w pobli\u017Cu."
   type: 2
   power: 50
   accuracy: 100
+  alwaysHits: 0
   pp: 15
+  priority: 0
+  category: 0
+  effects:
+    boosts: []
+    status: 0
+    volatileStatus: 0
+  target: 0
+  secondaries: []

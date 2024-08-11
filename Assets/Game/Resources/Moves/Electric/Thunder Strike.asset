@@ -12,17 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
   m_Name: Thunder Strike
   m_EditorClassIdentifier: 
-  name: 'Thunder Strike '
+  moveName: Thunder Strike
   description: "Deals lightning damage and may paralyze the opponent.\nGromowy Cios\r\nZadaje
     b\u0142yskawiczne obra\u017Cenia i mo\u017Ce sparali\u017Cowa\u0107 przeciwnika."
   type: 3
   power: 40
   accuracy: 80
+  alwaysHits: 0
   pp: 20
+  priority: 0
   category: 2
   effects:
     boosts:
     - stat: 0
       boost: 2
     status: 4
+    volatileStatus: 0
   target: 0
+  secondaries: []

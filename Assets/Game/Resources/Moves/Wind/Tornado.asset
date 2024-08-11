@@ -12,11 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
   m_Name: Tornado
   m_EditorClassIdentifier: 
-  name: Tornado
+  moveName: Tornado
   description: "Creates a tornado that deals damage and lifts opponents into the
     air.\r\nTornado\r\nTworzy tornado, kt\xF3re zadaje obra\u017Cenia i unosi przeciwnik\xF3w
     w powietrze."
   type: 16
   power: 50
   accuracy: 75
+  alwaysHits: 0
   pp: 20
+  priority: 0
+  category: 0
+  effects:
+    boosts: []
+    status: 0
+    volatileStatus: 0
+  target: 0
+  secondaries: []

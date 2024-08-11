@@ -12,11 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
   m_Name: Paralyzing Fear
   m_EditorClassIdentifier: 
-  name: Paralyzing Fear
+  moveName: Paralyzing Fear
   description: "Instills fear in the opponent, preventing it from attacking for one
     turn.\r\nParali\u017Cuj\u0105cy Strach\r\nWzbudza strach w przeciwniku, uniemo\u017Cliwiaj\u0105c
     mu atak przez jedn\u0105 tur\u0119."
   type: 6
   power: 0
   accuracy: 100
+  alwaysHits: 0
   pp: 40
+  priority: 0
+  category: 0
+  effects:
+    boosts: []
+    status: 0
+    volatileStatus: 0
+  target: 0
+  secondaries: []

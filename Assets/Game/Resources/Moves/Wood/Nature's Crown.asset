@@ -12,11 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
   m_Name: Nature's Crown
   m_EditorClassIdentifier: 
-  name: Nature's Crown
+  moveName: Nature's Crown
   description: "Uses the power of rising plants to deal damage and lower the opponent's
     defense.\r\nKorona Natury\r\nU\u017Cywa mocy wschodz\u0105cej ro\u015Blinno\u015Bci,
     zadaj\u0105c obra\u017Cenia i obni\u017Caj\u0105c obron\u0119 przeciwnika."
   type: 15
   power: 80
   accuracy: 90
+  alwaysHits: 0
   pp: 5
+  priority: 0
+  category: 0
+  effects:
+    boosts: []
+    status: 0
+    volatileStatus: 0
+  target: 0
+  secondaries: []

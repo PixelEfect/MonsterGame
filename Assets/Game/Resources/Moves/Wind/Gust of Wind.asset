@@ -12,11 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
   m_Name: Gust of Wind
   m_EditorClassIdentifier: 
-  name: Gust of Wind
+  moveName: Gust of Wind
   description: "Deals damage and increases the attack speed of allies.\r\nPodmuch
     Wiatru\r\nZadaje obra\u017Cenia i zwi\u0119ksza szybko\u015B\u0107 atak\xF3w
     sojusznik\xF3w."
   type: 16
   power: 45
   accuracy: 90
+  alwaysHits: 0
   pp: 25
+  priority: 0
+  category: 0
+  effects:
+    boosts: []
+    status: 0
+    volatileStatus: 0
+  target: 0
+  secondaries: []

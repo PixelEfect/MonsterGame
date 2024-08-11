@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class TrainerController : MonoBehaviour, Interactable
 {
-    [SerializeField] string name;
+    [SerializeField] string trainerName;
     [SerializeField] Sprite sprite;
     [SerializeField] Dialog dialog;
+    [SerializeField] Dialog dialogAfterBattle;
     [SerializeField] GameObject exclamation;
     [SerializeField] GameObject fov;
+
+    bool battleLost = false;
 
     Character character;
 
@@ -20,6 +23,29 @@ public class TrainerController : MonoBehaviour, Interactable
     private void Start()
     {
         SetFovRotation(character.Animator.DefaultDirection);
+    }
+
+    private void Update()
+    {
+        character.HandleUpdate();
+    }
+
+    public void Interact(Transform initiator)
+    {
+        character.LookTowards(initiator.position);
+
+        if (!battleLost)
+        {
+            StartCoroutine(DialogManager.Instance.ShowDialog(dialog, () =>
+            {
+                GameController.Instance.StartTrainerBattle(this);
+            }));
+        }
+        else
+        {
+            StartCoroutine(DialogManager.Instance.ShowDialog(dialogAfterBattle) );
+        }
+
     }
 
     public IEnumerator TriggerTrainerBattle(PlayerController player)
@@ -37,10 +63,16 @@ public class TrainerController : MonoBehaviour, Interactable
         yield return character.Move(moveVec);
 
         // Show dialog
-        StartCoroutine (DialogManager.Instance.ShowDialog(dialog, () =>
+        StartCoroutine(DialogManager.Instance.ShowDialog(dialog, () =>
         {
             GameController.Instance.StartTrainerBattle(this);
         }));
+    }
+
+    public void BattleLost()
+    {
+        battleLost = true;
+        fov.gameObject.SetActive(false);
     }
 
     public void SetFovRotation(FacingDirection dir)
@@ -62,14 +94,9 @@ public class TrainerController : MonoBehaviour, Interactable
         fov.transform.eulerAngles = new Vector3 (0f, 0f, angle);
     }
 
-    public void Interact(Transform initiator)
-    {
-        throw new System.NotImplementedException();
-    }
-
     public string Name
     {
-        get => name;
+        get => trainerName;
     }
     public Sprite Sprite 
     { 

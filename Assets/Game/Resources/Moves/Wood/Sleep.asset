@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
   m_Name: Sleep
   m_EditorClassIdentifier: 
-  name: Sleep
+  moveName: Sleep
   description: .
   type: 15
   power: 10
   accuracy: 10
+  alwaysHits: 0
   pp: 10
+  priority: 0
   category: 2
   effects:
     boosts:
@@ -30,4 +32,6 @@ MonoBehaviour:
     - stat: 3
       boost: 1
     status: 3
+    volatileStatus: 0
   target: 0
+  secondaries: []

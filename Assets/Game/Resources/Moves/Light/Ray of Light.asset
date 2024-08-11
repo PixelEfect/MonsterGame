@@ -12,11 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
   m_Name: Ray of Light
   m_EditorClassIdentifier: 
-  name: Ray of Light
+  moveName: Ray of Light
   description: "Deals damage and may blind the opponent, reducing its accuracy.\nPromie\u0144
     \u015Awiat\u0142a\r\nZadaje obra\u017Cenia i mo\u017Ce o\u015Blepi\u0107 przeciwnika,
     zmniejszaj\u0105c jego dok\u0142adno\u015B\u0107."
   type: 2
   power: 30
   accuracy: 100
+  alwaysHits: 0
   pp: 20
+  priority: 0
+  category: 0
+  effects:
+    boosts: []
+    status: 0
+    volatileStatus: 0
+  target: 0
+  secondaries: []

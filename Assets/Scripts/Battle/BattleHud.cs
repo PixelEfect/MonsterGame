@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -10,6 +11,7 @@ public class BattleHud : MonoBehaviour
     [SerializeField] Text levelText;
     [SerializeField] Text statusText;
     [SerializeField] HPBar hpBar;
+    [SerializeField] GameObject expBar;
 
     [SerializeField] Color psnColor;
     [SerializeField] Color brnColor;
@@ -23,8 +25,9 @@ public class BattleHud : MonoBehaviour
     {
         _monster = monster;
         nameText.text = monster.Base.Name;
-        levelText.text = "Lvl " + monster.Level;
+        SetLevel();
         hpBar.SetHP((float) monster.HP / monster.MaxHp);
+        SetExp();
 
         statusColor = new Dictionary<ConditionID, Color>()
         {
@@ -50,6 +53,40 @@ public class BattleHud : MonoBehaviour
             statusText.text = _monster.Status.Id.ToString().ToUpper();
             statusText.color = statusColor[_monster.Status.Id];
         }
+    }
+    public void SetLevel()
+    {
+        levelText.text = "Lvl " + _monster.Level;
+    }
+
+    public void SetExp()
+    {
+        if (expBar == null) return;
+        
+        float normalizedExp = GetNormalizedExp();
+        expBar.transform.localScale = new Vector3(normalizedExp, 1, 1);
+    }
+    public IEnumerator SetExpSmooth(bool reset = false)
+    {
+        if (expBar == null) yield break;
+
+        if (reset)
+        {
+            expBar.transform.localScale = new Vector3(0, 1, 1);
+        }
+
+        float normalizedExp = GetNormalizedExp();
+        yield return expBar.transform.DOScaleX(normalizedExp, 1.5f).WaitForCompletion();
+
+    }
+
+    float GetNormalizedExp()
+    {
+        int currLevelExp = _monster.Base.GetExpForLevel(_monster.Level);
+        int nextLevelExp = _monster.Base.GetExpForLevel(_monster.Level + 1);
+
+        float normalizedExp = (float)(_monster.Exp - currLevelExp) / (nextLevelExp - currLevelExp);
+        return Mathf.Clamp01 (normalizedExp);
     }
 
     public IEnumerator UpdateHP()

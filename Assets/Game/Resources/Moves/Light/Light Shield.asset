@@ -12,11 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
   m_Name: Light Shield
   m_EditorClassIdentifier: 
-  name: Light Shield
+  moveName: Light Shield
   description: "Protects against enemy attacks by absorbing some damage for the next
     move.\r\n\u015Awietlna Tarcza\r\nChro\u0144 si\u0119 przed atakami wrog\xF3w
     absorbuj\u0105c cz\u0119\u015B\u0107 obra\u017Ce\u0144 na nast\u0119pny ruch."
   type: 2
   power: 0
   accuracy: 100
+  alwaysHits: 0
   pp: 10
+  priority: 0
+  category: 0
+  effects:
+    boosts: []
+    status: 0
+    volatileStatus: 0
+  target: 0
+  secondaries: []

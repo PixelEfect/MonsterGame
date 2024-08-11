@@ -12,11 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
   m_Name: Electric Barrier
   m_EditorClassIdentifier: 
-  name: Electric Barrier
+  moveName: Electric Barrier
   description: "Creates an electric field that deals damage to every opponent in
     range.\nElektrobariera\r\nTworzy pole elektryczne, kt\xF3re zadaje obra\u017Cenia
     ka\u017Cdemu przeciwnikowi w zasi\u0119gu."
   type: 3
   power: 0
   accuracy: 100
+  alwaysHits: 0
   pp: 15
+  priority: 0
+  category: 0
+  effects:
+    boosts: []
+    status: 0
+    volatileStatus: 0
+  target: 0
+  secondaries: []

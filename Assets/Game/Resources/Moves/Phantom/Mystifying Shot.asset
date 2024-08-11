@@ -12,11 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
   m_Name: Mystifying Shot
   m_EditorClassIdentifier: 
-  name: Mystifying Shot
+  moveName: Mystifying Shot
   description: "Deals damage to the opponent and forces it to attack in the wrong
     direction.\nMistyfikuj\u0105cy Strza\u0142\r\nZadaje obra\u017Cenia przeciwnikowi
     i zmusza go do ataku w niew\u0142a\u015Bciwym kierunku."
   type: 9
   power: 55
   accuracy: 100
+  alwaysHits: 0
   pp: 25
+  priority: 0
+  category: 0
+  effects:
+    boosts: []
+    status: 0
+    volatileStatus: 0
+  target: 0
+  secondaries: []

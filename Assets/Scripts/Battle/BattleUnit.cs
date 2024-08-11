@@ -44,6 +44,7 @@ public class BattleUnit : MonoBehaviour
             image.sprite = Monster.Base.FrontSprite;
         }
 
+        transform.localScale = new Vector3 (1, 1, 1);
         hud.gameObject.SetActive(true);
         hud.SetData(monster);
 
@@ -103,5 +104,21 @@ public class BattleUnit : MonoBehaviour
         var sequence = DOTween.Sequence();
         sequence.Append(image.transform.DOLocalMoveY(originalPos.y - 200f, 0.5f));
         sequence.Join(image.DOFade(0f, 0.5f));
+    }
+
+    public void PlayCaptureAnimation()
+    {
+        Vector3 targetScale = image.transform.localScale * 0.3f;
+        var sequence = DOTween.Sequence();
+        sequence.Append(image.DOFade(0,2f));
+        sequence.Join(image.transform.DOScale(targetScale, 2f));
+    }
+
+    public IEnumerator PlayBrakeOutAnimation(Vector3 originalScale)
+    {
+        var sequence = DOTween.Sequence();
+        sequence.Append(image.DOFade(1, 0.5f));
+        sequence.Join(image.transform.DOScale(originalScale, 0.5f));
+        yield return sequence.WaitForCompletion();
     }
 }

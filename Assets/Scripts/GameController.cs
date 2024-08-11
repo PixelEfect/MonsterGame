@@ -59,8 +59,12 @@ public class GameController : MonoBehaviour
         var playerParty = playerController.GetComponent<MonsterParty>();
         var wildMonster = FindObjectOfType<MapArea>().GetComponent<MapArea>().GetRandomWildMonster();
 
-        battleSystem.StartBattle(playerParty, wildMonster);
+        var wildMonsterCopy = new Monster(wildMonster.Base, wildMonster.Level);
+
+        battleSystem.StartBattle(playerParty, wildMonsterCopy);
     }
+
+    TrainerController trainer;
 
     public void StartTrainerBattle(TrainerController trainer)
     {
@@ -68,6 +72,7 @@ public class GameController : MonoBehaviour
         battleSystem.gameObject.SetActive(true);
         worldCamera.gameObject.SetActive(false);
 
+        this.trainer = trainer;
         var playerParty = playerController.GetComponent<MonsterParty>();
         var trainerParty = trainer.GetComponent<MonsterParty>();
 
@@ -76,9 +81,16 @@ public class GameController : MonoBehaviour
 
     void EndBattle(bool won)
     {
+        if (trainer != null && won == true)
+        {
+            trainer.BattleLost();
+            trainer = null;
+        }
+
         state = GameState.FreeRoam;
         battleSystem.gameObject.SetActive(false);
         worldCamera.gameObject.SetActive(true);
+
     }
 
     private void Update()

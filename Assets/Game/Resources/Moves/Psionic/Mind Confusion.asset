@@ -12,11 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
   m_Name: Mind Confusion
   m_EditorClassIdentifier: 
-  name: Mind Confusion
+  moveName: Mind Confusion
   description: "Creates confusion in the opponent's mind, preventing it from attacking
     for one turn.\r\nZam\u0119t Umys\u0142u\r\nTworzy zam\u0119t w umy\u015Ble przeciwnika,
     sprawiaj\u0105c \u017Ce nie mo\u017Ce on zaatakowa\u0107 przez jedn\u0105 tur\u0119."
   type: 5
   power: 0
   accuracy: 100
+  alwaysHits: 0
   pp: 10
+  priority: 0
+  category: 0
+  effects:
+    boosts: []
+    status: 0
+    volatileStatus: 0
+  target: 0
+  secondaries: []

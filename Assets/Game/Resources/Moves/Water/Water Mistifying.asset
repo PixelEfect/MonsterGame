@@ -12,12 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
   m_Name: Water Mistifying
   m_EditorClassIdentifier: 
-  name: Water Mistifying
+  moveName: Water Mistifying
   description: "Creates a mist that increases evasion chances in the next turn.\r\nMistyfikacja
     Wody\r\nTworzy mg\u0142\u0119, kt\xF3ra zwi\u0119ksza szans\u0119 na uniki w
     nast\u0119pnej turze."
   type: 11
   power: 0
   accuracy: 100
+  alwaysHits: 0
   pp: 20
-  isSpiritMove: 0
+  priority: 0
+  category: 0
+  effects:
+    boosts: []
+    status: 0
+    volatileStatus: 0
+  target: 0
+  secondaries: []

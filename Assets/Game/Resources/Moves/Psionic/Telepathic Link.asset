@@ -12,11 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
   m_Name: Telepathic Link
   m_EditorClassIdentifier: 
-  name: 
+  moveName: Telepathic Link
   description: "Allows the player to evade the opponent's attack in the next turn.\nTelepatyczna
     \u0141\u0105czno\u015B\u0107\r\nPozwala graczowi omin\u0105\u0107 atak przeciwnika
     w kolejnej turze."
   type: 5
   power: 0
   accuracy: 100
+  alwaysHits: 0
   pp: 15
+  priority: 0
+  category: 0
+  effects:
+    boosts: []
+    status: 0
+    volatileStatus: 0
+  target: 0
+  secondaries: []

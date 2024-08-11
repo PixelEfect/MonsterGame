@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Monster", menuName = "Monster/Create new monster")]
 public class MonsterBase : ScriptableObject
 {
-    [SerializeField] string name;
+    [SerializeField] string monsterName;
     
     [SerializeField] string description;
 
@@ -22,16 +22,38 @@ public class MonsterBase : ScriptableObject
     [SerializeField] int spAttack;
     [SerializeField] int spDefense;
     [SerializeField] int speed;
+    
+    [SerializeField] int expYield;
+    [SerializeField] GrowthRate growthRate;
+    
+
+    [SerializeField] int catchRate = 255;
 
     [SerializeField] List<LearnableMove> learnableMoves;
-    //public string GetName() 
-    //{ 
-    //    return name; 
-    //}
 
+    public int GetExpForLevel(int level)
+    {
+        if (growthRate == GrowthRate.Fast)
+        {
+            return 4 * (level * level* level) / 5;
+        }
+        else if (growthRate == GrowthRate.MediumFast)
+        {
+            return level * level * level;
+        }
+        else if (growthRate <= GrowthRate.MediumSlow)
+        {
+            return (6*(level * level * level) / 5) - (15 * level * level)+(100* level) - 140;
+        }
+        else if (growthRate >= GrowthRate.Slow)
+        {
+            return 5 * (level * level * level) / 4;
+        }
+        return -1;
+    }
     public string Name
     {
-        get { return name; }
+        get { return monsterName; }
     }
     public string Description
     {
@@ -81,6 +103,11 @@ public class MonsterBase : ScriptableObject
     {
         get { return learnableMoves; }
     }
+    public int CatchRate => catchRate;
+    public int ExpYield => expYield;
+
+    public GrowthRate GrowthRate => growthRate;
+
 }
 [System.Serializable]
 public class LearnableMove
@@ -118,6 +145,11 @@ public enum MonsterType
     Wood,
     Wind,
     Normal
+}
+
+public enum GrowthRate
+{
+    Fast, MediumFast, MediumSlow, Slow
 }
 
 public enum Stat

@@ -12,11 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
   m_Name: Protective Breeze
   m_EditorClassIdentifier: 
-  name: Protective Breeze
+  moveName: Protective Breeze
   description: "Protects allies from damage, reducing the effectiveness of attacks.\r\nWicher
     Ochronny\r\nChroni sojusznik\xF3w od obra\u017Ce\u0144, zmniejszaj\u0105c skuteczno\u015B\u0107
     atak\xF3w."
   type: 16
   power: 0
   accuracy: 100
+  alwaysHits: 0
   pp: 15
+  priority: 0
+  category: 0
+  effects:
+    boosts: []
+    status: 0
+    volatileStatus: 0
+  target: 0
+  secondaries: []

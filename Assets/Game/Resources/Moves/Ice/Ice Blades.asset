@@ -12,10 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
   m_Name: Ice Blades
   m_EditorClassIdentifier: 
-  name: Ice Blades
+  moveName: Ice Blades
   description: "Deals damage and has a chance to freeze the opponent.\r\nOstrza Lodowe\r\nZadaje
     obra\u017Cenia i ma szans\u0119 na zamro\u017Cenie przeciwnika."
   type: 12
   power: 45
   accuracy: 100
+  alwaysHits: 0
   pp: 25
+  priority: 0
+  category: 0
+  effects:
+    boosts: []
+    status: 0
+    volatileStatus: 0
+  target: 0
+  secondaries: []

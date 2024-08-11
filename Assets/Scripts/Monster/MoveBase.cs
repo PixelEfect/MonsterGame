@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Move", menuName = "Monster/Create new move")]
 public class MoveBase : ScriptableObject
 {
-    [SerializeField] string name;
+    [SerializeField] string moveName;
 
     [TextArea]
     [SerializeField] string description;
@@ -25,7 +25,7 @@ public class MoveBase : ScriptableObject
 
     public string Name
     {
-        get { return name; }
+        get { return moveName; }
     }
     public string Description
     {

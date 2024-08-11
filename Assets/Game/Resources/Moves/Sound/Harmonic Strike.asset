@@ -12,10 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
   m_Name: Harmonic Strike
   m_EditorClassIdentifier: 
-  name: Harmonic Strike
+  moveName: Harmonic Strike
   description: "Heals allies by amplifying sound energy.\r\nHarmonijne Uderzenie\r\nLeczy
     sojusznik\xF3w, wzmacniaj\u0105c energi\u0119 d\u017Awi\u0119kow\u0105."
   type: 13
   power: 0
   accuracy: 100
+  alwaysHits: 0
   pp: 20
+  priority: 0
+  category: 0
+  effects:
+    boosts: []
+    status: 0
+    volatileStatus: 0
+  target: 0
+  secondaries: []

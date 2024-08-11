@@ -12,11 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
   m_Name: Metal Shatter
   m_EditorClassIdentifier: 
-  name: Metal Shatter
+  moveName: Metal Shatter
   description: "Deals high damage by shattering metal components in the enemy's mind.\r\nKruszenie
     Metalu\r\nZadaje du\u017C\u0105 ilo\u015B\u0107 obra\u017Ce\u0144 przez rozbijanie
     metalowych element\xF3w umys\u0142u przeciwnika."
   type: 8
   power: 70
   accuracy: 80
+  alwaysHits: 0
   pp: 20
+  priority: 0
+  category: 0
+  effects:
+    boosts: []
+    status: 0
+    volatileStatus: 0
+  target: 0
+  secondaries: []

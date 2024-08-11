@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
   m_Name: QuickAttack
   m_EditorClassIdentifier: 
-  name: Quick Attack
+  moveName: QuickAttack
   description: 
   type: 17
   power: 40

@@ -12,11 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
   m_Name: Earthquake
   m_EditorClassIdentifier: 
-  name: Earthquake
+  moveName: Earthquake
   description: "Causes an earthquake that deals damage and weakens the opponent.\r\nWstrz\u0105s
     Ziemi\r\nPowoduje wstrz\u0105s ziemi, zadaj\u0105c obra\u017Cenia i os\u0142abiaj\u0105c
     przeciwnika."
   type: 7
   power: 80
   accuracy: 80
+  alwaysHits: 0
   pp: 20
+  priority: 0
+  category: 0
+  effects:
+    boosts: []
+    status: 0
+    volatileStatus: 0
+  target: 0
+  secondaries: []

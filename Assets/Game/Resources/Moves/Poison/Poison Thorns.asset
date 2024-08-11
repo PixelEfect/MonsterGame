@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
   m_Name: Poison Thorns
   m_EditorClassIdentifier: 
-  name: Poison Thorns
+  moveName: Poison Thorns
   description: "Deals direct damage and may inflict additional damage with stings.\r\nTruj\u0105ce
     Kolce\r\nZadaje bezpo\u015Brednie obra\u017Cenia i mo\u017Ce zada\u0107 dodatkowe
     obra\u017Cenia przez u\u017C\u0105dlenie."
@@ -21,6 +21,7 @@ MonoBehaviour:
   accuracy: 100
   alwaysHits: 0
   pp: 15
+  priority: 0
   category: 2
   effects:
     boosts: []

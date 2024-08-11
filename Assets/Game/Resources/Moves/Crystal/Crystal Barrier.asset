@@ -12,11 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
   m_Name: Crystal Barrier
   m_EditorClassIdentifier: 
-  name: Crystal Barrier
+  moveName: Crystal Barrier
   description: "Creates a crystal shield that reduces damage from attacks for one
     turn.\nKryszta\u0142owa Bariera\r\nTworzy os\u0142on\u0119 kryszta\u0142ow\u0105,
     kt\xF3ra zmniejsza obra\u017Cenia od atak\xF3w przez jedn\u0105 tur\u0119."
   type: 1
   power: 0
   accuracy: 100
+  alwaysHits: 0
   pp: 10
+  priority: 0
+  category: 0
+  effects:
+    boosts: []
+    status: 0
+    volatileStatus: 0
+  target: 0
+  secondaries: []

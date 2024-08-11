@@ -12,11 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076736ce181148e4d9f0d882a6fd1b25, type: 3}
   m_Name: Fiery Rage
   m_EditorClassIdentifier: 
-  name: Fiery Rage
+  moveName: Fiery Rage
   description: "Deals high damage and may burn the opponent, causing damage over
     several turns.\nP\u0142on\u0105cy Rage\r\nZadaje du\u017Ce obra\u017Cenia i mo\u017Ce
     spali\u0107 przeciwnika, zadaj\u0105c obra\u017Cenia przez kilka tur."
   type: 4
   power: 20
   accuracy: 90
+  alwaysHits: 0
   pp: 20
+  priority: 0
+  category: 0
+  effects:
+    boosts: []
+    status: 0
+    volatileStatus: 0
+  target: 0
+  secondaries: []
