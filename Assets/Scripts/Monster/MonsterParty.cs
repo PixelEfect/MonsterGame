@@ -6,7 +6,7 @@ using UnityEngine;
 public class MonsterParty : MonoBehaviour
 {
     [SerializeField] List<Monster> monsters;
-
+    public BattleSystem battleSystem;
     public List<Monster> Monsters
     {
         get { return monsters; }
@@ -28,7 +28,11 @@ public class MonsterParty : MonoBehaviour
 
     public void AddMonster(Monster newMonster)
     {
-        if ( monsters.Count < 6)
+        if (battleSystem == null)
+        {
+            battleSystem = FindObjectOfType<BattleSystem>();
+        }
+        if ( monsters.Count < battleSystem.MonsterPartyCount)
         {
             monsters.Add(newMonster);
         }

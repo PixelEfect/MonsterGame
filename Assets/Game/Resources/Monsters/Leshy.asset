@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterName: Leshy
   description: Leshy is the guardian of the forests
-  frontSprite: {fileID: 21300000, guid: 25c793960f76cf34bbb872d9f1d3fed1, type: 3}
-  backSprite: {fileID: 21300000, guid: d9a57405b8585cb41a8577b5f0b9ca06, type: 3}
+  frontSprite: {fileID: 21300000, guid: d2577cfbb698c8b4d8d314e13bd4f8da, type: 3}
+  backSprite: {fileID: 21300000, guid: 379ac9272fac10d40848efb99faf4a29, type: 3}
   type1: 15
   type2: 6
   maxHp: 60
@@ -30,11 +30,9 @@ MonoBehaviour:
   learnableMoves:
   - moveBase: {fileID: 11400000, guid: 75bb128ddb0bae342aac88e6c324c6e3, type: 2}
     level: 1
-  - moveBase: {fileID: 11400000, guid: 0a554b4d826d3254f91a7fc0e6487739, type: 2}
-    level: 4
   - moveBase: {fileID: 11400000, guid: fbfcf8af76407cc478496a7e6581cbb0, type: 2}
-    level: 7
+    level: 5
   - moveBase: {fileID: 11400000, guid: bb7978d3345b83440a7742a350d952d7, type: 2}
-    level: 1
-  - moveBase: {fileID: 11400000, guid: 0ff1c9a165ef8394f933a05bdda85bb3, type: 2}
     level: 7
+  - moveBase: {fileID: 11400000, guid: 0ff1c9a165ef8394f933a05bdda85bb3, type: 2}
+    level: 11

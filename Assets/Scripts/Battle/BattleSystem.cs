@@ -12,6 +12,7 @@ public enum BattleState { Start, ActionSelection, MoveSelection, RunningTurn, Bu
 public enum BattleAction { Move, SwitchMonster, UseItem, Run}
 public class BattleSystem : MonoBehaviour
 {
+    [SerializeField] private int monsterPartyCount = 5;
     [SerializeField] BattleUnit playerUnit;
     [SerializeField] BattleUnit enemyUnit;
     [SerializeField] BattleDialogBox dialogBox;
@@ -25,6 +26,11 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] GameObject sphereSprite3;
 
     public event Action<bool> OnBattleOver;
+
+    public int MonsterPartyCount
+    {
+        get { return monsterPartyCount; }
+    }
 
     BattleState state;
     BattleState? prevState;
@@ -140,7 +146,6 @@ public class BattleSystem : MonoBehaviour
 
     void MoveSelection()
     {
-        Debug.Log("playermove");
         state = BattleState.MoveSelection;
         dialogBox.EnableActionSelector(false);
         dialogBox.EnableDialogText(false);
@@ -402,6 +407,22 @@ public class BattleSystem : MonoBehaviour
             {
                 playerUnit.Hud.SetLevel();
                 yield return dialogBox.TypeDialog($"{playerUnit.Monster.Base.Name} grew to level {playerUnit.Monster.Level}");
+
+                //Try to learn a new Move
+                var newMove = playerUnit.Monster.GetLearnableMoveAtCurrLevel();
+                if (newMove != null)
+                {
+                    if (playerUnit.Monster.Moves.Count < MonsterBase.MaxNumOfMoves)
+                    {
+                        playerUnit.Monster.LearnMove(newMove);
+                        yield return dialogBox.TypeDialog($"{playerUnit.Monster.Base.Name} learned {newMove.Base.Name}");
+                        dialogBox.SetMoveNames(playerUnit.Monster.Moves);
+                    }
+                    else
+                    {
+
+                    }
+                }
 
                 yield return playerUnit.Hud.SetExpSmooth(true);
             }

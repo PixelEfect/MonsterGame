@@ -53,7 +53,7 @@ public class Monster
                 Moves.Add(new Move(move.Base));
             }
 
-            if(Moves.Count >=4)
+            if(Moves.Count >= MonsterBase.MaxNumOfMoves)
             {
                 break;
             }
@@ -150,6 +150,22 @@ public class Monster
         }
         return false;
     }
+    public LearnableMove GetLearnableMoveAtCurrLevel()
+    {
+        return Base.LernableMoves.Where(x => x.Level == level).FirstOrDefault();
+    }
+
+    public void LearnMove(LearnableMove moveToLearn)
+    {
+        if (Moves.Count > MonsterBase.MaxNumOfMoves)
+        {
+            return;
+        }
+
+        Moves.Add(new Move(moveToLearn.Base));
+    }
+
+
     public int Attack 
     {  
         get { return GetStat(Stat.Attack); } 

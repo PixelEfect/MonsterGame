@@ -29,7 +29,8 @@ public class PartyMemberUI : MonoBehaviour
 
         if (selected)
         {
-            memberImage.DOColor(Color.gray, 0.5f);
+            memberImage.DOColor(Color.blue, 0f);
+            //memberImage.DOColor(Color.red, 0.5f);
         }
         else
         {
