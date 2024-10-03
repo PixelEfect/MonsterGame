@@ -1,17 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour, Interactable
+public class PlayerController : MonoBehaviour, Interactable, ISavable
 {
     [SerializeField] string playerName;
     [SerializeField] Sprite sprite;
-
-    const float offsetY = 0.3f;
-
-    public event Action OnEncountered;
-    public event Action<Collider2D> OnEnterTrainersView;
 
     private Vector2 input;
     // Start is called before the first frame update
@@ -69,34 +65,43 @@ public class PlayerController : MonoBehaviour, Interactable
     }
     private void OnMoveOver()
     {
-        CheckForEncounters();
-        CheckIfInTrainersView();
-    }
-    private void CheckForEncounters()
-    {
-        if (Physics2D.OverlapCircle(transform.position - new Vector3(0, offsetY), 0.2f, GameLayers.i.GrassLayer) != null)
+        var colliders = Physics2D.OverlapCircleAll(transform.position - new Vector3(0, character.OffsetY), 0.2f, GameLayers.i.TriggerableLayers);
+        
+        foreach (var collider in colliders)
         {
-            if (UnityEngine.Random.Range(1, 101) <= 10)
+            var triggerable = collider.GetComponent<IPlayerTriggerable>();
+            if (triggerable != null)
             {
-                character.Animator.IsMoving = false;
-                OnEncountered();
+                triggerable.OnPlayerTriggered(this);
+                break;
             }
-        }
-    }
-
-    private void CheckIfInTrainersView()
-    {   
-        var collider = Physics2D.OverlapCircle(transform.position - new Vector3(0, offsetY), 0.2f, GameLayers.i.FovLayer);
-        if (collider != null)
-        {
-            character.Animator.IsMoving = false;
-            OnEnterTrainersView?.Invoke(collider);
         }
     }
 
     public void Interact(Transform initiator)
     {
         throw new System.NotImplementedException();
+    }
+
+    public object CaptureState()
+    {
+        var saveData = new PlayerSaveData()
+        {
+            position = new float[] { transform.position.x, transform.position.y },
+            monsters = GetComponent<MonsterParty>().Monsters.Select(p => p.GetSaveData()).ToList()
+        };
+
+        return saveData;
+    }
+
+    public void RestoreState(object state)
+    {
+        var saveData = (PlayerSaveData)state;
+        var pos = saveData.position;
+        transform.position = new Vector3(pos[0], pos[1]);
+
+        //Restore Party
+        GetComponent<MonsterParty>().Monsters = saveData.monsters.Select(s=> new Monster(s)).ToList();
     }
 
     public string Name
@@ -107,4 +112,12 @@ public class PlayerController : MonoBehaviour, Interactable
     {
         get => sprite;
     }
+
+    public Character Character => character;
+}
+[Serializable]
+public class PlayerSaveData
+{
+    public float[] position;
+    public List<MonsterSaveData> monsters;
 }

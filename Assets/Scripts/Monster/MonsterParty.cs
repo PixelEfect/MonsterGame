@@ -9,7 +9,7 @@ public class MonsterParty : MonoBehaviour
     public BattleSystem battleSystem;
     public List<Monster> Monsters
     {
-        get { return monsters; }
+        get { return monsters; } set { monsters = value; }
     }
 
 
