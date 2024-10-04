@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GameState { FreeRoam, Battle, Dialog, Menu, Cutscene, Paused }
+public enum GameState { FreeRoam, Battle, Dialog, Menu,PartyScreen, Cutscene, Paused }
 
 
 public class GameController : MonoBehaviour
@@ -10,6 +11,8 @@ public class GameController : MonoBehaviour
     [SerializeField] PlayerController playerController;
     [SerializeField] BattleSystem battleSystem;
     [SerializeField] Camera worldCamera;
+
+    [SerializeField] PartyScreen partyScreen;
 
     GameState state;
 
@@ -36,6 +39,8 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         battleSystem.OnBattleOver += EndBattle;
+
+        partyScreen.Init();
 
         DialogManager.Instance.OnShowDialog += () =>
         {
@@ -126,7 +131,7 @@ public class GameController : MonoBehaviour
         {
             playerController.HandleUpdate();
 
-            if(Input.GetKeyDown(KeyCode.Escape))            //Return
+            if (Input.GetKeyDown(KeyCode.Escape))            //Return
             {
                 menuController.OpenMenu();
                 state = GameState.Menu;
@@ -150,11 +155,23 @@ public class GameController : MonoBehaviour
         {
             DialogManager.Instance.HandleUpdate();
         }
-        else if ( state == GameState.Menu)
+        else if (state == GameState.Menu)
         {
             menuController.HandleUpdate();
         }
-
+        else if (state == GameState.PartyScreen)
+        {
+            Action onSelected = () =>
+            {
+                //TODO go to summary screen
+            };
+            Action onBack = () =>
+            {
+                partyScreen.gameObject.SetActive(false);
+                state = GameState.FreeRoam;
+            };
+            partyScreen.HandleUpdate(onSelected, onBack);
+        }
     }
 
     public void SetCurrentScene(SceneDetails currScene)
@@ -168,6 +185,9 @@ public class GameController : MonoBehaviour
         if(selectedItem == 1)
         {
             //Monster
+            partyScreen.gameObject.SetActive(true);
+            partyScreen.SetPartyData(playerController.GetComponent<MonsterParty>().Monsters);
+            state = GameState.PartyScreen;
         }
         else if (selectedItem == 2)
         {
@@ -177,11 +197,13 @@ public class GameController : MonoBehaviour
         {
             //Save
             SavingSystem.i.Save("saveSlot1");
+            state = GameState.FreeRoam;
         }
         else if(selectedItem == 4)
         {
             SavingSystem.i.Load("saveSlot1");
+            state = GameState.FreeRoam;
         }
-        state = GameState.FreeRoam;
+
     }
 }

@@ -11,9 +11,6 @@ public class PartyMemberUI : MonoBehaviour
     [SerializeField] HPBar hpBar;
     [SerializeField] Image memberImage;
 
-
-    [SerializeField] Color highlightedColor;
-
     Monster _monster;
     public void SetData(Monster monster)
     {
