@@ -32,6 +32,10 @@ public class GameController : MonoBehaviour
 
         menuController = GetComponent<MenuController>();
 
+        //Wylaczanie obslugi myszy i ukrycie kursora
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+
         MonsterDB.Init();
         MoveDB.Init();
         ConditionsDB.Init();
