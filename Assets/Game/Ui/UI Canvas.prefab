@@ -218,7 +218,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: -187.68832, y: 1.8029}
-  m_SizeDelta: {x: 331.9745, y: 396.3941}
+  m_SizeDelta: {x: 331.9745, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &361961713825986005
 CanvasRenderer:
@@ -2179,7 +2179,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6939588454843730628
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2739,10 +2739,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemList: {fileID: 1408932491012637345}
   itemSlotUI: {fileID: 7531962366987259216, guid: a77cba7e49b08674588b09084f6857ae, type: 3}
-  itemIcon: {fileID: 0}
-  itemDescription: {fileID: 0}
+  itemIcon: {fileID: 7948114420599208824}
+  itemDescription: {fileID: 576761650057223601}
   UpArrow: {fileID: 3088991461328251195}
   DownArrow: {fileID: 2494231718334279413}
+  partyScreen: {fileID: 4453610204883622441}
 --- !u!1 &6093371974407163168
 GameObject:
   m_ObjectHideFlags: 0
@@ -2996,8 +2997,8 @@ RectTransform:
   - {fileID: 5031329295038787998}
   - {fileID: 2681043082070236070}
   - {fileID: 9130258852602760685}
-  - {fileID: 5771855037236256885}
   - {fileID: 6891957174274284176}
+  - {fileID: 5771855037236256885}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3243,7 +3244,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5118463533739283706
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5118,6 +5119,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a67ba10feba4b7b4b9f0d563cb4b4a34, type: 3}
+--- !u!114 &4453610204883622441 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2223955655576633289, guid: a67ba10feba4b7b4b9f0d563cb4b4a34, type: 3}
+  m_PrefabInstance: {fileID: 2527492459432846816}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ec0d08e7de8b28439e2d26b58e4e2e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &5771855037236256885 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8289660798137861525, guid: a67ba10feba4b7b4b9f0d563cb4b4a34, type: 3}

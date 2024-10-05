@@ -10,6 +10,7 @@ public class PartyScreen : MonoBehaviour
 
     PartyMemberUI[] memberSlots;
     List<Monster> monsters;
+    MonsterParty party;
 
     int selection = 0;
 
@@ -22,11 +23,16 @@ public class PartyScreen : MonoBehaviour
     public void Init()
     {
         memberSlots = GetComponentsInChildren<PartyMemberUI>(true);
+
+        party = MonsterParty.GetPlayerParty();
+        SetPartyData();
+
+        party.OnUpdated += SetPartyData;
     }
 
-    public void SetPartyData(List<Monster> monsters)
+    public void SetPartyData()
     {
-        this.monsters = monsters;
+        monsters = party.Monsters;
 
         for (int i = 0; i < memberSlots.Length; i++)
         {

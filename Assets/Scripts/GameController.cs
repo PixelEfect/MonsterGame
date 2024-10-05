@@ -200,7 +200,6 @@ public class GameController : MonoBehaviour
         {
             //Monster
             partyScreen.gameObject.SetActive(true);
-            partyScreen.SetPartyData(playerController.GetComponent<MonsterParty>().Monsters);
             state = GameState.PartyScreen;
         }
         else if (selectedItem == 2)

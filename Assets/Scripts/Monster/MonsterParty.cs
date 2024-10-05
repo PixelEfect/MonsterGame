@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,13 +8,14 @@ public class MonsterParty : MonoBehaviour
 {
     [SerializeField] List<Monster> monsters;
     public BattleSystem battleSystem;
+
+    public event Action OnUpdated;
     public List<Monster> Monsters
     {
         get { return monsters; } set { monsters = value; }
     }
 
-
-    private void Start()
+    private void Awake()
     {
         foreach (var monster in monsters)
         {
@@ -21,12 +23,17 @@ public class MonsterParty : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+
+    }
+
     public Monster GetHealthyMonster()
     {
         return monsters.Where(x => x.HP > 0).FirstOrDefault();
     }
 
-    public void AddMonster(Monster newMonster)
+    public void AddMonster(Monster newMonster)    
     {
         if (battleSystem == null)
         {
@@ -35,10 +42,16 @@ public class MonsterParty : MonoBehaviour
         if ( monsters.Count < battleSystem.MonsterPartyCount)
         {
             monsters.Add(newMonster);
+            OnUpdated?.Invoke();
         }
         else
         {
             //TODO add to the PC once that's implemented
         }
+    }
+
+    public static MonsterParty GetPlayerParty()
+    {
+        return FindObjectOfType<PlayerController>().GetComponent<MonsterParty>();
     }
 }
