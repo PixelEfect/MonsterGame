@@ -9,6 +9,8 @@ public class ItemBase : ScriptableObject
 
     [SerializeField] string description;
 
+    [SerializeField] string useMassage;
+
     [SerializeField] Sprite icon;
 
 
@@ -16,5 +18,12 @@ public class ItemBase : ScriptableObject
 
     public string Description => description;
 
+    public string UseMassage => useMassage;
+
     public Sprite Icon => icon;
+
+    public virtual bool Use(Monster monster)
+    {
+        return false;
+    }
 }

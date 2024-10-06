@@ -9,7 +9,7 @@ using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum BattleState { Start, ActionSelection, MoveSelection, RunningTurn, Busy, PartyScreen, AboutToUse, MoveToForget, BattleOver}
+public enum BattleState { Start, ActionSelection, MoveSelection, RunningTurn, Busy, Bag, PartyScreen, AboutToUse, MoveToForget, BattleOver}
 public enum BattleAction { Move, SwitchMonster, UseItem, Run}
 public class BattleSystem : MonoBehaviour
 {
@@ -26,6 +26,7 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] GameObject sphereSprite2;
     [SerializeField] GameObject sphereSprite3;
     [SerializeField] MoveSelectionUI moveSelectionUI;
+    [SerializeField] InventoryUI inventoryUI;
 
     public event Action<bool> OnBattleOver;
 
@@ -137,7 +138,11 @@ public class BattleSystem : MonoBehaviour
         dialogBox.SetDialog("Choose an action");
         dialogBox.EnableActionSelector(true);
     }
-
+    void OpenBag()
+    {
+        state = BattleState.Bag;
+        inventoryUI.gameObject.SetActive(true);
+    }
     void OpenPartyScreen()
     {
         partyScreen.CalledFrom = state;
@@ -257,7 +262,7 @@ public class BattleSystem : MonoBehaviour
         if (!canRunMove)
         {
             yield return ShowStatusChanges(sourceUnit.Monster);
-            yield return sourceUnit.Hud.UpdateHP();
+            //yield return sourceUnit.Hud.UpdateHPAsync();
             yield break;
         }
         yield return ShowStatusChanges(sourceUnit.Monster);
@@ -280,7 +285,7 @@ public class BattleSystem : MonoBehaviour
             else
             {
                 var damageDetails = targetUnit.Monster.TakeDamage(move, sourceUnit.Monster);
-                yield return targetUnit.Hud.UpdateHP();
+                //yield return targetUnit.Hud.UpdateHPAsync();
                 yield return ShowDamageDetails(damageDetails);
             }
 
@@ -347,7 +352,7 @@ public class BattleSystem : MonoBehaviour
         // Statuses like burn or psn will hurt the monster after the turn
         sourceUnit.Monster.OnAfterTurn();
         yield return ShowStatusChanges(sourceUnit.Monster);
-        yield return sourceUnit.Hud.UpdateHP();
+        //yield return sourceUnit.Hud.UpdateHPAsync();
         if (sourceUnit.Monster.HP <= 0)
         {
             yield return HandleMonsterFainted(sourceUnit);
@@ -517,6 +522,16 @@ public class BattleSystem : MonoBehaviour
         {
             HandlePartySelection();
         }
+        else if (state == BattleState.Bag)
+        {
+            Action onBack = () =>
+            {
+                inventoryUI.gameObject.SetActive(false);
+                state = BattleState.ActionSelection;
+            };
+
+            inventoryUI.HandleUpdate(onBack);
+        }
         else if (state == BattleState.AboutToUse)
         {
             HandleAboutToUse();
@@ -547,7 +562,10 @@ public class BattleSystem : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.T))
         {
-            StartCoroutine (ThrowSphere());
+            if (state == BattleState.ActionSelection)
+            {
+                StartCoroutine(RunTurns(BattleAction.UseItem));
+            }
         }
     }
 
@@ -583,7 +601,7 @@ public class BattleSystem : MonoBehaviour
             else if (currentAction == 1)
             {
                 //Bag
-                StartCoroutine (RunTurns(BattleAction.UseItem));
+                OpenBag();
             }
             else if (currentAction == 2)
             {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using System.Threading;
 
 public class PartyMemberUI : MonoBehaviour
 {
@@ -12,12 +13,20 @@ public class PartyMemberUI : MonoBehaviour
     [SerializeField] Image memberImage;
 
     Monster _monster;
-    public void SetData(Monster monster)
+    public void Init(Monster monster)
     {
         _monster = monster;
-        nameText.text = monster.Base.Name;
-        levelText.text = "Lvl " + monster.Level;
-        hpBar.SetHP((float)monster.HP / monster.MaxHp);
+        UpdateData();
+
+        _monster.OnHPChanged +=UpdateData;
+
+    }
+
+    void UpdateData()
+    {
+        nameText.text = _monster.Base.Name;
+        levelText.text = "Lvl " + _monster.Level;
+        hpBar.SetHP((float)_monster.HP / _monster.MaxHp);
     }
 
     public void SetSelected(bool selected)

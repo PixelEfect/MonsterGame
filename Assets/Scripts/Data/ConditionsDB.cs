@@ -26,7 +26,7 @@ public class ConditionsDB
                 OnAfterTurn = (Monster monster) =>
                 {
                     int poisonDamage = Mathf.Max(monster.MaxHp / 8, 1);
-                    monster.UpdateHP(poisonDamage);
+                    monster.DecreaseHP(poisonDamage);
                     monster.StatusChanges.Enqueue($"{monster.Base.Name} hurt itself due to poison");
                 }
             }
@@ -40,7 +40,7 @@ public class ConditionsDB
                 OnAfterTurn = (Monster monster) =>
                 {
                     int burnDamage = Mathf.Max(monster.MaxHp / 16, 1);
-                    monster.UpdateHP(burnDamage);
+                    monster.DecreaseHP(burnDamage);
                     monster.StatusChanges.Enqueue($"{monster.Base.Name} hurt itself due to burn");
                 }
             }
@@ -139,7 +139,7 @@ public class ConditionsDB
                     }
 
                     monster.StatusChanges.Enqueue($"{monster.Base.Name} is confused");
-                    monster.UpdateHP(monster.MaxHp /8);
+                    monster.DecreaseHP(monster.MaxHp /8);
                     monster.StatusChanges.Enqueue($"It hurt itself due to confusion");
                     return false;
                 }

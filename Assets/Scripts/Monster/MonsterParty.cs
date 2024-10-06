@@ -12,7 +12,15 @@ public class MonsterParty : MonoBehaviour
     public event Action OnUpdated;
     public List<Monster> Monsters
     {
-        get { return monsters; } set { monsters = value; }
+        get 
+        { 
+            return monsters; 
+        } 
+        set 
+        { 
+            monsters = value; 
+            OnUpdated?.Invoke();
+        }
     }
 
     private void Awake()

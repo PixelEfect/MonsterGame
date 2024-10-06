@@ -40,6 +40,7 @@ public class InventoryUI : MonoBehaviour
     private void Start()
     {
         UpdateItemList();
+        inventory.OnUpdated += UpdateItemList;
     }
 
     void UpdateItemList()
@@ -95,6 +96,8 @@ public class InventoryUI : MonoBehaviour
             Action onSelected = () =>
             {
                 //Use the item on the selected monster
+                StartCoroutine(UseItem());
+
             };
             Action onBackPartyScreen = () =>
             {
@@ -104,6 +107,24 @@ public class InventoryUI : MonoBehaviour
             partyScreen.HandleUpdate(onSelected, onBackPartyScreen);
         }
 
+    }
+
+    IEnumerator UseItem()
+    {
+        state = InventoryUIState.Busy;
+
+        var usedItem = inventory.UseItem(selectedItem, partyScreen.SelectedMember);
+
+        if (usedItem != null)
+        {
+            yield return DialogManager.Instance.ShowDialogText($"{usedItem.UseMassage}");
+        }
+        else
+        {
+            yield return DialogManager.Instance.ShowDialogText($"Not used massage - inventoryUI");
+        }
+
+        ClosePartyScreen();
     }
 
     void UpdateItemSelection()
