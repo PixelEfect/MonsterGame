@@ -422,3 +422,9 @@ MonoBehaviour:
     count: 11
   - item: {fileID: 11400000, guid: badd81070a6141d478b03e858dcc4587, type: 2}
     count: 444
+  sphereSlots:
+  - item: {fileID: 11400000, guid: 9585b0c822023a7418d2474014a44494, type: 2}
+    count: 6
+  - item: {fileID: 11400000, guid: f9861a89e815de34b959e8ba6576916e, type: 2}
+    count: 3
+  tmSlots: []

@@ -23,11 +23,13 @@ public class BattleHud : MonoBehaviour
     Dictionary<ConditionID, Color> statusColor;
     public void SetData(Monster monster)
     {
-        if (_monster != null)
-        {
-            _monster.OnHPChanged -= UpdateHP;
-            _monster.OnStatusChanged -= SetStatusText;
-        }
+
+        ClearData();  // to zamiast ponizszego
+        //if (_monster != null)
+        //{
+        //    _monster.OnHPChanged -= UpdateHP;
+        //    _monster.OnStatusChanged -= SetStatusText;
+        //}
 
         _monster = monster;
         nameText.text = monster.Base.Name;
@@ -109,5 +111,14 @@ public class BattleHud : MonoBehaviour
     public IEnumerator WaitForHpUpdate()
     {
         yield return new WaitUntil(() => hpBar.IsUpdating == false);
+    }
+
+    public void ClearData()
+    {
+        if (_monster != null)
+        {
+            _monster.OnHPChanged -= UpdateHP;
+            _monster.OnStatusChanged -= SetStatusText;
+        }
     }
 }

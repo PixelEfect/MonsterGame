@@ -129,6 +129,8 @@ public class BattleSystem : MonoBehaviour
     {
         state = BattleState.BattleOver;
         playerParty.Monsters.ForEach(p => p.OnBattleOver());
+        playerUnit.Hud.ClearData();
+        enemyUnit.Hud.ClearData();
         OnBattleOver(won);
     }
 
@@ -309,6 +311,7 @@ public class BattleSystem : MonoBehaviour
 
             if (targetUnit.Monster.HP <= 0)
             {
+                targetUnit.Monster.CureStatus();    // moja implementacja
                 yield return HandleMonsterFainted(targetUnit);
             }
         }

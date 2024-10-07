@@ -24,14 +24,86 @@ public class RecoveryItem : ItemBase
 
     public override bool Use(Monster monster)
     {
-        if (hpAmount > 0)
+        // Revive
+        if (revive || maxRevive)
+        {
+            if (monster.HP > 0)
+            {
+                return false;
+            }
+            if (revive)
+            {
+                monster.IncreaseHP(monster.MaxHp/2);
+            }
+            else if (maxRevive) 
+            {
+                monster.IncreaseHP(monster.MaxHp);
+            }
+            return true;
+        }
+        // No other items cam be used on fainted monster
+        if (monster.HP == 0)
+        {
+            return false;
+        }
+
+        // Restore HP
+        if (restoreMaxHp || hpAmount > 0)
         {
             if (monster.HP == monster.MaxHp)
             {
                 return false;
             }
-            monster.IncreaseHP(hpAmount);
+            if (restoreMaxHp)
+            {
+                monster.IncreaseHP(monster.MaxHp);
+            }
+            else
+            {
+                monster.IncreaseHP(hpAmount);
+            }
         }
+
+        // Recovery Status
+        if (recoverAllStatus || status != ConditionID.none)
+        {
+            if (monster.Status == null && monster.VolatileStatus == null)
+            {
+                return false;
+            }
+            if (recoverAllStatus)
+            {
+                monster.CureStatus();
+                monster.CureVolatileStatus();
+            }
+            else
+            {
+                if (monster.Status.Id == status)
+                {
+                    monster.CureStatus();
+                }
+                else if (monster.VolatileStatus.Id == status) 
+                {
+                    monster.CureVolatileStatus();
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        // Restore PP
+        if (restoreMaxPp)
+        {
+            monster.Moves.ForEach(m => m.IncreasePP(m.Base.PP));
+        }
+        else if (ppAmount > 0)
+        {
+            monster.Moves.ForEach(m => m.IncreasePP(ppAmount));
+        }
+        
+
         return true;
     }
 
