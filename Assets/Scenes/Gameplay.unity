@@ -1546,6 +1546,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1935116543668925263, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
+      propertyPath: monsters.Array.data[0]._base
+      value: 
+      objectReference: {fileID: 11400000, guid: 74d885e366ad31d4d9e38b94610137b7, type: 2}
+    - target: {fileID: 1935116543668925263, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
+      propertyPath: monsters.Array.data[0].level
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1935116543668925263, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
+      propertyPath: monsters.Array.data[1]._base
+      value: 
+      objectReference: {fileID: 11400000, guid: 8b46b821f9b26024c9961f1bcd7a263d, type: 2}
+    - target: {fileID: 1935116543668925263, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
+      propertyPath: monsters.Array.data[1].level
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2009029664513726269, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1

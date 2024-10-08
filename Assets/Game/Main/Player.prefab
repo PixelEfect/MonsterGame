@@ -427,4 +427,8 @@ MonoBehaviour:
     count: 6
   - item: {fileID: 11400000, guid: f9861a89e815de34b959e8ba6576916e, type: 2}
     count: 3
-  tmSlots: []
+  spSlots:
+  - item: {fileID: 11400000, guid: 0f5b8480ffdff4b40a6f014c1d83d5cf, type: 2}
+    count: 1
+  - item: {fileID: 11400000, guid: ef2f9ca39d13be645bcf882b459ff116, type: 2}
+    count: 1

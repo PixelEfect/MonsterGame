@@ -16,3 +16,4 @@ MonoBehaviour:
   description: normal Sphere !!
   useMassage: 
   icon: {fileID: 21300000, guid: 55cdf10a77afebe4baa0ceb3c36c69ed, type: 3}
+  catchRateModifier: 1.5

@@ -5,12 +5,14 @@ using System.Linq;
 using UnityEditor.PackageManager;
 using UnityEngine;
 
+public enum ItemCategory { Items, Sphere, Tms}
+
 public class Inventory : MonoBehaviour
 {
 
     [SerializeField] List<ItemSlot> slots;
     [SerializeField] List<ItemSlot> sphereSlots;
-    [SerializeField] List<ItemSlot> tmSlots;
+    [SerializeField] List<ItemSlot> spSlots;
 
     List<List<ItemSlot>> allSlots;
 
@@ -19,23 +21,29 @@ public class Inventory : MonoBehaviour
 
     private void Awake()
     {
-        allSlots = new List<List<ItemSlot>>() { slots, sphereSlots, tmSlots };
+        allSlots = new List<List<ItemSlot>>() { slots, sphereSlots, spSlots };
     }
 
     public static List<string> ItemCategories { get; set; } = new List<string>()
     {
-        "ITEMS", "SPHERE", "TMs & HMs"
+        "ITEMS", "SPHERE", "SCROLLS OF POWER"
     };
 
     public List<ItemSlot> GetSlotsByCategory(int categoryIndex)
     {
         return allSlots[categoryIndex];
     }
+
+    public ItemBase GetItem(int itemIndex, int categoryIndex)
+    {
+        var currentSlots = GetSlotsByCategory(categoryIndex);
+        return currentSlots[itemIndex].Item;
+    }
+
     public ItemBase UseItem(int itemIndex, Monster selectedMonster, int selectedCategory)
     {
-        var currentSlots = GetSlotsByCategory(selectedCategory);
+        var item = GetItem(itemIndex, selectedCategory);
 
-        var item = currentSlots[itemIndex].Item;
         bool itemUsed = item.Use(selectedMonster);
         if (itemUsed)
         {

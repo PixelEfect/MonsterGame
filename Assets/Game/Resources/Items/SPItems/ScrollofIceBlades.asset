@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f6e542937a873c43b965588d712b85d, type: 3}
+  m_Name: ScrollofIceBlades
+  m_EditorClassIdentifier: 
+  itemName: SP02 Ice Blades
+  description: 'Scroll of Power that can teach monster new attack : Ice Blades'
+  useMassage: It work!!
+  icon: {fileID: 1965774529, guid: b9d401b981e33ad48ae1d0a9757792ab, type: 3}
+  move: {fileID: 11400000, guid: e9948c34da73322408d0e7c4f6fd87d6, type: 2}

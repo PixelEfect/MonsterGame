@@ -226,17 +226,17 @@ public class BattleSystem : MonoBehaviour
         }
         else
         {
-            if (playerAction ==BattleAction.SwitchMonster)
+            if (playerAction ==  BattleAction.SwitchMonster)
             {
                 var selectedMonster = partyScreen.SelectedMember;
                 state = BattleState.Busy;
                 yield return SwitchMonster(selectedMonster);
             }
-            else if (playerAction ==BattleAction.UseSphere)
-            {
-                dialogBox.EnableActionSelector(false);
-                yield return ThrowSphere();
-            }
+            //else if (playerAction == BattleAction.UseSphere)
+            //{
+            //    dialogBox.EnableActionSelector(false);
+            //    yield return ThrowSphere();
+            //}
             else if (playerAction == BattleAction.UseItem)
             {
                 // This is handled from item screen, so do nothing and skip to enemy move
@@ -440,7 +440,7 @@ public class BattleSystem : MonoBehaviour
                 {
                     if (playerUnit.Monster.Moves.Count < MonsterBase.MaxNumOfMoves)
                     {
-                        playerUnit.Monster.LearnMove(newMove);
+                        playerUnit.Monster.LearnMove(newMove.Base);
                         yield return dialogBox.TypeDialog($"{playerUnit.Monster.Base.Name} learned {newMove.Base.Name}");
                         dialogBox.SetMoveNames(playerUnit.Monster.Moves);
                     }
@@ -537,11 +537,9 @@ public class BattleSystem : MonoBehaviour
                 inventoryUI.gameObject.SetActive(false);
                 state = BattleState.ActionSelection;
             };
-            Action onItemUsed = () =>
+            Action<ItemBase> onItemUsed = (ItemBase usedItem) =>
             {
-                state = BattleState.Busy;
-                inventoryUI.gameObject.SetActive(false);
-                StartCoroutine(RunTurns(BattleAction.UseItem));
+                StartCoroutine(OnItemUsed(usedItem));
             };
 
             inventoryUI.HandleUpdate(onBack, onItemUsed);
@@ -574,13 +572,13 @@ public class BattleSystem : MonoBehaviour
 
             moveSelectionUI.HandleMoveSelection(onMoveSelected);
         }
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            if (state == BattleState.ActionSelection)
-            {
-                StartCoroutine(RunTurns(BattleAction.UseSphere));
-            }
-        }
+        //if (Input.GetKeyDown(KeyCode.T))
+        //{
+        //    if (state == BattleState.ActionSelection)
+        //    {
+        //        StartCoroutine(RunTurns(BattleAction.UseSphere));
+        //    }
+        //}
     }
 
     void HandleActionSelection()
@@ -792,8 +790,20 @@ public class BattleSystem : MonoBehaviour
         state = BattleState.RunningTurn;
 
     }
+    IEnumerator OnItemUsed(ItemBase usedItem)
+    {
+        state = BattleState.Busy;
+        inventoryUI.gameObject.SetActive(false);
 
-    IEnumerator ThrowSphere()
+        if (usedItem is SphereItem)
+        {
+            yield return ThrowSphere((SphereItem)usedItem);
+        }
+
+        StartCoroutine(RunTurns(BattleAction.UseItem));
+    }
+
+    IEnumerator ThrowSphere(SphereItem sphereItem)
     {
         state = BattleState.Busy;
         dialogBox.EnableActionSelector(false);
@@ -804,9 +814,11 @@ public class BattleSystem : MonoBehaviour
             yield break;
         }
 
-        yield return dialogBox.TypeDialog($"{player.Name} used sphere");
+        yield return dialogBox.TypeDialog($"{player.Name} used {sphereItem.ItemName.ToUpper()}!");
 
-        int shakeCount = TryToCatchMonster(enemyUnit.Monster);
+        //TU GDZIES PONIZEJ TRZEBA DODAC LOGIKE ANIMACJI DLA KAZDEJ ZE SFER
+
+        int shakeCount = TryToCatchMonster(enemyUnit.Monster, sphereItem);
         Vector3 originalScale = enemyUnit.transform.localScale;
         // Animacja PROMIENIA
         float radiusAnimationTime = AnimationHelper.AnimateRadius(enemyUnit.transform.position, radiusSprite);
@@ -840,9 +852,9 @@ public class BattleSystem : MonoBehaviour
     }
 
     // Sprawdzenie czy udalo sie zlapac monstera
-    int TryToCatchMonster(Monster monster)
+    int TryToCatchMonster(Monster monster, SphereItem sphereItem)
     {
-        float a = (3 * monster.MaxHp - 2 * monster.HP) * monster.Base.CatchRate * ConditionsDB.GetStatusBonus(monster.Status) / (3 * monster.MaxHp);
+        float a = (3 * monster.MaxHp - 2 * monster.HP) * monster.Base.CatchRate * sphereItem.CatchRateModifier * ConditionsDB.GetStatusBonus(monster.Status) / (3 * monster.MaxHp);
 
         if (a >= 255)
         {
