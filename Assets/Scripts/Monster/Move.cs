@@ -24,7 +24,7 @@ public class Move
     {
         var saveData = new MoveSaveData()
         {
-            name = Base.Name,                       // niekoniecznie potrzebna zmiana na duze N
+            name = Base.MoveName,                       // niekoniecznie potrzebna zmiana na duze N
             pp = PP
         };
         return saveData;

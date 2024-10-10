@@ -23,7 +23,7 @@ public class MoveBase : ScriptableObject
     [SerializeField] List<SecondaryEffects> secondaries;
 
 
-    public string Name
+    public string MoveName
     {
         get { return moveName; }
     }

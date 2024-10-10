@@ -16,11 +16,11 @@ public class MoveSelectionUI : MonoBehaviour
     {
         for (int i = 0; i < currentMoves.Count; i++)
         {
-            moveTexts[i].text = currentMoves[i].Name;
+            moveTexts[i].text = currentMoves[i].MoveName;
             detailMoveTexts[i].text = "PP: " + currentMoves[i].PP + " Type: " + currentMoves[i].Type;
         }
 
-        moveTexts[currentMoves.Count].text = newMove.Name;
+        moveTexts[currentMoves.Count].text = newMove.MoveName;
         detailMoveTexts[currentMoves.Count].text = "PP: " + newMove.PP + "   Type: " + newMove.Type;
     }
 

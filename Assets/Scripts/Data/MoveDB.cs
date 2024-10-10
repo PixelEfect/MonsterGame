@@ -14,13 +14,13 @@ public class MoveDB
         var moveList = Resources.LoadAll<MoveBase>("");
         foreach (var move in moveList)
         {
-            if (moves.ContainsKey(move.Name))
+            if (moves.ContainsKey(move.MoveName))
             {
-                Debug.LogError($"There are two moves with the name {move.Name}");
+                Debug.LogError($"There are two moves with the name {move.MoveName}");
                 continue;
             }
 
-            moves[move.Name] = move;
+            moves[move.MoveName] = move;
         }
     }
 

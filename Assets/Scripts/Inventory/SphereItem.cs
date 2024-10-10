@@ -10,12 +10,10 @@ public class SphereItem : ItemBase
 
     public override bool Use(Monster monster)
     {
-        if (GameController.Instance.State == GameState.Battle)
-        {
-            return true;
-        }
-        return false;
+        return true;
     }
+
+    public override bool CanUseOutBattle => false;
 
     public float CatchRateModifier => catchRateModifier;
 }

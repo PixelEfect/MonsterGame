@@ -11,12 +11,14 @@ public class PartyMemberUI : MonoBehaviour
     [SerializeField] Text levelText;
     [SerializeField] HPBar hpBar;
     [SerializeField] Image memberImage;
+    [SerializeField] Text messageText;
 
     Monster _monster;
     public void Init(Monster monster)
     {
         _monster = monster;
         UpdateData();
+        SetMessage("");
 
         _monster.OnHPChanged +=UpdateData;
 
@@ -42,5 +44,10 @@ public class PartyMemberUI : MonoBehaviour
         {
             memberImage.DOColor(Color.white, 0.5f);
         }
+    }
+
+    public void SetMessage (string message)
+    {
+        messageText.text = message; 
     }
 }

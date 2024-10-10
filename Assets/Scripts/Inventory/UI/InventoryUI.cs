@@ -126,7 +126,7 @@ public class InventoryUI : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Z))
             {
-                ItemSelected();
+                StartCoroutine (ItemSelected());
             }
             else if (Input.GetKeyDown(KeyCode.X))
             {
@@ -157,8 +157,33 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    void ItemSelected()
+    IEnumerator ItemSelected()
     {
+        state = InventoryUIState.Busy;
+
+        var item = inventory.GetItem(selectedItem, selectedCategory);
+
+        if (GameController.Instance.State == GameState.Battle)
+        {
+            // In Battle
+            if (!item.CanUseInBattle)
+            {
+                yield return DialogManager.Instance.ShowDialogText($"This item cannot be used in battle");
+                state = InventoryUIState.ItemSelection;
+                yield break;
+            }
+        }
+        else
+        {
+            // Outside Battle
+            if (!item.CanUseOutBattle)
+            {
+                yield return DialogManager.Instance.ShowDialogText($"This item cannot be used in this moment");
+                state = InventoryUIState.ItemSelection;
+                yield break;
+            }
+        }
+
         if (selectedCategory == (int)ItemCategory.Sphere)
         {
             StartCoroutine (UseItem());
@@ -166,6 +191,11 @@ public class InventoryUI : MonoBehaviour
         else
         {
             OpenPartyScreen();
+
+            if(item is SpItem)
+            {
+                partyScreen.ShowIfSpIsUsable(item as SpItem);
+            }
         }
     }
     IEnumerator UseItem()
@@ -186,7 +216,10 @@ public class InventoryUI : MonoBehaviour
         }
         else
         {
-            yield return DialogManager.Instance.ShowDialogText($"Not used massage - inventoryUI");
+            if (selectedCategory == (int)ItemCategory.Items)
+            {
+                yield return DialogManager.Instance.ShowDialogText($"Not used massage - inventoryUI");
+            }
         }
         ClosePartyScreen();
     }
@@ -199,14 +232,27 @@ public class InventoryUI : MonoBehaviour
             yield break;
         }
         var monster = partyScreen.SelectedMember;
+
+        if (monster.HasMove(spItem.Move))
+        {
+            yield return DialogManager.Instance.ShowDialogText($"{monster.Base.Name} already know {spItem.Move.MoveName}");
+            yield break;
+        }
+
+        if (!spItem.CanBeTaught(monster))
+        {
+            yield return DialogManager.Instance.ShowDialogText($"{monster.Base.Name} can't learn {spItem.Move.MoveName}");
+            yield break;
+        }
+
         if (monster.Moves.Count < MonsterBase.MaxNumOfMoves)
         {
             monster.LearnMove(spItem.Move);
-            yield return DialogManager.Instance.ShowDialogText($"{monster.Base.Name} learned {spItem.Move.Name}");
+            yield return DialogManager.Instance.ShowDialogText($"{monster.Base.Name} learned {spItem.Move.MoveName}");
         }
         else
         {
-            yield return DialogManager.Instance.ShowDialogText($"{monster.Base.Name} trying to learn {spItem.Move.Name}");
+            yield return DialogManager.Instance.ShowDialogText($"{monster.Base.Name} trying to learn {spItem.Move.MoveName}");
             yield return DialogManager.Instance.ShowDialogText($"But it cannot learn more than {MonsterBase.MaxNumOfMoves} moves");
             yield return ChooseMoveToForget(monster, spItem.Move);
             yield return new WaitUntil(() => state != InventoryUIState.MoveToForget);
@@ -286,6 +332,7 @@ public class InventoryUI : MonoBehaviour
     void ClosePartyScreen()
     {
         state = InventoryUIState.ItemSelection;
+        partyScreen.ClearMemberSlotMessage();
         partyScreen.gameObject.SetActive(false);
     }
 
@@ -298,13 +345,13 @@ public class InventoryUI : MonoBehaviour
         if (moveIndex == MonsterBase.MaxNumOfMoves)
         {
             // Dont learn the new move
-            yield return DialogManager.Instance.ShowDialogText($"{monster.Base.Name} did not learn {moveToLearn.Name}");
+            yield return DialogManager.Instance.ShowDialogText($"{monster.Base.Name} did not learn {moveToLearn.MoveName}");
         }
         else
         {
             // Forget and learn
             var selectedMove = monster.Moves[moveIndex].Base;
-            yield return DialogManager.Instance.ShowDialogText($"{monster.Base.Name} forgot {selectedMove.Name} and learned {moveToLearn.Name}");
+            yield return DialogManager.Instance.ShowDialogText($"{monster.Base.Name} forgot {selectedMove.MoveName} and learned {moveToLearn.MoveName}");
             monster.Moves[moveIndex] = new Move(moveToLearn);
         }
 

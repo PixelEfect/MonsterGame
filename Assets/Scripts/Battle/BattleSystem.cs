@@ -275,7 +275,7 @@ public class BattleSystem : MonoBehaviour
         yield return ShowStatusChanges(sourceUnit.Monster);
 
         move.PP--;
-        yield return dialogBox.TypeDialog($"{sourceUnit.Monster.Base.Name} used {move.Base.Name}");
+        yield return dialogBox.TypeDialog($"{sourceUnit.Monster.Base.Name} used {move.Base.MoveName}");
 
         if (CheckIfMoveHits(move, sourceUnit.Monster, targetUnit.Monster))
         {
@@ -441,12 +441,12 @@ public class BattleSystem : MonoBehaviour
                     if (playerUnit.Monster.Moves.Count < MonsterBase.MaxNumOfMoves)
                     {
                         playerUnit.Monster.LearnMove(newMove.Base);
-                        yield return dialogBox.TypeDialog($"{playerUnit.Monster.Base.Name} learned {newMove.Base.Name}");
+                        yield return dialogBox.TypeDialog($"{playerUnit.Monster.Base.Name} learned {newMove.Base.MoveName}");
                         dialogBox.SetMoveNames(playerUnit.Monster.Moves);
                     }
                     else
                     {
-                        yield return dialogBox.TypeDialog($"{playerUnit.Monster.Base.Name} trying to learn {newMove.Base.Name}");
+                        yield return dialogBox.TypeDialog($"{playerUnit.Monster.Base.Name} trying to learn {newMove.Base.MoveName}");
                         yield return dialogBox.TypeDialog($"But it cannot learn more than {MonsterBase.MaxNumOfMoves} moves");
                         yield return ChooseMoveToForget(playerUnit.Monster, newMove.Base);
                         yield return new WaitUntil(() => state != BattleState.MoveToForget);
@@ -556,13 +556,13 @@ public class BattleSystem : MonoBehaviour
                 if (moveIndex == MonsterBase.MaxNumOfMoves)
                 {
                     // Dont learn the new move
-                    StartCoroutine(dialogBox.TypeDialog($"{playerUnit.Monster.Base.Name} did not learn {moveToLearn.Name}"));
+                    StartCoroutine(dialogBox.TypeDialog($"{playerUnit.Monster.Base.Name} did not learn {moveToLearn.MoveName}"));
                 }
                 else
                 {                    
                     // Forget and learn
                     var selectedMove = playerUnit.Monster.Moves[moveIndex].Base;
-                    StartCoroutine(dialogBox.TypeDialog($"{playerUnit.Monster.Base.Name} forgot {selectedMove.Name} and learned {moveToLearn.Name}"));
+                    StartCoroutine(dialogBox.TypeDialog($"{playerUnit.Monster.Base.Name} forgot {selectedMove.MoveName} and learned {moveToLearn.MoveName}"));
                     playerUnit.Monster.Moves[moveIndex] = new Move(moveToLearn);
                 }
 

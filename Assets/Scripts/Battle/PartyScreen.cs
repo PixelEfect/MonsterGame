@@ -106,6 +106,24 @@ public class PartyScreen : MonoBehaviour
             }
         }
     }
+
+    public void ShowIfSpIsUsable (SpItem spItem)
+    {
+        for (int i = 0; i < monsters.Count; i++)
+        {
+            string message =  spItem.CanBeTaught(monsters[i]) ? "Able" : "Not Able";
+            memberSlots[i].SetMessage(message);
+        }
+    }
+    public void ClearMemberSlotMessage()
+    {
+        for (int i = 0; i < monsters.Count; i++)
+        {
+            memberSlots[i].SetMessage("");
+        }
+    }
+
+
     public void SetMessageText(string message)
     {
         messegeText.text = message;

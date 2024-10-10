@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f6e542937a873c43b965588d712b85d, type: 3}
-  m_Name: ScrollofFlameShot
+  m_Name: SP01FlameShot
   m_EditorClassIdentifier: 
-  itemName: SP01 Flame Shot
+  itemName: SP01
   description: 'Scroll of Power that can teach monster new attack : Flame Shot'
   useMassage: It work!!
   icon: {fileID: 614905060, guid: b9d401b981e33ad48ae1d0a9757792ab, type: 3}
   move: {fileID: 11400000, guid: 730be92c11668b340aefc20ca12fe1aa, type: 2}
+  isRune: 0

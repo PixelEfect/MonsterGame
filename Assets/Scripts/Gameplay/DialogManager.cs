@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,11 +19,6 @@ public class DialogManager : MonoBehaviour
     {
         Instance = this;
     }
-    Dialog dialog;
-    Action onDialogFinished;
-
-    int currentLine = 0;
-    bool isTyping;
 
     public bool IsShowing { get; private set; }
 
@@ -47,48 +43,37 @@ public class DialogManager : MonoBehaviour
         dialogBox.SetActive(false);
         IsShowing = false;
     }
-    public IEnumerator ShowDialog(Dialog dialog, Action onFinished=null)
+    public IEnumerator ShowDialog(Dialog dialog)
     {
         yield return new WaitForEndOfFrame();
 
         OnShowDialog?.Invoke();
-
         IsShowing = true;
-        this.dialog = dialog;
-        onDialogFinished = onFinished;
         dialogBox.SetActive(true);
-        StartCoroutine(TypeDialog(dialog.Lines[0]));
+
+        foreach (var line in dialog.Lines)
+        {
+            yield return TypeDialog(line);
+            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
+        }
+        dialogBox.SetActive(false);
+        IsShowing = false;
+        OnCloseDialog?.Invoke();
+
     }
 
     public void HandleUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Z) && !isTyping)
-        {
-            ++currentLine;
-            if (currentLine < dialog.Lines.Count)
-            {
-                StartCoroutine(TypeDialog(dialog.Lines[currentLine]));
-            }
-            else
-            {
-                currentLine = 0;
-                IsShowing = false;
-                dialogBox.SetActive(false);
-                onDialogFinished?.Invoke();
-                OnCloseDialog?.Invoke();
-            }
-        }
+
     }
 
     public IEnumerator TypeDialog(string line)
     {
-        isTyping = true;
         dialogText.text = "";
         foreach (var letter in line.ToCharArray())
         {
             dialogText.text += letter;
             yield return new WaitForSeconds(1f / lettersPerSecond);
         }
-        isTyping = false;
     }
 }
