@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 8198709702854252224}
   - component: {fileID: 8905360723650228061}
   - component: {fileID: 986388974618331115}
+  - component: {fileID: 4902199195530979480}
+  - component: {fileID: 4056293510950172399}
   m_Layer: 8
   m_Name: NPC
   m_TagString: Untagged
@@ -229,3 +231,32 @@ MonoBehaviour:
   - {fileID: 1997266793, guid: 7c9992c4121dcf34aa0fa62e43bf928d, type: 3}
   - {fileID: -1321480892, guid: 7c9992c4121dcf34aa0fa62e43bf928d, type: 3}
   - {fileID: 671273261, guid: 7c9992c4121dcf34aa0fa62e43bf928d, type: 3}
+--- !u!114 &4902199195530979480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5231040768638007787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4df25cd17dd9041ae44a8ee21d2ecc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 0}
+  count: 1
+  dialog:
+    lines: []
+--- !u!114 &4056293510950172399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5231040768638007787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4881f89f8b930e34489bbb86116ccd4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueId: 

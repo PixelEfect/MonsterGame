@@ -17,7 +17,7 @@ public class GameController : MonoBehaviour
 
     GameState state;
 
-    GameState stateBeforePause;
+    GameState prevState;
 
     public SceneDetails CurrentScene {  get; private set; }
     public SceneDetails PrevScene { get; private set; }
@@ -39,6 +39,7 @@ public class GameController : MonoBehaviour
         MonsterDB.Init();
         MoveDB.Init();
         ConditionsDB.Init();
+        ItemDB.Init();
     }
 
     private void Start()
@@ -46,17 +47,17 @@ public class GameController : MonoBehaviour
         battleSystem.OnBattleOver += EndBattle;
 
         partyScreen.Init();
-
         DialogManager.Instance.OnShowDialog += () =>
         {
+            prevState = state;
             state = GameState.Dialog;
         };
 
-        DialogManager.Instance.OnCloseDialog += () =>
+        DialogManager.Instance.OnDialogFinished += () =>
         {
             if (state == GameState.Dialog)
             {
-                state = GameState.FreeRoam;
+                state = prevState;
             }
         };
 
@@ -72,12 +73,12 @@ public class GameController : MonoBehaviour
     {
         if (pause)
         {
-            stateBeforePause = state;
+            prevState = state;
             state = GameState.Paused;
         }
         else
         {
-            state = stateBeforePause;
+            state = prevState;
         }
     }
 
@@ -88,6 +89,11 @@ public class GameController : MonoBehaviour
         worldCamera.gameObject.SetActive(false);
 
         var playerParty = playerController.GetComponent<MonsterParty>();
+
+        if (playerParty != null)
+        {
+            Debug.Log("massage");
+        }
         var wildMonster = CurrentScene.GetComponent<MapArea>().GetRandomWildMonster();
 
         var wildMonsterCopy = new Monster(wildMonster.Base, wildMonster.Level);

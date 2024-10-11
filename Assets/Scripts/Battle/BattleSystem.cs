@@ -814,7 +814,7 @@ public class BattleSystem : MonoBehaviour
             yield break;
         }
 
-        yield return dialogBox.TypeDialog($"{player.Name} used {sphereItem.ItemName.ToUpper()}!");
+        yield return dialogBox.TypeDialog($"{player.PlayerName} used {sphereItem.ItemName.ToUpper()}!");
 
         //TU GDZIES PONIZEJ TRZEBA DODAC LOGIKE ANIMACJI DLA KAZDEJ ZE SFER
 

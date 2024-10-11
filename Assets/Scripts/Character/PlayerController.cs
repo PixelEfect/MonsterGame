@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour, Interactable, ISavable
         GetComponent<MonsterParty>().Monsters = saveData.monsters.Select(s=> new Monster(s)).ToList();
     }
 
-    public string Name
+    public string PlayerName
     {
         get => playerName;
     }

@@ -40011,6 +40011,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4056293510950172399, guid: 95d3b0166242e444ca3596211e0a4a61, type: 3}
+      propertyPath: uniqueId
+      value: afdc1e72-f705-4899-8947-77e22cbec7fd
+      objectReference: {fileID: 0}
+    - target: {fileID: 4902199195530979480, guid: 95d3b0166242e444ca3596211e0a4a61, type: 3}
+      propertyPath: item
+      value: 
+      objectReference: {fileID: 11400000, guid: 9585b0c822023a7418d2474014a44494, type: 2}
+    - target: {fileID: 4902199195530979480, guid: 95d3b0166242e444ca3596211e0a4a61, type: 3}
+      propertyPath: count
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4902199195530979480, guid: 95d3b0166242e444ca3596211e0a4a61, type: 3}
+      propertyPath: dialog.lines.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4902199195530979480, guid: 95d3b0166242e444ca3596211e0a4a61, type: 3}
+      propertyPath: dialog.lines.Array.data[0]
+      value: I found it on the ground and dont need it.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4902199195530979480, guid: 95d3b0166242e444ca3596211e0a4a61, type: 3}
+      propertyPath: dialog.lines.Array.data[1]
+      value: You can have it if u want!
+      objectReference: {fileID: 0}
     - target: {fileID: 5231040768638007787, guid: 95d3b0166242e444ca3596211e0a4a61, type: 3}
       propertyPath: m_Name
       value: NPC
@@ -40060,6 +40084,67 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95d3b0166242e444ca3596211e0a4a61, type: 3}
+--- !u!1001 &5578044260019135755
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 197768984270972249, guid: 1be12fe4996bb3744bd80703dcf216fb, type: 3}
+      propertyPath: m_Name
+      value: Pickup
+      objectReference: {fileID: 0}
+    - target: {fileID: 542960251592181488, guid: 1be12fe4996bb3744bd80703dcf216fb, type: 3}
+      propertyPath: uniqueId
+      value: a4f52998-470c-44a1-a52a-9ab55af8b5a8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7201243307014071657, guid: 1be12fe4996bb3744bd80703dcf216fb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7201243307014071657, guid: 1be12fe4996bb3744bd80703dcf216fb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7201243307014071657, guid: 1be12fe4996bb3744bd80703dcf216fb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7201243307014071657, guid: 1be12fe4996bb3744bd80703dcf216fb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7201243307014071657, guid: 1be12fe4996bb3744bd80703dcf216fb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7201243307014071657, guid: 1be12fe4996bb3744bd80703dcf216fb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7201243307014071657, guid: 1be12fe4996bb3744bd80703dcf216fb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7201243307014071657, guid: 1be12fe4996bb3744bd80703dcf216fb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7201243307014071657, guid: 1be12fe4996bb3744bd80703dcf216fb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7201243307014071657, guid: 1be12fe4996bb3744bd80703dcf216fb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1be12fe4996bb3744bd80703dcf216fb, type: 3}
 --- !u!1001 &6684187902319116728
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40197,3 +40282,4 @@ SceneRoots:
   - {fileID: 6684187902319116728}
   - {fileID: 7079223012626516023}
   - {fileID: 1549407683}
+  - {fileID: 5578044260019135755}
