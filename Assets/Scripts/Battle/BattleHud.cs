@@ -24,14 +24,15 @@ public class BattleHud : MonoBehaviour
     public void SetData(Monster monster)
     {
 
-        ClearData();  // to zamiast ponizszego
-        //if (_monster != null)
-        //{
-        //    _monster.OnHPChanged -= UpdateHP;
-        //    _monster.OnStatusChanged -= SetStatusText;
-        //}
+        //ClearData();  // to zamiast ponizszego
+        if (_monster != null)
+        {
+            _monster.OnHPChanged -= UpdateHP;
+            _monster.OnStatusChanged -= SetStatusText;
+        }
 
         _monster = monster;
+
         nameText.text = monster.Base.Name;
         SetLevel();
         hpBar.SetHP((float) monster.HP / monster.MaxHp);

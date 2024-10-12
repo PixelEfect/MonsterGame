@@ -7,7 +7,6 @@ using UnityEngine;
 public class MonsterParty : MonoBehaviour
 {
     [SerializeField] List<Monster> monsters;
-    public BattleSystem battleSystem;
 
     public event Action OnUpdated;
     public List<Monster> Monsters
@@ -41,13 +40,9 @@ public class MonsterParty : MonoBehaviour
         return monsters.Where(x => x.HP > 0).FirstOrDefault();
     }
 
-    public void AddMonster(Monster newMonster)    
+    public void AddMonster(Monster newMonster)  
     {
-        if (battleSystem == null)
-        {
-            battleSystem = FindObjectOfType<BattleSystem>();
-        }
-        if ( monsters.Count < battleSystem.MonsterPartyCount)
+        if ( monsters.Count < 5)
         {
             monsters.Add(newMonster);
             OnUpdated?.Invoke();

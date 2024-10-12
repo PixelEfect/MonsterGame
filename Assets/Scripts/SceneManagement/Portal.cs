@@ -19,6 +19,9 @@ public class Portal : MonoBehaviour, IPlayerTriggerable
         this.player = player;
         StartCoroutine(SwitchScene());
     }
+
+    public bool TriggerRepeatedly => false;
+
     Fader fader;
 
     private void Start()
@@ -45,6 +48,8 @@ public class Portal : MonoBehaviour, IPlayerTriggerable
 
 
     public Transform SpawnPoint => spawnPoint;
+
+
 }
 
 public enum DestinationIndentifier { A, B, C, D, E }
