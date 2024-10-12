@@ -71,7 +71,7 @@ public class Monster
     }
     public Monster(MonsterSaveData saveData)
     {
-        _base = MonsterDB.GetMonsterByName(saveData.name);
+        _base = MonsterDB.GetObjectByName(saveData.name);
         HP = saveData.hp;
         level = saveData.level;
         Exp = saveData.exp;
@@ -95,7 +95,7 @@ public class Monster
     {
         var saveData = new MonsterSaveData()
         {
-            name = Base.Name,
+            name = Base.name,
             hp = HP,
             level = Level,
             exp = Exp,
@@ -115,7 +115,9 @@ public class Monster
         Stats.Add(Stat.SpDefense, Mathf.FloorToInt((Base.SpDefense * Level) / 100f) + 5);
         Stats.Add(Stat.Speed, Mathf.FloorToInt((Base.Speed * Level) / 100f) + 5);
 
+        int oldMaxHP = MaxHp;
         MaxHp = Mathf.FloorToInt((Base.MaxHp * Level) / 100f) + 10 + Level;
+        HP += MaxHp - oldMaxHP;
     }
 
     void ResetStatBoost()
@@ -182,6 +184,7 @@ public class Monster
         if (Exp > Base.GetExpForLevel(level + 1))
         {
             ++level;
+            CalculateStat();
             return true;
         }
         return false;
@@ -203,6 +206,21 @@ public class Monster
     public bool HasMove(MoveBase moveToCheck)
     {
         return Moves.Count(m => m.Base == moveToCheck) > 0;
+    }
+
+    public Evolution CheckForEvolution()
+    {
+        return Base.Evolutions.FirstOrDefault(e => e.RequiredLevel <= level);
+    }
+    public Evolution CheckForEvolution(ItemBase item)
+    {
+        return Base.Evolutions.FirstOrDefault(e => e.RequiredItem == item);
+    }
+
+    public void Evolve (Evolution evolution)
+    {
+        _base = evolution.EvolvesInto;
+        CalculateStat();
     }
 
     public int Attack 

@@ -53,6 +53,18 @@ public class MonsterParty : MonoBehaviour
         }
     }
 
+    public IEnumerator CheckForEvolutions()
+    {
+        foreach (var monster in monsters)
+        {
+            var evolution =  monster.CheckForEvolution();
+            if (evolution != null)
+            {
+                yield return EvolutionManager.i.Evolve(monster, evolution);
+            }
+        }
+    }
+
     public static MonsterParty GetPlayerParty()
     {
         return FindObjectOfType<PlayerController>().GetComponent<MonsterParty>();

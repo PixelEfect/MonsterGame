@@ -204,8 +204,25 @@ public class InventoryUI : MonoBehaviour
 
         yield return HandleSPItems();
 
-        var usedItem = inventory.UseItem(selectedItem, partyScreen.SelectedMember, selectedCategory);
+        var item = inventory.GetItem(selectedItem, selectedCategory);
+        var monster = partyScreen.SelectedMember;
+        // Handle Evolution Items
+        if (item is EvolutionItem)
+        {
+            var evolution = monster.CheckForEvolution(item);
+            if (evolution != null)
+            {
+                yield return EvolutionManager.i.Evolve(monster, evolution);
+            }
+            else
+            {
+                yield return DialogManager.Instance.ShowDialogText($"Not used massage - inventoryUI");
+                ClosePartyScreen();
+                yield break;
+            }
+        }
 
+        var usedItem = inventory.UseItem(selectedItem, partyScreen.SelectedMember, selectedCategory);
         if (usedItem != null)
         {
             if (usedItem is RecoveryItem)

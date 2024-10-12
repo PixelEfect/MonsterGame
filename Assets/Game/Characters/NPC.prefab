@@ -176,9 +176,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialog:
-    lines:
-    - Hi, have you tried walking through the long grass?
-    - You can find lots of cool monster in there!
+    lines: []
+  questToStart: {fileID: 0}
+  questToComplete: {fileID: 0}
   movementPattern:
   - {x: 2, y: 0}
   - {x: 0, y: -2}

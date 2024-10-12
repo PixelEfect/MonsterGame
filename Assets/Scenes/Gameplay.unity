@@ -1549,7 +1549,7 @@ PrefabInstance:
     - target: {fileID: 1935116543668925263, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
       propertyPath: monsters.Array.data[0]._base
       value: 
-      objectReference: {fileID: 11400000, guid: 74d885e366ad31d4d9e38b94610137b7, type: 2}
+      objectReference: {fileID: 11400000, guid: 8b46b821f9b26024c9961f1bcd7a263d, type: 2}
     - target: {fileID: 1935116543668925263, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
       propertyPath: monsters.Array.data[0].level
       value: 10
@@ -1557,7 +1557,7 @@ PrefabInstance:
     - target: {fileID: 1935116543668925263, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
       propertyPath: monsters.Array.data[1]._base
       value: 
-      objectReference: {fileID: 11400000, guid: 8b46b821f9b26024c9961f1bcd7a263d, type: 2}
+      objectReference: {fileID: 11400000, guid: 74d885e366ad31d4d9e38b94610137b7, type: 2}
     - target: {fileID: 1935116543668925263, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
       propertyPath: monsters.Array.data[1].level
       value: 10
@@ -1676,7 +1676,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2249572237989472607, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
       propertyPath: slots.Array.size
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2249572237989472607, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
       propertyPath: spSlots.Array.size
@@ -1709,7 +1709,7 @@ PrefabInstance:
     - target: {fileID: 2249572237989472607, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
       propertyPath: slots.Array.data[8].item
       value: 
-      objectReference: {fileID: 11400000, guid: 549592a3352836d4e8ccf4293b511d22, type: 2}
+      objectReference: {fileID: 11400000, guid: b9faeccf134647d47b0d597fc1e9d630, type: 2}
     - target: {fileID: 2249572237989472607, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
       propertyPath: slots.Array.data[9].item
       value: 
@@ -1756,7 +1756,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2249572237989472607, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
       propertyPath: slots.Array.data[8].count
-      value: 22
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2249572237989472607, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
       propertyPath: slots.Array.data[9].count

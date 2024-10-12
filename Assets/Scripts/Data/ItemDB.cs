@@ -2,37 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemDB
+public class ItemDB : ScriptableObjectDB<ItemBase>
 {
-
-    static Dictionary<string, ItemBase> items;
-
-    public static void Init()
-    {
-        items = new Dictionary<string, ItemBase>();
-
-        var itemList = Resources.LoadAll<ItemBase>("");
-        foreach (var item in itemList)
-        {
-            if (items.ContainsKey(item.ItemName))
-            {
-                Debug.LogError($"There are two items with the name {item.ItemName}");
-                continue;
-            }
-
-            items[item.ItemName] = item;
-        }
-    }
-
-    public static ItemBase GetItemByName(string name)
-    {
-        if (!items.ContainsKey(name))
-        {
-            Debug.LogError($"Item with name {name} not found in the database");
-            return null;
-        }
-        return items[name];
-    }
-
 
 }

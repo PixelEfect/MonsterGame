@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e35fa25d93f573a4f90506de749727bc, type: 3}
-  m_Name: Will o' the wisp
+  m_Name: Will-o'-the-wisps
   m_EditorClassIdentifier: 
   monsterName: Will-o'-the-wisps
   description: Will-o'-the-wisps are the souls of the dead.
