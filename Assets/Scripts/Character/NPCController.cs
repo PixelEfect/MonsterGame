@@ -22,11 +22,15 @@ public class NPCController : MonoBehaviour, Interactable, ISavable
     Character character;
     ItemGiver itemGiver;
     MonsterGiver monsterGiver;
+    Healer healer;
+    Merchant merchant;
     private void Awake()
     {
         character = GetComponent<Character>();
         itemGiver = GetComponent<ItemGiver>();
         monsterGiver = GetComponent<MonsterGiver>();
+        healer = GetComponent<Healer>();
+        merchant = GetComponent<Merchant>();
     }
 
     //w tym przypadku inicjatorem jest player wiec to on jest inicjowany za pomoca transform initiator
@@ -37,7 +41,7 @@ public class NPCController : MonoBehaviour, Interactable, ISavable
             state = NPCState.Dialog;
             character.LookTowards(initiator.position);
 
-            if (questToComplete != null)
+            if (questToComplete != null && monsterGiver == null)
             {
                 var quest = new Quest(questToComplete);
                 yield return quest.CompleteQuest(initiator);
@@ -45,15 +49,27 @@ public class NPCController : MonoBehaviour, Interactable, ISavable
 
                 Debug.Log($"{quest.Base.name} completed");
             }
+            else if (questToComplete != null && monsterGiver != null && monsterGiver.CanBeGiven())
+            {
+                // Przekazujemy zadanie do `GiveMonster`, aby mog³o byæ zakoñczone, jeœli gracz przyjmie potwora
+                yield return monsterGiver.GiveMonster(initiator.GetComponent<PlayerController>(), dialog, questToComplete, initiator);
+
+                // Reset questToComplete tylko jeœli gracz przyj¹³ potwora (to jest obs³ugiwane wewn¹trz `GiveMonster`)
+                if (monsterGiver.CanBeGiven() == false)
+                {
+                    questToComplete = null;
+                }
+            }
+            else if (monsterGiver != null && monsterGiver.CanBeGiven())
+            {
+                yield return monsterGiver.GiveMonster(initiator.GetComponent<PlayerController>(), dialog, questToComplete, initiator);//dodany dialog
+            }
 
             if (itemGiver != null && itemGiver.CanBeGiven())
             {
                 yield return itemGiver.GiveItem(initiator.GetComponent<PlayerController>());
             }
-            else if (monsterGiver != null && monsterGiver.CanBeGiven())
-            {
-                yield return monsterGiver.GiveMonster(initiator.GetComponent<PlayerController>());
-            }
+
             else if (questToStart != null)
             {
                 activeQuest = new Quest(questToStart);
@@ -66,6 +82,7 @@ public class NPCController : MonoBehaviour, Interactable, ISavable
                     activeQuest = null;
                 }
             }
+
             else if (activeQuest != null)
             {
                 if (activeQuest.CanBeCompleted())
@@ -78,6 +95,17 @@ public class NPCController : MonoBehaviour, Interactable, ISavable
                     yield return DialogManager.Instance.ShowDialog(activeQuest.Base.InProgressDialogue);
                 }
             }
+
+            else if (healer != null)
+            {
+                yield return healer.Heal(initiator, dialog);
+            }
+
+            else if (merchant != null)
+            {
+                yield return merchant.Trade();
+            }
+
             else
             {
                 yield return DialogManager.Instance.ShowDialog(dialog);

@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Ether
   description: Recovers the PP of a monster by 10 points.
+  useMassage: 
   icon: {fileID: 2013980433, guid: b9d401b981e33ad48ae1d0a9757792ab, type: 3}
+  price: 100
+  isSellable: 1
   hpAmount: 0
   restoreMaxHp: 0
   ppAmount: 10

@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Super Potion
   description: Recovers the health of a monster by 50 points.
+  useMassage: 
   icon: {fileID: 1789699059, guid: b9d401b981e33ad48ae1d0a9757792ab, type: 3}
+  price: 100
+  isSellable: 1
   hpAmount: 50
   restoreMaxHp: 0
   ppAmount: 0

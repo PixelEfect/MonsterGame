@@ -16,6 +16,8 @@ MonoBehaviour:
   description: Cures a monster that has bees poisoned.
   useMassage: --->Antidote ;)
   icon: {fileID: 1045975834, guid: b9d401b981e33ad48ae1d0a9757792ab, type: 3}
+  price: 100
+  isSellable: 1
   hpAmount: 0
   restoreMaxHp: 0
   ppAmount: 0

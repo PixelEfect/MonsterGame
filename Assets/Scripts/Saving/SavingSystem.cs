@@ -11,7 +11,17 @@ public class SavingSystem : MonoBehaviour
     public static SavingSystem i { get; private set; }
     private void Awake()
     {
-        i = this;
+        if (i == null)
+        {
+            i = this;
+        }
+        else if (i != this)
+        {
+            Destroy(gameObject); // Zapewnia, że jest tylko jedna instancja
+            return;
+        }
+
+        DontDestroyOnLoad(gameObject); // Zapewnia, że instancja nie zostanie zniszczona przy zmianie scen
     }
 
     Dictionary<string, object> gameState = new Dictionary<string, object>();

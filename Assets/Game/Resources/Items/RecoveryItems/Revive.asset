@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Revive
   description: Revive a monster
+  useMassage: 
   icon: {fileID: 1307730731, guid: b9d401b981e33ad48ae1d0a9757792ab, type: 3}
+  price: 100
+  isSellable: 1
   hpAmount: 0
   restoreMaxHp: 0
   ppAmount: 0

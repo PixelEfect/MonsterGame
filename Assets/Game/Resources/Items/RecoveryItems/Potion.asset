@@ -16,6 +16,8 @@ MonoBehaviour:
   description: Recovers the health of a monster by 20 points.
   useMassage: Hp potion used!!!!
   icon: {fileID: 339528494, guid: b9d401b981e33ad48ae1d0a9757792ab, type: 3}
+  price: 100
+  isSellable: 1
   hpAmount: 20
   restoreMaxHp: 0
   ppAmount: 0
