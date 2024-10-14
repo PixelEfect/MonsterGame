@@ -2457,6 +2457,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df1bf8ced58776a4e89822db3b412108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  availableItems:
+  - {fileID: 11400000, guid: a5690c3fc9a507c4bbef82fa1e019e28, type: 2}
+  - {fileID: 11400000, guid: 9585b0c822023a7418d2474014a44494, type: 2}
+  - {fileID: 11400000, guid: 549592a3352836d4e8ccf4293b511d22, type: 2}
+  - {fileID: 11400000, guid: 3fde2cf1681e5594e825533a2a4329d0, type: 2}
+  - {fileID: 11400000, guid: db059d6ad61a6944fb002bc00e879007, type: 2}
 --- !u!19719996 &232527894594030249
 TilemapCollider2D:
   m_ObjectHideFlags: 0

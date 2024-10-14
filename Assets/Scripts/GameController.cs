@@ -81,6 +81,8 @@ public class GameController : MonoBehaviour
         {
             partyScreen.SetPartyData();
             state = stateBeforeEvolution;
+
+            AudioManager.i.PlayMusic(CurrentScene.SceneMusic, fade: true);
         };
 
         ShopController.i.OnStart += () => state = GameState.Shop;
@@ -155,7 +157,17 @@ public class GameController : MonoBehaviour
         worldCamera.gameObject.SetActive(true);
 
         var playerParty = playerController.GetComponent<MonsterParty>();
-        StartCoroutine (playerParty.CheckForEvolutions());
+        bool hasEvolutions = playerParty.CheckForEvolutions();
+
+        if (hasEvolutions)
+        {
+            StartCoroutine(playerParty.RunEvolutions());
+        }
+        else
+        {
+            AudioManager.i.PlayMusic(CurrentScene.SceneMusic, fade: true);
+        }
+        
 
     }
 
@@ -251,6 +263,22 @@ public class GameController : MonoBehaviour
         {
             SavingSystem.i.Load("saveSlot1");
             state = GameState.FreeRoam;
+        }
+
+    }
+
+    public IEnumerator MoveCamera(Vector2 moveOffset, bool waitForFadeOut = false)
+    {
+        yield return Fader.i.FadeIn(0.5f);
+        worldCamera.transform.position +=  new Vector3 (moveOffset.x, moveOffset.y);
+
+        if (waitForFadeOut)
+        {
+            yield return Fader.i.FadeOut(0.5f);
+        }
+        else
+        {
+            StartCoroutine(Fader.i.FadeOut(0.5f));
         }
 
     }

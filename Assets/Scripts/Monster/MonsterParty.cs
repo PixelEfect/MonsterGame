@@ -53,7 +53,12 @@ public class MonsterParty : MonoBehaviour
         }
     }
 
-    public IEnumerator CheckForEvolutions()
+    public bool CheckForEvolutions()
+    {
+        return monsters.Any(m => m.CheckForEvolution() != null);
+    }
+
+    public IEnumerator RunEvolutions()
     {
         foreach (var monster in monsters)
         {

@@ -9,6 +9,8 @@ public class EvolutionManager : MonoBehaviour
     [SerializeField] GameObject evolutionUI;
     [SerializeField] Image monsterImage;
 
+    [SerializeField] AudioClip evolutionMusic;
+
 
     public event Action OnStartEvolution;
     public event Action OnCompleteEvolution;
@@ -23,6 +25,8 @@ public class EvolutionManager : MonoBehaviour
     {
         OnStartEvolution?.Invoke();
         evolutionUI.SetActive (true);
+
+        AudioManager.i.PlayMusic (evolutionMusic);
 
         monsterImage.sprite = monster.Base.FrontSprite;
         yield return DialogManager.Instance.ShowDialogText($"{monster.Base.Name} is evolving");

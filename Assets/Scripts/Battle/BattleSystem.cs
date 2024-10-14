@@ -27,6 +27,10 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] GameObject sphereSprite3;
     [SerializeField] MoveSelectionUI moveSelectionUI;
     [SerializeField] InventoryUI inventoryUI;
+    [Header("Music")]
+    [SerializeField] AudioClip wildBattleMusic;
+    [SerializeField] AudioClip trainerBattleMusic;
+    [SerializeField] AudioClip battleVicotyMusic;
 
     public event Action<bool> OnBattleOver;
 
@@ -58,6 +62,7 @@ public class BattleSystem : MonoBehaviour
         IsTrainerBattle = false;
 
         player = playerParty.GetComponent<PlayerController>();
+        AudioManager.i.PlayMusic(wildBattleMusic);
 
         StartCoroutine (SetupBattle());
     }
@@ -69,6 +74,7 @@ public class BattleSystem : MonoBehaviour
         IsTrainerBattle=true;
         player = playerParty.GetComponent<PlayerController>();
         trainer = trainerParty.GetComponent<TrainerController>();
+        AudioManager.i.PlayMusic(trainerBattleMusic);
 
         StartCoroutine(SetupBattle());
     }
@@ -418,6 +424,15 @@ public class BattleSystem : MonoBehaviour
 
         if (!faintedUnit.IsPlayerUnit)
         {
+            bool battleWon = true;
+            if (IsTrainerBattle)
+            {
+                battleWon = trainerParty.GetHealthyMonster() == null;
+            }
+            if (battleWon)
+            {
+                AudioManager.i.PlayMusic(battleVicotyMusic);
+            }
             //Exp Gain
             int expYield = faintedUnit.Monster.Base.ExpYield;
             int enemyLevel = faintedUnit.Monster.Level;

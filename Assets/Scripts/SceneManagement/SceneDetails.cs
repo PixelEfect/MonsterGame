@@ -8,19 +8,23 @@ public class SceneDetails : MonoBehaviour
 {
 
     [SerializeField] List<SceneDetails> connectedScenes;
+    [SerializeField] AudioClip sceneMusic;
     public bool IsLoaded { get; private set; }
 
     List<SavableEntity> savableEntities;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
-
         if (collision.tag == "Player")
         {
             Debug.Log($"Entered {gameObject.name}");
 
             LoadScene();
             GameController.Instance.SetCurrentScene(this);
+
+            if (sceneMusic != null )
+            {
+                AudioManager.i.PlayMusic(sceneMusic, fade:true);
+            }
 
             //Load all connected scenes
             foreach (var scene in connectedScenes)
@@ -87,5 +91,7 @@ public class SceneDetails : MonoBehaviour
 
         return savableEntities;
     }
+
+    public AudioClip SceneMusic => sceneMusic;
 
 }
