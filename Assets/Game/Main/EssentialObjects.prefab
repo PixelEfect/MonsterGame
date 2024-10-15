@@ -907,6 +907,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa98775b3ab2fcd43915a4a3fc45c7cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sfxList:
+  - id: 0
+    clip: {fileID: 8300000, guid: 89069ed28d33ed34a968db2b7fcfc656, type: 3}
+  - id: 1
+    clip: {fileID: 8300000, guid: f46abf6f6ee093d458b7e0c103e669b0, type: 3}
+  - id: 2
+    clip: {fileID: 8300000, guid: 3613e2764de6e2042b5605af22324277, type: 3}
+  - id: 3
+    clip: {fileID: 8300000, guid: 728e9f756f121484d9c6639ed6a57eb6, type: 3}
   musicPlayer: {fileID: 3282849907760461653}
   sfxPlayer: {fileID: 2181351829447156929}
   fadeDuration: 0.75
@@ -1864,6 +1873,9 @@ MonoBehaviour:
   triggersLayer:
     serializedVersion: 2
     m_Bits: 4096
+  ledgeLayer:
+    serializedVersion: 2
+    m_Bits: 8192
 --- !u!114 &9024643115915614995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3474,9 +3486,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 960796316411217651}
     m_Modifications:
+    - target: {fileID: 3788885248851666532, guid: 33746d72293613b4db1914467f0fde28, type: 3}
+      propertyPath: monsters.Array.data[0]._base
+      value: 
+      objectReference: {fileID: 11400000, guid: 74d885e366ad31d4d9e38b94610137b7, type: 2}
+    - target: {fileID: 3788885248851666532, guid: 33746d72293613b4db1914467f0fde28, type: 3}
+      propertyPath: monsters.Array.data[0].level
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3788885248851666532, guid: 33746d72293613b4db1914467f0fde28, type: 3}
+      propertyPath: monsters.Array.data[1]._base
+      value: 
+      objectReference: {fileID: 11400000, guid: 8b46b821f9b26024c9961f1bcd7a263d, type: 2}
+    - target: {fileID: 3788885248851666532, guid: 33746d72293613b4db1914467f0fde28, type: 3}
+      propertyPath: monsters.Array.data[1].level
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5656391887748571842, guid: 33746d72293613b4db1914467f0fde28, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7623851389139396508, guid: 33746d72293613b4db1914467f0fde28, type: 3}
+      propertyPath: moveSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8534744146609447090, guid: 33746d72293613b4db1914467f0fde28, type: 3}
       propertyPath: m_LocalPosition.x

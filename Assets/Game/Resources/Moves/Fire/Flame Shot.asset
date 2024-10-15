@@ -34,3 +34,4 @@ MonoBehaviour:
     volatileStatus: 0
     chance: 30
     target: 0
+  sound: {fileID: 8300000, guid: 027fcc67f2865b14da047cddd0e90430, type: 3}

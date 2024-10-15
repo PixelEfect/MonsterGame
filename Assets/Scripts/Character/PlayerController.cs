@@ -11,10 +11,13 @@ public class PlayerController : MonoBehaviour, Interactable, ISavable
 
     private Vector2 input;
     // Start is called before the first frame update
+
+    public static PlayerController i { get; private set; }
     private Character character;
 
     private void Awake()
     {
+        i = this;
         character = GetComponent<Character>();
     }
     void Start()

@@ -14,6 +14,8 @@ public class CharacterAnimator : MonoBehaviour
     public float MoveY { get; set; }
     public bool IsMoving { get; set; }
 
+    public bool IsJumping { get; set; }
+
     //States
     SpriteAnimator walkDownAnim;
     SpriteAnimator walkUpAnim;
@@ -63,7 +65,11 @@ public class CharacterAnimator : MonoBehaviour
             currentAnim.Start();
         }
 
-        if (IsMoving)
+        if (IsJumping)
+        {
+            spriteRenderer.sprite = currentAnim.Frames[currentAnim.Frames.Count-1];
+        }
+        else if (IsMoving)
         {
             currentAnim.HandleUpdate();
         }
@@ -76,6 +82,9 @@ public class CharacterAnimator : MonoBehaviour
 
     public void SetFacingDirection(FacingDirection dir)
     {
+        MoveX = 0;
+        MoveY = 0;
+
         if (dir == FacingDirection.Right) 
         {
             MoveX = 1; 

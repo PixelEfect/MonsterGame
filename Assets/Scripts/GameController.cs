@@ -20,7 +20,7 @@ public class GameController : MonoBehaviour
     GameState prevState;
     GameState stateBeforeEvolution;
 
-    public SceneDetails CurrentScene {  get; private set; }
+    public SceneDetails CurrentScene { get; private set; }
     public SceneDetails PrevScene { get; private set; }
 
     MenuController menuController;
@@ -101,6 +101,15 @@ public class GameController : MonoBehaviour
         {
             state = prevState;
         }
+    }
+
+    public void StartCutsceneState()
+    {
+        state = GameState.Cutscene;
+    }
+    public void StartFreeRoamState()
+    {
+        state = GameState.FreeRoam;
     }
 
     public void StartBattle()
@@ -192,6 +201,10 @@ public class GameController : MonoBehaviour
                 SavingSystem.i.Load("saveSlot1");
             }
             // Do tego miejsca =)
+        }
+        else if (state == GameState.Cutscene)
+        {
+            playerController.Character.HandleUpdate();
         }
         else if (state == GameState.Battle)
         {

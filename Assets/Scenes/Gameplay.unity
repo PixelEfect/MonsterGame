@@ -253,8 +253,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wildMonsters:
-  - _base: {fileID: 11400000, guid: 74d885e366ad31d4d9e38b94610137b7, type: 2}
-    level: 4
+  - monster: {fileID: 11400000, guid: 8b46b821f9b26024c9961f1bcd7a263d, type: 2}
+    levelRange: {x: 2, y: 4}
+    chancePercentage: 45
+  - monster: {fileID: 11400000, guid: 74d885e366ad31d4d9e38b94610137b7, type: 2}
+    levelRange: {x: 5, y: 6}
+    chancePercentage: 45
+  - monster: {fileID: 11400000, guid: cc28416e05a35374dbb897a7d267126d, type: 2}
+    levelRange: {x: 44, y: 56}
+    chancePercentage: 10
+  totalChance: 100
 --- !u!1 &510026356
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,8 +310,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wildMonsters:
-  - _base: {fileID: 11400000, guid: 8b46b821f9b26024c9961f1bcd7a263d, type: 2}
-    level: 4
+  - monster: {fileID: 11400000, guid: 8b46b821f9b26024c9961f1bcd7a263d, type: 2}
+    levelRange: {x: 1, y: 1}
+    chancePercentage: 100
+  totalChance: 100
 --- !u!61 &510026359
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7426,12 +7436,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wildMonsters:
-  - _base: {fileID: 11400000, guid: 8b46b821f9b26024c9961f1bcd7a263d, type: 2}
-    level: 4
-  - _base: {fileID: 11400000, guid: 8b46b821f9b26024c9961f1bcd7a263d, type: 2}
-    level: 5
-  - _base: {fileID: 11400000, guid: 74d885e366ad31d4d9e38b94610137b7, type: 2}
-    level: 6
+  - monster: {fileID: 11400000, guid: 74d885e366ad31d4d9e38b94610137b7, type: 2}
+    levelRange: {x: 2, y: 4}
+    chancePercentage: 100
+  totalChance: 100
 --- !u!1 &1863878409
 GameObject:
   m_ObjectHideFlags: 0
@@ -7540,8 +7548,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wildMonsters:
-  - _base: {fileID: 11400000, guid: 8b46b821f9b26024c9961f1bcd7a263d, type: 2}
-    level: 4
+  - monster: {fileID: 11400000, guid: 8b46b821f9b26024c9961f1bcd7a263d, type: 2}
+    levelRange: {x: 4, y: 5}
+    chancePercentage: 100
+  totalChance: 100
 --- !u!114 &1923669859 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8216909603888805824, guid: dbf5f93906518a94387def5e364e17d5, type: 3}

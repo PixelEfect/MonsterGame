@@ -17,10 +17,13 @@ public class MoveBase : ScriptableObject
     [SerializeField] bool alwaysHits;
     [SerializeField] int pp;
     [SerializeField] int priority;
+
     [SerializeField] MoveCategory category;
     [SerializeField] MoveEffects effects;
     [SerializeField] MoveTarget target;
     [SerializeField] List<SecondaryEffects> secondaries;
+
+    [SerializeField] AudioClip sound;
 
 
     public string MoveName
@@ -72,6 +75,7 @@ public class MoveBase : ScriptableObject
     {
         get { return secondaries; }
     }
+    public AudioClip Sound => sound;
 }
 
 [System.Serializable]

@@ -30,7 +30,7 @@ public class Character : MonoBehaviour
 
     }
 
-    public IEnumerator Move(Vector2 moveVec, Action OnMoveOver = null)
+    public IEnumerator Move(Vector2 moveVec, Action OnMoveOver = null, bool checkCollisions = true)
     {
         animator.MoveX = Mathf.Clamp(moveVec.x, -1f, 1f);
         animator.MoveY = Mathf.Clamp(moveVec.y, -1f, 1f);
@@ -39,7 +39,16 @@ public class Character : MonoBehaviour
         targetPos.x += moveVec.x;
         targetPos.y += moveVec.y;
 
-        if(!IsPathClear(targetPos))
+        var ledge = CheckForLedge(targetPos);
+        if (ledge != null)
+        {
+            if (ledge.TryToJump(this, moveVec))
+            {
+                yield break;
+            }
+        }
+
+        if(checkCollisions && !IsPathClear(targetPos))
             yield break;
 
         IsMoving = true;
@@ -76,6 +85,12 @@ public class Character : MonoBehaviour
             return false;
         }
         return true;
+    }
+
+    Ledge CheckForLedge(Vector3 targetPos)
+    {
+        var collider = Physics2D.OverlapCircle(targetPos, 0.15f, GameLayers.i.LedgeLayer);
+        return collider?.GetComponent<Ledge>();
     }
 
     public void LookTowards(Vector3 targetPos)
