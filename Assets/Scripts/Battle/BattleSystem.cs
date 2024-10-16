@@ -80,14 +80,18 @@ public class BattleSystem : MonoBehaviour
     }
     public IEnumerator SetupBattle()
     {
+        
         playerUnit.Clear();
         enemyUnit.Clear();
-
+        Debug.Log("dane graczy wyczyszczone");
         if (!IsTrainerBattle)
         {
             //Wild Monster Battle
+            Debug.Log("rozpoczecie starcia");
             playerUnit.Setup(playerParty.GetHealthyMonster());
+            Debug.Log("pobranie zdrowego okazu");
             enemyUnit.Setup(wildMonster);
+            Debug.Log("pobranie przeciwnika");
             dialogBox.SetMoveNames(playerUnit.Monster.Moves);
             yield return dialogBox.TypeDialog($"A wild {enemyUnit.Monster.Base.Name} appeared.");
         }
@@ -126,7 +130,9 @@ public class BattleSystem : MonoBehaviour
 
 
         escapeAttempts = 0;
+        Debug.Log("przed zaladowaniem party screen");
         partyScreen.Init();
+        Debug.Log("po zaladowaniu party screen");
         ActionSelection();
     }
 

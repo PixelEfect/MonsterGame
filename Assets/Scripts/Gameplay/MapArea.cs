@@ -10,7 +10,26 @@ public class MapArea : MonoBehaviour
     [HideInInspector]
     [SerializeField] int totalChance = 0;
 
-    private void OnValidate()
+    //private void OnValidate()
+    //{
+    //    totalChance = 0;
+    //    foreach (var record in wildMonsters)
+    //    {
+    //        record.chanceLower = totalChance;
+    //        record.chanceUpper = totalChance + record.chancePercentage;
+
+    //        totalChance = totalChance + record.chancePercentage;
+    //    }
+    //}
+    private void Start()
+    {
+
+    }
+    private void Awake()
+    {
+        InitializeChanceBounds();
+    }
+    private void InitializeChanceBounds()
     {
         totalChance = 0;
         foreach (var record in wildMonsters)
@@ -18,14 +37,9 @@ public class MapArea : MonoBehaviour
             record.chanceLower = totalChance;
             record.chanceUpper = totalChance + record.chancePercentage;
 
-            totalChance = totalChance + record.chancePercentage;
+            totalChance += record.chancePercentage;
         }
     }
-    private void Start()
-    {
-
-    }
-
     public Monster GetRandomWildMonster()
     {
         int randVal = Random.Range(1, 101);
