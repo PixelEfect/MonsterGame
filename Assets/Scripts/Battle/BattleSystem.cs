@@ -159,7 +159,7 @@ public class BattleSystem : MonoBehaviour
     }
     void OpenPartyScreen()
     {
-        partyScreen.CalledFrom = state;
+        //partyScreen.CalledFrom = state;
         state = BattleState.PartyScreen;
         dialogBox.EnableActionSelector(false);
         partyScreen.gameObject.SetActive(true);
@@ -567,7 +567,7 @@ public class BattleSystem : MonoBehaviour
                 StartCoroutine(OnItemUsed(usedItem));
             };
 
-            inventoryUI.HandleUpdate(onBack, onItemUsed);
+            //inventoryUI.HandleUpdate(onBack, onItemUsed);
         }
         else if (state == BattleState.AboutToUse)
         {
@@ -713,17 +713,17 @@ public class BattleSystem : MonoBehaviour
 
             partyScreen.gameObject.SetActive(false);
 
-            if (partyScreen.CalledFrom == BattleState.ActionSelection)
-            {
-                StartCoroutine(RunTurns(BattleAction.SwitchMonster));
-            }
-            else
-            {
-                state = BattleState.Busy;
-                bool isTrainerAboutToUse = partyScreen.CalledFrom == BattleState.AboutToUse;
-                StartCoroutine(SwitchMonster(selectedMember, isTrainerAboutToUse));
-            }
-            partyScreen.CalledFrom = null;
+            //if (partyScreen.CalledFrom == BattleState.ActionSelection)
+            //{
+            //    StartCoroutine(RunTurns(BattleAction.SwitchMonster));
+            //}
+            //else
+            //{
+            //    state = BattleState.Busy;
+            //    bool isTrainerAboutToUse = partyScreen.CalledFrom == BattleState.AboutToUse;
+            //    StartCoroutine(SwitchMonster(selectedMember, isTrainerAboutToUse));
+            //}
+            //partyScreen.CalledFrom = null;
         };
 
 
@@ -738,18 +738,18 @@ public class BattleSystem : MonoBehaviour
             partyScreen.gameObject.SetActive(false);
 
 
-            if (partyScreen.CalledFrom == BattleState.AboutToUse)
-            {
+        //    if (partyScreen.CalledFrom == BattleState.AboutToUse)
+        //    {
 
-                StartCoroutine(SendNextTrainerMonster());
-            }
-            else
-            {
-                ActionSelection();
-            }
-            partyScreen.CalledFrom = null;
+        //        StartCoroutine(SendNextTrainerMonster());
+        //    }
+        //    else
+        //    {
+        //        ActionSelection();
+        //    }
+        //    partyScreen.CalledFrom = null;
         };
-        partyScreen.HandleUpdate(onSelected, onBack);
+        //partyScreen.HandleUpdate(onSelected, onBack);
     }
     // Czy chcesz zmienic monstera po pokonaniu wroga - tylko z trenerem
     void HandleAboutToUse()

@@ -424,6 +424,19 @@ MonoBehaviour:
   shopUI: {fileID: 1631108288}
   walletUI: {fileID: 391144666}
   countSelectorUI: {fileID: 118125482}
+--- !u!114 &758589734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758589713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a00f8201dbd0d874580c2c5b1353995f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryUI: {fileID: 1923669859}
 --- !u!114 &986046910 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2906260999449534092, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
@@ -7306,6 +7319,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6590293759946624600, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 758589723}
+    - targetCorrespondingSourceObject: {fileID: 6590293759946624600, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 758589734}
   m_SourcePrefab: {fileID: 100100000, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
 --- !u!114 &1631108288 stripped
 MonoBehaviour:

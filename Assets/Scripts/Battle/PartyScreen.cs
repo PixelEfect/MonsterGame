@@ -1,10 +1,12 @@
+using GDE.GenericSelectionUI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PartyScreen : MonoBehaviour
+public class PartyScreen : SelectionUI<TextSlot>
 {
     [SerializeField] Text messegeText;
 
@@ -12,17 +14,13 @@ public class PartyScreen : MonoBehaviour
     List<Monster> monsters;
     MonsterParty party;
 
-    int selection = 0;
+    public Monster SelectedMember => monsters[selectedItem];
 
-    public Monster SelectedMember => monsters[selection];
-
-    /// <summary>
-    /// Party screen can be called from different states like ActionSelection, RunningTurn, AboutToUse
-    /// </summary>
-    public BattleState? CalledFrom { get; set; }
     public void Init()
     {
         memberSlots = GetComponentsInChildren<PartyMemberUI>(true);
+        //zmiana dla menu wyboru dla grid
+        //SetSelectionSettings(SelectionType.Grid, 2);
 
         party = MonsterParty.GetPlayerParty();
         SetPartyData();
@@ -46,66 +44,12 @@ public class PartyScreen : MonoBehaviour
                 memberSlots[i].gameObject.SetActive(false);
             }
         }
-        UpdateMemberSelection(selection);
+        var textSlots =  memberSlots.Select(m => m.GetComponent<TextSlot>());
+        SetItems(textSlots.Take(monsters.Count).ToList());
 
         messegeText.text = "Choose a monster";
     }
 
-    public void HandleUpdate(Action onSelected, Action onBack)
-    {
-        var prevSelection = selection;
-
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            if (selection < monsters.Count - 1)
-            {
-                ++selection;
-            }
-            else
-            {
-                selection = 0;
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            if (selection > 0)
-            {
-                --selection;
-            }
-            else
-            {
-                selection = (monsters.Count - 1);
-            }
-        }
-        if (selection != prevSelection)
-        {
-            UpdateMemberSelection(selection);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            onSelected?.Invoke();
-        }
-        else if (Input.GetKeyDown(KeyCode.X))
-        {
-            onBack?.Invoke();
-        }
-    }
-
-    public void UpdateMemberSelection(int selectedMember)
-    {
-        for (int i = 0;i < monsters.Count;i++)
-        {
-            if (i == selectedMember)
-            {
-                memberSlots[i].SetSelected(true);
-            }
-            else
-            {
-                memberSlots[i].SetSelected(false);
-            }
-        }
-    }
 
     public void ShowIfSpIsUsable (SpItem spItem)
     {

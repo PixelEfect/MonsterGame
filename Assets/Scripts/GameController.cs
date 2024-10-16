@@ -1,3 +1,4 @@
+using GDEUtils.StateMachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,22 +17,20 @@ public class GameController : MonoBehaviour
     [SerializeField] InventoryUI inventoryUI;
 
     GameState state;
-
     GameState prevState;
     GameState stateBeforeEvolution;
+
+    public StateMachine<GameController> StateMachine { get; private set; }
 
     public SceneDetails CurrentScene { get; private set; }
     public SceneDetails PrevScene { get; private set; }
 
-    MenuController menuController;
 
     public static GameController Instance { get; private set; }
 
     private void Awake()
     {
         Instance = this;
-
-        menuController = GetComponent<MenuController>();
 
         //Wylaczanie obslugi myszy i ukrycie kursora
         //Cursor.lockState = CursorLockMode.Locked;
@@ -46,6 +45,9 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
+        StateMachine = new StateMachine<GameController>(this);
+        StateMachine.ChangeState(FreeRoamState.i);
+
         battleSystem.OnBattleOver += EndBattle;
 
         partyScreen.Init();
@@ -62,13 +64,6 @@ public class GameController : MonoBehaviour
                 state = prevState;
             }
         };
-
-        menuController.onBack += () =>
-        {
-            state = GameState.FreeRoam;
-        };
-
-        menuController.onMenuSelected += OnMenuSelected;
 
         EvolutionManager.i.OnStartEvolution += () =>
         {
@@ -182,27 +177,28 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-        if (state == GameState.FreeRoam)
-        {
-            playerController.HandleUpdate();
+        StateMachine.Execute();
+        //if (state == GameState.FreeRoam)
+        //{
+        //    playerController.HandleUpdate();
 
-            if (Input.GetKeyDown(KeyCode.Escape))            //Return
-            {
-                menuController.OpenMenu();
-                state = GameState.Menu;
-            }
-            // Mozna skasowac albo zostawic dla QuickSaveów
-            if (Input.GetKeyDown(KeyCode.J))
-            {
-                SavingSystem.i.Save("saveSlot1");
-            }
-            if (Input.GetKeyDown(KeyCode.L))
-            {
-                SavingSystem.i.Load("saveSlot1");
-            }
-            // Do tego miejsca =)
-        }
-        else if (state == GameState.Cutscene)
+        //    if (Input.GetKeyDown(KeyCode.Escape))            //Return
+        //    {
+        //        menuController.OpenMenu();
+        //        state = GameState.Menu;
+        //    }
+        //    // Mozna skasowac albo zostawic dla QuickSaveów
+        //    if (Input.GetKeyDown(KeyCode.J))
+        //    {
+        //        SavingSystem.i.Save("saveSlot1");
+        //    }
+        //    if (Input.GetKeyDown(KeyCode.L))
+        //    {
+        //        SavingSystem.i.Load("saveSlot1");
+        //    }
+        //    // Do tego miejsca =)
+        //}
+        if (state == GameState.Cutscene)
         {
             playerController.Character.HandleUpdate();
         }
@@ -213,32 +209,6 @@ public class GameController : MonoBehaviour
         else if (state == GameState.Dialog)
         {
             DialogManager.Instance.HandleUpdate();
-        }
-        else if (state == GameState.Menu)
-        {
-            menuController.HandleUpdate();
-        }
-        else if (state == GameState.PartyScreen)
-        {
-            Action onSelected = () =>
-            {
-                //TODO go to summary screen
-            };
-            Action onBack = () =>
-            {
-                partyScreen.gameObject.SetActive(false);
-                state = GameState.FreeRoam;
-            };
-            partyScreen.HandleUpdate(onSelected, onBack);
-        }
-        else if (state == GameState.Bag)
-        {
-            Action onBack = () =>
-            {
-                inventoryUI.gameObject.SetActive(false);
-                state = GameState.FreeRoam;
-            };
-            inventoryUI.HandleUpdate(onBack);
         }
         else if (state == GameState.Shop)
         {
@@ -295,5 +265,20 @@ public class GameController : MonoBehaviour
         }
 
     }
+
+    private void OnGUI()
+    {
+        var style = new GUIStyle();
+        style.fontSize = 24;
+
+        GUILayout.Label("STATE STACK", style);
+        foreach (var state in StateMachine.StateStack)
+        {
+            GUILayout.Label(state.GetType().ToString(), style);
+        }
+    }
+
     public GameState State => state;
+
+
 }

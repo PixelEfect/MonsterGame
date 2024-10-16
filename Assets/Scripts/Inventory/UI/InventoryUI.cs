@@ -1,3 +1,4 @@
+using GDE.GenericSelectionUI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using UnityEngine.UI;
 
 public enum InventoryUIState { ItemSelection, PartySelection, MoveToForget, Busy}
 
-public class InventoryUI : MonoBehaviour
+public class InventoryUI : SelectionUI<TextSlot>
 {
     [SerializeField] GameObject itemList;
     [SerializeField] ItemSlotUI itemSlotUI;
@@ -26,7 +27,6 @@ public class InventoryUI : MonoBehaviour
 
     Action<ItemBase> OnItemUsed;
 
-    int selectedItem = 0;
     int selectedCategory = 0;
     MoveBase moveToLearn;
 
@@ -66,95 +66,41 @@ public class InventoryUI : MonoBehaviour
 
             slotUIList.Add(slotUIObj);
         }
-        UpdateItemSelection();
+
+        SetItems(slotUIList.Select(s => s.GetComponent<TextSlot>()).ToList());
+
+        UpdateSelectionInUI();
     }
 
-    public void HandleUpdate(Action onBack, Action<ItemBase> onItemUsed = null)
+    public override void HandleUpdate()
     {
-        this.OnItemUsed = onItemUsed;
+        int prevCategories = selectedCategory;
 
-        if (state == InventoryUIState.ItemSelection)
+        if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            int prevSelection = selectedItem;
-            int prevCategories = selectedCategory;
-
-            if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                ++selectedItem;
-            }
-            else if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                --selectedItem;
-            }
-            else if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                ++selectedCategory;
-            }
-            else if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                --selectedCategory;
-            }
-            if (selectedCategory > Inventory.ItemCategories.Count - 1)
-            {
-                selectedCategory = 0;
-            }
-            else if (selectedCategory < 0)
-            {
-                selectedCategory = Inventory.ItemCategories.Count - 1;
-            }
-
-            if (selectedItem > inventory.GetSlotsByCategory(selectedCategory).Count - 1)
-            {
-                selectedItem = 0;
-            }
-            else if (selectedItem < 0)
-            {
-                selectedItem = inventory.GetSlotsByCategory(selectedCategory).Count - 1;
-            }
-
-
-            if(prevCategories != selectedCategory)
-            {
-                ResetSelection();
-                categoryText.text = Inventory.ItemCategories[selectedCategory];
-                UpdateItemList();
-            }
-            else if (prevSelection != selectedItem)
-            {
-                UpdateItemSelection();
-            }
-
-            if (Input.GetKeyDown(KeyCode.Z))
-            {
-                StartCoroutine (ItemSelected());
-            }
-            else if (Input.GetKeyDown(KeyCode.X))
-            {
-                onBack?.Invoke();
-            }
+            ++selectedCategory;
         }
-        else if (state == InventoryUIState.PartySelection)
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            Action onSelected = () =>
-            {
-                //Use the item on the selected monster
-                StartCoroutine(UseItem());
-            };
-            Action onBackPartyScreen = () =>
-            {
-                ClosePartyScreen();
-            };
-
-            partyScreen.HandleUpdate(onSelected, onBackPartyScreen);
+            --selectedCategory;
         }
-        else if (state ==InventoryUIState.MoveToForget)
+        if (selectedCategory > Inventory.ItemCategories.Count - 1)
         {
-            Action<int> onMoveSelected = (int moveIndex) =>
-            {
-                StartCoroutine(OnMoveToForgetSelected(moveIndex));
-            };
-            moveSelectionUI.HandleMoveSelection(onMoveSelected);
+            selectedCategory = 0;
         }
+        else if (selectedCategory < 0)
+        {
+            selectedCategory = Inventory.ItemCategories.Count - 1;
+        }
+
+        if (prevCategories != selectedCategory)
+        {
+            ResetSelection();
+            categoryText.text = Inventory.ItemCategories[selectedCategory];
+            UpdateItemList();
+        }
+
+        base.HandleUpdate();
     }
 
     IEnumerator ItemSelected()
@@ -293,26 +239,12 @@ public class InventoryUI : MonoBehaviour
 
         state = InventoryUIState.MoveToForget;
     }
-    void UpdateItemSelection()
+
+    public override void UpdateSelectionInUI()
     {
+        base.UpdateSelectionInUI();
+
         var slots = inventory.GetSlotsByCategory(selectedCategory);
-
-        selectedItem = Mathf.Clamp(selectedItem, 0, slots.Count - 1);
-
-        for (int i = 0; i < slotUIList.Count; ++i)
-        {
-            if (i == selectedItem)
-            {
-                slotUIList[i].NameText.color = GlobalSettings.i.HighlightColor;
-                slotUIList[i].CountText.color = GlobalSettings.i.HighlightColor;
-            }
-            else
-            {
-                slotUIList[i].NameText.color = Color.black;
-                slotUIList[i].CountText.color = Color.black;
-            }
-        }
-
         if (slots.Count > 0)
         {
             var item = slots[selectedItem].Item;
