@@ -17,7 +17,7 @@ namespace GDE.GenericSelectionUI
 
         float selectionTimer = 0;
 
-        const float selectionSpeed = 7;
+        const float selectionSpeed = 5;
 
         public event Action<int> OnSelected;
         public event Action OnBack;
@@ -33,6 +33,12 @@ namespace GDE.GenericSelectionUI
 
             items.ForEach(i => i.Init());
             UpdateSelectionInUI();
+        }
+        public void ClearItems()
+        {
+            items.ForEach(i => i.Clear());
+
+            this.items = null;
         }
 
         public virtual void HandleUpdate()
@@ -72,11 +78,11 @@ namespace GDE.GenericSelectionUI
         {
             float v = Input.GetAxis("Vertical");
 
-            if (selectionTimer == 0 && Mathf.Abs(v) > 0.142f) 
+            if (selectionTimer == 0 && Mathf.Abs(v) > 0.2f) 
             {
                 selectedItem += -(int)Mathf.Sign(v);
 
-                selectionTimer = 1/selectionSpeed;
+                selectionTimer = 1 / selectionSpeed;
             }
         }
 
@@ -85,7 +91,7 @@ namespace GDE.GenericSelectionUI
             float v = Input.GetAxis("Vertical");
             float h = Input.GetAxis("Horizontal");
 
-            if (selectionTimer == 0 && Mathf.Abs(v) > 0.142f || Mathf.Abs(h) > 0.142f)
+            if (selectionTimer == 0 && (Mathf.Abs(v) > 0.2f || Mathf.Abs(h) > 0.2f))
             {
                 if (Mathf.Abs(h) > Mathf.Abs(v))
                 {
@@ -95,8 +101,6 @@ namespace GDE.GenericSelectionUI
                 {
                     selectedItem += -(int)Mathf.Sign(v) * gridWidth;
                 }
-
-
                 selectionTimer = 1 / selectionSpeed;
             }
         }

@@ -1928,7 +1928,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 8b46b821f9b26024c9961f1bcd7a263d, type: 2}
     - target: {fileID: 1935116543668925263, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
       propertyPath: monsters.Array.data[0].level
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1935116543668925263, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
       propertyPath: monsters.Array.data[1]._base
@@ -7595,11 +7595,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wildMonsters:
   - monster: {fileID: 11400000, guid: 8b46b821f9b26024c9961f1bcd7a263d, type: 2}
-    levelRange: {x: 1, y: 1}
+    levelRange: {x: 4, y: 6}
     chancePercentage: 100
   wildMonstersInWater:
   - monster: {fileID: 11400000, guid: cc28416e05a35374dbb897a7d267126d, type: 2}
-    levelRange: {x: 1, y: 2}
+    levelRange: {x: 4, y: 5}
     chancePercentage: 100
   totalChance: 100
   totalChanceWater: 100

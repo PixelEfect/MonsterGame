@@ -49,20 +49,15 @@ public class GameController : MonoBehaviour
         StateMachine.ChangeState(FreeRoamState.i);
 
         battleSystem.OnBattleOver += EndBattle;
-
         partyScreen.Init();
+
         DialogManager.Instance.OnShowDialog += () =>
         {
-            prevState = state;
-            state = GameState.Dialog;
+            StateMachine.Push(DialogueState.i);
         };
-
         DialogManager.Instance.OnDialogFinished += () =>
         {
-            if (state == GameState.Dialog)
-            {
-                state = prevState;
-            }
+            StateMachine.Pop();
         };
 
         EvolutionManager.i.OnStartEvolution += () =>
@@ -70,8 +65,6 @@ public class GameController : MonoBehaviour
             stateBeforeEvolution = state;
             state = GameState.Evolution;
         };
-
-
         EvolutionManager.i.OnCompleteEvolution += () =>
         {
             partyScreen.SetPartyData();
@@ -81,7 +74,6 @@ public class GameController : MonoBehaviour
         };
 
         ShopController.i.OnStart += () => state = GameState.Shop;
-
         ShopController.i.OnFinish += () => state = GameState.FreeRoam;
     }
 
@@ -96,15 +88,6 @@ public class GameController : MonoBehaviour
         {
             state = prevState;
         }
-    }
-
-    public void StartCutsceneState()
-    {
-        state = GameState.Cutscene;
-    }
-    public void StartFreeRoamState()
-    {
-        state = GameState.FreeRoam;
     }
 
     public void StartBattle(BattleTrigger trigger)
@@ -123,7 +106,6 @@ public class GameController : MonoBehaviour
 
     public void OnEnterTrainersViev(TrainerController trainer)
     {
-        state = GameState.Cutscene;
         StartCoroutine(trainer.TriggerTrainerBattle(playerController));
     }
 

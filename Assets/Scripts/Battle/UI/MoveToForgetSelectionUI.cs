@@ -7,7 +7,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MoveSelectionUI : SelectionUI<TextSlot>
+public class MoveToForgetSelectionUI : SelectionUI<TextSlot>
 {
 
     [SerializeField] List<Text> moveTexts;

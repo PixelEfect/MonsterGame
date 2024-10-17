@@ -37,7 +37,7 @@ public class GameMenuState : State<GameController>
         //Monster
         if (selection == 0)
         {
-            gc.StateMachine.Push(GamePartyState.i);
+            gc.StateMachine.Push(PartyState.i);
         }
         //Bag
         if (selection == 1)
