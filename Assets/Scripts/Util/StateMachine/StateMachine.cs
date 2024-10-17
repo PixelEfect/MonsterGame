@@ -48,7 +48,12 @@ namespace GDEUtils.StateMachine
             CurrentState = newState;
             CurrentState.Enter(owner);
         }
-
+        public IEnumerator PushAndWait(State<T> newState)
+        {
+            var oldState = CurrentState;
+            Push(newState);
+            yield return new WaitUntil(() => CurrentState == oldState);
+        }
         public State<T> GetPrevState()
         {
             return StateStack.ElementAt(1);

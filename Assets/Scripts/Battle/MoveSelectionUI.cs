@@ -1,17 +1,18 @@
+using GDE.GenericSelectionUI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MoveSelectionUI : MonoBehaviour
+public class MoveSelectionUI : SelectionUI<TextSlot>
 {
 
     [SerializeField] List<Text> moveTexts;
     [SerializeField] List<Text> detailMoveTexts;
-    [SerializeField] Color highlightedColor;
 
-    int currentSelection = 0;
     public void SetMoveData(List<MoveBase> currentMoves, MoveBase newMove)
     {
         for (int i = 0; i < currentMoves.Count; i++)
@@ -22,46 +23,7 @@ public class MoveSelectionUI : MonoBehaviour
 
         moveTexts[currentMoves.Count].text = newMove.MoveName;
         detailMoveTexts[currentMoves.Count].text = "PP: " + newMove.PP + "   Type: " + newMove.Type;
+
+        SetItems(moveTexts.Select(m => m.GetComponent<TextSlot>()).ToList());
     }
-
-    public void HandleMoveSelection(Action<int> onSelected)
-    {
-        if (Input.GetKeyDown(KeyCode.DownArrow)) 
-        {
-        currentSelection++;
-        }
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
-            currentSelection--;
-
-        currentSelection = Mathf.Clamp(currentSelection, 0, MonsterBase.MaxNumOfMoves);
-
-        UpdateMoveSelection(currentSelection);
-
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            onSelected?.Invoke(currentSelection);
-        }
-        else if (Input.GetKeyDown(KeyCode.X))
-        {
-            onSelected?.Invoke(4);
-        }
-    }
-
-    public void UpdateMoveSelection(int selection)
-    {
-        for (int i =0; i < MonsterBase.MaxNumOfMoves+1; i++)
-        {
-            if (i == selection)
-            {
-                moveTexts[i].color = highlightedColor;
-                detailMoveTexts[i].color = highlightedColor;
-            }
-            else
-            {
-                moveTexts[i].color = Color.black;
-                detailMoveTexts[i].color = Color.black;
-            }
-        }
-    }
-
 }

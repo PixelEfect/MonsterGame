@@ -262,7 +262,9 @@ MonoBehaviour:
   - monster: {fileID: 11400000, guid: cc28416e05a35374dbb897a7d267126d, type: 2}
     levelRange: {x: 44, y: 56}
     chancePercentage: 10
+  wildMonstersInWater: []
   totalChance: 100
+  totalChanceWater: -1
 --- !u!1 &510026356
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,7 +315,9 @@ MonoBehaviour:
   - monster: {fileID: 11400000, guid: 8b46b821f9b26024c9961f1bcd7a263d, type: 2}
     levelRange: {x: 1, y: 1}
     chancePercentage: 100
+  wildMonstersInWater: []
   totalChance: 100
+  totalChanceWater: -1
 --- !u!61 &510026359
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -682,6 +686,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -35
       objectReference: {fileID: 0}
+    - target: {fileID: 335526481025688879, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
+      propertyPath: surfSprites.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 335526481025688879, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
+      propertyPath: surfSprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 40e27144666474d43a2e7c41b40953b3, type: 3}
+    - target: {fileID: 335526481025688879, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
+      propertyPath: surfSprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 40e27144666474d43a2e7c41b40953b3, type: 3}
+    - target: {fileID: 335526481025688879, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
+      propertyPath: surfSprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 40e27144666474d43a2e7c41b40953b3, type: 3}
+    - target: {fileID: 335526481025688879, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
+      propertyPath: surfSprites.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 40e27144666474d43a2e7c41b40953b3, type: 3}
     - target: {fileID: 338905685968406810, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -5554,6 +5578,10 @@ PrefabInstance:
       propertyPath: itemSlotUI
       value: 
       objectReference: {fileID: 7531962366987259216, guid: a77cba7e49b08674588b09084f6857ae, type: 3}
+    - target: {fileID: 7126273759535193891, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
+      propertyPath: waterLayer.m_Bits
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 7126462234228126911, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -7455,7 +7483,9 @@ MonoBehaviour:
   - monster: {fileID: 11400000, guid: 74d885e366ad31d4d9e38b94610137b7, type: 2}
     levelRange: {x: 2, y: 4}
     chancePercentage: 100
+  wildMonstersInWater: []
   totalChance: 100
+  totalChanceWater: -1
 --- !u!1 &1863878409
 GameObject:
   m_ObjectHideFlags: 0
@@ -7565,9 +7595,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wildMonsters:
   - monster: {fileID: 11400000, guid: 8b46b821f9b26024c9961f1bcd7a263d, type: 2}
-    levelRange: {x: 4, y: 5}
+    levelRange: {x: 1, y: 1}
+    chancePercentage: 100
+  wildMonstersInWater:
+  - monster: {fileID: 11400000, guid: cc28416e05a35374dbb897a7d267126d, type: 2}
+    levelRange: {x: 1, y: 2}
     chancePercentage: 100
   totalChance: 100
+  totalChanceWater: 100
 --- !u!114 &1923669859 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8216909603888805824, guid: dbf5f93906518a94387def5e364e17d5, type: 3}

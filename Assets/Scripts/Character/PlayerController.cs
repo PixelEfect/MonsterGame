@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour, Interactable, ISavable
         //Debug.DrawLine(transform.position, interactPos, Color.red, 0.5f); ne dziala
         //Debug.Log($"FacingDir: {facingDir}, InteractPos: {interactPos}"); ale to dziala i zwraca dobre wartosci
 
-        var collider = Physics2D.OverlapCircle(interactPos, 0.3f, GameLayers.i.InteractableLayer);
+        var collider = Physics2D.OverlapCircle(interactPos, 0.3f, GameLayers.i.InteractableLayer | GameLayers.i.WaterLayer);
         if (collider != null)
         {
             yield return collider.GetComponent<Interactable>()?.Interact(transform);

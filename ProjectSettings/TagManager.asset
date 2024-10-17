@@ -14,7 +14,7 @@ TagManager:
   - LongGrass
   - SolidObjects
   - Interactable
-  - Player
+  - Player/Object
   - FovLayer
   - Portal
   - Triggers

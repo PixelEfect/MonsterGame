@@ -40,12 +40,17 @@ public class GamePartyState : State<GameController>
         if (gc.StateMachine.GetPrevState() == InventoryState.i)
         {
             // Use item
-            Debug.Log("use item");
+            StartCoroutine(GoToUseItemState());
         }
         else
         {
             //todo
         }
+    }
+    IEnumerator GoToUseItemState()
+    {
+        yield return gc.StateMachine.PushAndWait(UseItemState.i);
+        gc.StateMachine.Pop();
     }
 
     void OnBack()
