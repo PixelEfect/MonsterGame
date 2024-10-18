@@ -26169,6 +26169,7 @@ MonoBehaviour:
   - {fileID: 1997266793, guid: 7c9992c4121dcf34aa0fa62e43bf928d, type: 3}
   - {fileID: -1321480892, guid: 7c9992c4121dcf34aa0fa62e43bf928d, type: 3}
   - {fileID: 671273261, guid: 7c9992c4121dcf34aa0fa62e43bf928d, type: 3}
+  surfSprites: []
 --- !u!114 &1758366282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42070,6 +42071,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3813272796811967055, guid: 13d600a82dbdaee4d8aec61f75178f15, type: 3}
+      propertyPath: trigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3999508418688582803, guid: 13d600a82dbdaee4d8aec61f75178f15, type: 3}
       propertyPath: uniqueId
       value: 0709874d-e017-4a72-a714-d401410ad0db
@@ -42120,10 +42125,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9173842720834627979, guid: 13d600a82dbdaee4d8aec61f75178f15, type: 3}
       propertyPath: monsters.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9173842720834627979, guid: 13d600a82dbdaee4d8aec61f75178f15, type: 3}
       propertyPath: monsters.Array.data[0].level
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9173842720834627979, guid: 13d600a82dbdaee4d8aec61f75178f15, type: 3}
+      propertyPath: monsters.Array.data[1]._base
+      value: 
+      objectReference: {fileID: 11400000, guid: 8b46b821f9b26024c9961f1bcd7a263d, type: 2}
+    - target: {fileID: 9173842720834627979, guid: 13d600a82dbdaee4d8aec61f75178f15, type: 3}
+      propertyPath: monsters.Array.data[1].level
       value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []

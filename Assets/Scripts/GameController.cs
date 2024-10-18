@@ -4,9 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GameState { FreeRoam, Battle, Dialog, Menu, PartyScreen, Bag, Cutscene, Paused, Evolution, Shop }
-
-
 public class GameController : MonoBehaviour
 {
     [SerializeField] PlayerController playerController;
@@ -16,9 +13,6 @@ public class GameController : MonoBehaviour
     [SerializeField] PartyScreen partyScreen;
     [SerializeField] InventoryUI inventoryUI;
 
-    GameState state;
-    GameState prevState;
-    GameState stateBeforeEvolution;
 
     public StateMachine<GameController> StateMachine { get; private set; }
 
@@ -59,34 +53,17 @@ public class GameController : MonoBehaviour
         {
             StateMachine.Pop();
         };
-
-        EvolutionManager.i.OnStartEvolution += () =>
-        {
-            stateBeforeEvolution = state;
-            state = GameState.Evolution;
-        };
-        EvolutionManager.i.OnCompleteEvolution += () =>
-        {
-            partyScreen.SetPartyData();
-            state = stateBeforeEvolution;
-
-            AudioManager.i.PlayMusic(CurrentScene.SceneMusic, fade: true);
-        };
-
-        ShopController.i.OnStart += () => state = GameState.Shop;
-        ShopController.i.OnFinish += () => state = GameState.FreeRoam;
     }
 
     public void PauseGame(bool pause)
     {
         if (pause)
         {
-            prevState = state;
-            state = GameState.Paused;
+            StateMachine.Push(PauseState.i);
         }
         else
         {
-            state = prevState;
+            StateMachine.Pop();
         }
     }
 
@@ -118,7 +95,6 @@ public class GameController : MonoBehaviour
         }
         partyScreen.SetPartyData();
 
-        state = GameState.FreeRoam;
         battleSystem.gameObject.SetActive(false);
         worldCamera.gameObject.SetActive(true);
 
@@ -160,52 +136,12 @@ public class GameController : MonoBehaviour
         //    }
         //    // Do tego miejsca =)
         //}
-        if (state == GameState.Cutscene)
-        {
-            playerController.Character.HandleUpdate();
-        }
-        else if (state == GameState.Dialog)
-        {
-            DialogManager.Instance.HandleUpdate();
-        }
-        else if (state == GameState.Shop)
-        {
-            ShopController.i.HandleUpdate();
-        }
     }
 
     public void SetCurrentScene(SceneDetails currScene)
     {
         PrevScene = CurrentScene;
         CurrentScene = currScene;
-    }
-
-    void OnMenuSelected(int selectedItem)
-    {
-        if(selectedItem == 1)
-        {
-            //Monster
-            partyScreen.gameObject.SetActive(true);
-            state = GameState.PartyScreen;
-        }
-        else if (selectedItem == 2)
-        {
-            //Bag
-            inventoryUI.gameObject.SetActive(true);
-            state = GameState.Bag;
-        }
-        else if (selectedItem == 3) 
-        {
-            //Save
-            SavingSystem.i.Save("saveSlot1");
-            state = GameState.FreeRoam;
-        }
-        else if(selectedItem == 4)
-        {
-            SavingSystem.i.Load("saveSlot1");
-            state = GameState.FreeRoam;
-        }
-
     }
 
     public IEnumerator MoveCamera(Vector2 moveOffset, bool waitForFadeOut = false)
@@ -235,11 +171,7 @@ public class GameController : MonoBehaviour
             GUILayout.Label(state.GetType().ToString(), style);
         }
     }
-
-    public GameState State => state;
-
     public PlayerController PlayerController => playerController;
     public Camera WorldCamera => worldCamera;
-
-
+    public PartyScreen PartyScreen => partyScreen;
 }

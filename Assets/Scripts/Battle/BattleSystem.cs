@@ -10,13 +10,12 @@ using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum BattleStates { Start, ActionSelection, MoveSelection, RunningTurn, Busy, Bag, PartyScreen, AboutToUse, MoveToForget, BattleOver}
 public enum BattleAction { Move, SwitchMonster, UseItem, UseSphere, Run}
 
 public enum BattleTrigger { LongGrass, Water}
 public class BattleSystem : MonoBehaviour
 {
-    [SerializeField] private int monsterPartyCount = 5;
+    //[SerializeField] private int monsterPartyCount = 5;
     [SerializeField] BattleUnit playerUnit;
     [SerializeField] BattleUnit enemyUnit;
     [SerializeField] BattleDialogBox dialogBox;
@@ -48,14 +47,9 @@ public class BattleSystem : MonoBehaviour
     public BattleAction SelectedAction { get; set; }
 
     public Monster SelectedMonster { get; set; }
+    public ItemBase SelectedItem { get; set; }
 
     public bool IsBattleOver { get; private set; }
-
-
-    BattleStates state;
-    int currentAction;
-    int currentMove;
-    bool aboutToUseChoice = true;
 
     public MonsterParty PlayerParty { get; private set; }
     public MonsterParty TrainerParty { get; private set; }
@@ -63,14 +57,13 @@ public class BattleSystem : MonoBehaviour
 
     public bool IsTrainerBattle { get; private set; } = false;
     PlayerController player;
-    TrainerController trainer;
-
+    public TrainerController Trainer { get; private set; }
     public int EscapeAttempts { get; set; }
-    MoveBase moveToLearn;
 
     BattleTrigger battletrigger;
 
-    public void StartBattle(MonsterParty playerParty, Monster wildMonster, BattleTrigger trigger = BattleTrigger.LongGrass)
+    public void StartBattle(MonsterParty playerParty, Monster wildMonster, 
+        BattleTrigger trigger = BattleTrigger.LongGrass)
     {
         this.PlayerParty = playerParty;
         this.WildMonster = wildMonster;
@@ -91,7 +84,7 @@ public class BattleSystem : MonoBehaviour
 
         IsTrainerBattle=true;
         player = playerParty.GetComponent<PlayerController>();
-        trainer = trainerParty.GetComponent<TrainerController>();
+        Trainer = trainerParty.GetComponent<TrainerController>();
 
         battletrigger = trigger;
         AudioManager.i.PlayMusic(trainerBattleMusic);
@@ -129,16 +122,16 @@ public class BattleSystem : MonoBehaviour
             playerImage.gameObject.SetActive(true);
             trainerImage.gameObject.SetActive(true);
             playerImage.sprite = player.Sprite;
-            trainerImage.sprite = trainer.Sprite;
+            trainerImage.sprite = Trainer.Sprite;
 
-            yield return dialogBox.TypeDialog($"{trainer.Name} wants to battle");
+            yield return dialogBox.TypeDialog($"{Trainer.Name} wants to battle");
 
             //Send out first monster of the trainer
             //trainerImage.gameObject.SetActive(false);
             enemyUnit.gameObject.SetActive(true);
             var enemyMonster = TrainerParty.GetHealthyMonster();
             enemyUnit.Setup(enemyMonster);
-            yield return dialogBox.TypeDialog($"{trainer.Name} send out {enemyMonster.Base.Name}");
+            yield return dialogBox.TypeDialog($"{Trainer.Name} send out {enemyMonster.Base.Name}");
 
 
             //Send out first monster of the player
@@ -167,286 +160,16 @@ public class BattleSystem : MonoBehaviour
         OnBattleOver(won);
     }
 
-    void ActionSelection()
-    {
-        state = BattleStates.ActionSelection;
-        dialogBox.EnableActionSelector(true);
-    }
-    void OpenBag()
-    {
-        state = BattleStates.Bag;
-        inventoryUI.gameObject.SetActive(true);
-    }
-    void OpenPartyScreen()
-    {
-        //partyScreen.CalledFrom = state;
-        state = BattleStates.PartyScreen;
-        dialogBox.EnableActionSelector(false);
-        partyScreen.gameObject.SetActive(true);
-    }
-
-    void MoveSelection()
-    {
-        state = BattleStates.MoveSelection;
-        dialogBox.EnableActionSelector(false);
-        dialogBox.EnableDialogText(false);
-        dialogBox.EnableMoveSelector(true);
-    }
-
-    IEnumerator AboutToUse(Monster newMonster)
-    {
-        state = BattleStates.Busy;
-        yield return dialogBox.TypeDialog($"{trainer.Name} is about to use {newMonster.Base.Name}. Do you want to change monster?");
-        state = BattleStates.AboutToUse;
-        dialogBox.EnableChoiceBox(true);
-    }
-    IEnumerator ChooseMoveToForget(Monster monster, MoveBase newMove) 
-    {
-        state = BattleStates.Busy;
-        yield return dialogBox.TypeDialog($"Choose a move you wan't to forget");
-
-        moveSelectionUI.gameObject.SetActive(true);
-        moveSelectionUI.SetMoveData(monster.Moves.Select(x => x.Base).ToList(), newMove);
-        moveToLearn = newMove;
-
-        state = BattleStates.MoveToForget;
-    }
-
-    
-
     public void HandleUpdate()
     {
         StateMachine.Execute();
-
-        if (state == BattleStates.PartyScreen)
-        {
-            HandlePartySelection();
-        }
-        else if (state == BattleStates.Bag)
-        {
-            Action onBack = () =>
-            {
-                inventoryUI.gameObject.SetActive(false);
-                state = BattleStates.ActionSelection;
-            };
-            Action<ItemBase> onItemUsed = (ItemBase usedItem) =>
-            {
-                StartCoroutine(OnItemUsed(usedItem));
-            };
-
-            //inventoryUI.HandleUpdate(onBack, onItemUsed);
-        }
-        else if (state == BattleStates.AboutToUse)
-        {
-            HandleAboutToUse();
-        }
-        else if (state == BattleStates.MoveToForget)
-        {
-            Action<int> onMoveSelected = (moveIndex) =>
-            {
-                moveSelectionUI.gameObject.SetActive(false);
-                if (moveIndex == MonsterBase.MaxNumOfMoves)
-                {
-                    // Dont learn the new move
-                    StartCoroutine(dialogBox.TypeDialog($"{playerUnit.Monster.Base.Name} did not learn {moveToLearn.MoveName}"));
-                }
-                else
-                {                    
-                    // Forget and learn
-                    var selectedMove = playerUnit.Monster.Moves[moveIndex].Base;
-                    StartCoroutine(dialogBox.TypeDialog($"{playerUnit.Monster.Base.Name} forgot {selectedMove.MoveName} and learned {moveToLearn.MoveName}"));
-                    playerUnit.Monster.Moves[moveIndex] = new Move(moveToLearn);
-                }
-
-                moveToLearn = null;
-                state = BattleStates.RunningTurn;
-            };
-
-            //moveSelectionUI.HandleMoveSelection(onMoveSelected);
-        }
-        //if (Input.GetKeyDown(KeyCode.T))
-        //{
-        //    if (state == BattleState.ActionSelection)
-        //    {
-        //        StartCoroutine(RunTurns(BattleAction.UseSphere));
-        //    }
-        //}
-    }
-
-    void HandleActionSelection()
-    {
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            ++currentAction;
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            --currentAction;
-        }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            currentAction +=2;
-        }
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            currentAction -=2;
-        }
-        currentAction = Mathf.Clamp(currentAction, 0, 3);
-
-        dialogBox.UpdateActionSelection(currentAction);
-
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            if (currentAction == 0)
-            {
-                //Fight
-                MoveSelection();
-            }
-            else if (currentAction == 1)
-            {
-                //Bag
-                OpenBag();
-            }
-            else if (currentAction == 2)
-            {
-                //Monster
-                OpenPartyScreen();
-            }
-            else if (currentAction == 3)
-            {
-                //Run
-                //StartCoroutine(RunTurns(BattleAction.Run));
-            }
-        }
-    }
-    void HandleMoveSelection()
-    {
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            currentMove += 2;
-        }
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            currentMove -= 2;
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            ++currentMove;
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            --currentMove;
-        }
-
-        currentMove = Mathf.Clamp(currentMove, 0, playerUnit.Monster.Moves.Count - 1);
-
-        dialogBox.UpdateMoveSelection(currentMove, playerUnit.Monster.Moves[currentMove]);
-
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            var move = playerUnit.Monster.Moves[currentMove];
-            if ( move.PP == 0) 
-            {
-                return;
-            }
-            dialogBox.EnableMoveSelector(false);
-            dialogBox.EnableDialogText(true);
-            //StartCoroutine(RunTurns(BattleAction.Move));
-        }
-        else if (Input.GetKeyDown(KeyCode.X))
-        {
-            dialogBox.EnableMoveSelector(false);
-            dialogBox.EnableDialogText(true);
-            ActionSelection();
-        }
-
-    }
-    // okno wyboru innego monstera
-    void HandlePartySelection()
-    {
-        Action onSelected = () =>
-        {
-            var selectedMember = partyScreen.SelectedMember; 
-            if (selectedMember.HP <= 0)
-            {
-                partyScreen.SetMessageText("You can't send out a faited monster");
-                return;
-            }
-            if (selectedMember == playerUnit.Monster)
-            {
-                partyScreen.SetMessageText("You can't switch with the same monster");
-                return;
-            }
-
-            partyScreen.gameObject.SetActive(false);
-
-            //if (partyScreen.CalledFrom == BattleState.ActionSelection)
-            //{
-            //    StartCoroutine(RunTurns(BattleAction.SwitchMonster));
-            //}
-            //else
-            //{
-            //    state = BattleState.Busy;
-            //    bool isTrainerAboutToUse = partyScreen.CalledFrom == BattleState.AboutToUse;
-            //    StartCoroutine(SwitchMonster(selectedMember, isTrainerAboutToUse));
-            //}
-            //partyScreen.CalledFrom = null;
-        };
-
-
-        Action onBack = () =>
-        {
-            if (playerUnit.Monster.HP <= 0)
-            {
-                partyScreen.SetMessageText("You have to choose a monster to continue");
-                return;
-            }
-
-            partyScreen.gameObject.SetActive(false);
-
-
-        //    if (partyScreen.CalledFrom == BattleState.AboutToUse)
-        //    {
-
-        //        StartCoroutine(SendNextTrainerMonster());
-        //    }
-        //    else
-        //    {
-        //        ActionSelection();
-        //    }
-        //    partyScreen.CalledFrom = null;
-        };
-        //partyScreen.HandleUpdate(onSelected, onBack);
-    }
-    // Czy chcesz zmienic monstera po pokonaniu wroga - tylko z trenerem
-    void HandleAboutToUse()
-    {
-        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            aboutToUseChoice = !aboutToUseChoice;
-        }
-
-        dialogBox.UpdateChoiceBox(aboutToUseChoice);
-
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            dialogBox.EnableChoiceBox(false);
-            if (aboutToUseChoice == true)
-            {
-                //Yes Option
-                OpenPartyScreen();
-            }
-            else
-            {
-                //No Option
-                StartCoroutine (SendNextTrainerMonster());
-            }
-        }
-        else if (Input.GetKeyDown(KeyCode.X))
-        {
-            dialogBox.EnableChoiceBox(false);
-            StartCoroutine(SendNextTrainerMonster());
-        }
+        ///if (Input.GetKeyDown(KeyCode.T))
+        ///{
+        ///    if (state == BattleState.ActionSelection)
+        ///    {
+        ///        StartCoroutine(RunTurns(BattleAction.UseSphere));
+        ///    }
+        ///}
     }
     
     public IEnumerator SwitchMonster(Monster newMonster)
@@ -462,38 +185,19 @@ public class BattleSystem : MonoBehaviour
         yield return dialogBox.TypeDialog($"Go {newMonster.Base.Name}!");
     }
 
-    IEnumerator SendNextTrainerMonster()
+    public IEnumerator SendNextTrainerMonster()
     {
-        state = BattleStates.Busy;
-
         var nextMonster = TrainerParty.GetHealthyMonster();
         enemyUnit.Setup(nextMonster);
-        yield return dialogBox.TypeDialog($"{trainer.Name} send out {nextMonster.Base.Name}!");
-
-        state = BattleStates.RunningTurn;
-
-    }
-    IEnumerator OnItemUsed(ItemBase usedItem)
-    {
-        state = BattleStates.Busy;
-        inventoryUI.gameObject.SetActive(false);
-
-        if (usedItem is SphereItem)
-        {
-            yield return ThrowSphere((SphereItem)usedItem);
-        }
-
-        //StartCoroutine(RunTurns(BattleAction.UseItem));
+        yield return dialogBox.TypeDialog($"{Trainer.Name} send out {nextMonster.Base.Name}!");
     }
 
-    IEnumerator ThrowSphere(SphereItem sphereItem)
+    public IEnumerator ThrowSphere(SphereItem sphereItem)
     {
-        state = BattleStates.Busy;
         dialogBox.EnableActionSelector(false);
         if (IsTrainerBattle)
         {
             yield return dialogBox.TypeDialog($"You can't steal the trainer monster!");
-            state = BattleStates.RunningTurn;
             yield break;
         }
 
@@ -527,7 +231,6 @@ public class BattleSystem : MonoBehaviour
             yield return enemyUnit.PlayBrakeOutAnimation(originalScale);
             //Monster broke out
             yield return dialogBox.TypeDialog($"{enemyUnit.Monster.Base.Name} broke free");
-            state = BattleStates.RunningTurn;
         }
         // Przywrócenie stanu po zakoñczeniu akcji
         //state = BattleState.Waiting;
@@ -565,6 +268,5 @@ public class BattleSystem : MonoBehaviour
     public BattleUnit PlayerUnit => playerUnit;
     public BattleUnit EnemyUnit => enemyUnit;
     public PartyScreen PartyScreen => partyScreen;
-
     public AudioClip BattleVictoryMusic => battleVicoryMusic;
 }

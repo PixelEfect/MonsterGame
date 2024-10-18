@@ -65,7 +65,7 @@ public class MonsterParty : MonoBehaviour
             var evolution =  monster.CheckForEvolution();
             if (evolution != null)
             {
-                yield return EvolutionManager.i.Evolve(monster, evolution);
+                yield return EvolutionState.i.Evolve(monster, evolution);
             }
         }
     }

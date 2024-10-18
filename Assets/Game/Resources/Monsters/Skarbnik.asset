@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e35fa25d93f573a4f90506de749727bc, type: 3}
-  m_Name: Will-o'-the-wisps
+  m_Name: Skarbnik
   m_EditorClassIdentifier: 
-  monsterName: Will-o'-the-wisps
+  monsterName: Skarbnik
   description: Will-o'-the-wisps are the souls of the dead.
-  frontSprite: {fileID: 21300000, guid: d2577cfbb698c8b4d8d314e13bd4f8da, type: 3}
-  backSprite: {fileID: 21300000, guid: 379ac9272fac10d40848efb99faf4a29, type: 3}
+  frontSprite: {fileID: 21300000, guid: 8adba4e53c187e44784d801e8aa2647b, type: 3}
+  backSprite: {fileID: 21300000, guid: 28187c52a49ea9540acf8a4beb196d7f, type: 3}
   type1: 2
   type2: 9
   maxHp: 45

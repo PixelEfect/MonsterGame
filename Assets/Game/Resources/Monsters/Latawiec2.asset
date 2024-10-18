@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e35fa25d93f573a4f90506de749727bc, type: 3}
-  m_Name: Will-o'-the-wisps
+  m_Name: Latawiec2
   m_EditorClassIdentifier: 
-  monsterName: Will-o'-the-wisps
+  monsterName: Old Latawiec
   description: Will-o'-the-wisps are the souls of the dead.
-  frontSprite: {fileID: 21300000, guid: d2577cfbb698c8b4d8d314e13bd4f8da, type: 3}
-  backSprite: {fileID: 21300000, guid: 379ac9272fac10d40848efb99faf4a29, type: 3}
+  frontSprite: {fileID: 21300000, guid: 805121e9b37f12e4cb05ce039989393c, type: 3}
+  backSprite: {fileID: 21300000, guid: acb1c4d6790d07842abef64db41b9227, type: 3}
   type1: 2
   type2: 9
   maxHp: 45
@@ -38,7 +38,4 @@ MonoBehaviour:
     level: 4
   learnableByItems:
   - {fileID: 11400000, guid: e9948c34da73322408d0e7c4f6fd87d6, type: 2}
-  evolutions:
-  - evolvesInto: {fileID: 0}
-    requiredLevel: 0
-    requiredItem: {fileID: 0}
+  evolutions: []

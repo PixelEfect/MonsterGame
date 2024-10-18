@@ -1,6 +1,9 @@
 using GDEUtils.StateMachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 using UnityEngine;
 
 public class RunTurnState : State<BattleSystem>
@@ -74,8 +77,20 @@ public class RunTurnState : State<BattleSystem>
             //}
             else if (playerAction == BattleAction.UseItem)
             {
-                // This is handled from item screen, so do nothing and skip to enemy move
-                bs.DialogBox.EnableActionSelector(false);
+
+                if (bs.SelectedItem is SphereItem)
+                {
+                    yield return bs.ThrowSphere(bs.SelectedItem as SphereItem);
+                    if(bs.IsBattleOver)
+                    {
+                        yield break;
+                    }
+                }
+                else
+                {
+                    // This is handled from item screen, so do nothing and skip to enemy move
+                }
+
             }
             else if (playerAction == BattleAction.Run)
             {
@@ -291,11 +306,27 @@ public class RunTurnState : State<BattleSystem>
                     }
                     else
                     {
-                        //yield return bs.DialogBox.TypeDialog($"{bs.PlayerUnit.Monster.Base.Name} trying to learn {newMove.Base.MoveName}");
-                        //yield return bs.DialogBox.TypeDialog($"But it cannot learn more than {MonsterBase.MaxNumOfMoves} moves");
-                        //yield return ChooseMoveToForget(bs.PlayerUnit.Monster, newMove.Base);
-                        //yield return new WaitUntil(() => state != BattleStates.MoveToForget);
-                        //yield return new WaitForSeconds(2f);
+                        yield return bs.DialogBox.TypeDialog($"{bs.PlayerUnit.Monster.Base.Name} trying to learn {newMove.Base.MoveName}");
+                        yield return bs.DialogBox.TypeDialog($"But it cannot learn more than {MonsterBase.MaxNumOfMoves} moves");
+                        yield return bs.DialogBox.TypeDialog($"Choose a move to forget");
+
+                        MoveToForgetState.i.CurrentMoves = bs.PlayerUnit.Monster.Moves.Select(m => m.Base).ToList();
+                        MoveToForgetState.i.NewMove = newMove.Base;
+                        yield return GameController.Instance.StateMachine.PushAndWait(MoveToForgetState.i);
+
+                        int moveIndex = MoveToForgetState.i.Selection;
+                        if (moveIndex == MonsterBase.MaxNumOfMoves || moveIndex == -1)
+                        {
+                            // Dont learn the new move
+                            yield return bs.DialogBox.TypeDialog($"{bs.PlayerUnit.Monster.Base.Name} did not learn {newMove.Base.MoveName}");
+                        }
+                        else
+                        {
+                            // Forget and learn
+                            var selectedMove = bs.PlayerUnit.Monster.Moves[moveIndex].Base;
+                            yield return bs.DialogBox.TypeDialog($"{bs.PlayerUnit.Monster.Base.Name} forgot {selectedMove.MoveName} and learned {newMove.Base.MoveName}");
+                            bs.PlayerUnit.Monster.Moves[moveIndex] = new Move(newMove.Base);
+                        }
                     }
                 }
 
@@ -335,7 +366,8 @@ public class RunTurnState : State<BattleSystem>
                 if (nextMonster != null)
                 {
                     //Send Out next monster
-                    yield break;//StartCoroutine(AboutToUse(nextMonster));
+                    AboutToUseState.i.NewMonster = nextMonster;
+                    yield return bs.StateMachine.PushAndWait(AboutToUseState.i);
                 }
                 else
                 {

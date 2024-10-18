@@ -1,20 +1,18 @@
+using GDEUtils.StateMachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EvolutionManager : MonoBehaviour
+public class EvolutionState : State<GameController>
 {
     [SerializeField] GameObject evolutionUI;
     [SerializeField] Image monsterImage;
 
     [SerializeField] AudioClip evolutionMusic;
 
-
-    public event Action OnStartEvolution;
-    public event Action OnCompleteEvolution;
-    public static EvolutionManager i { get; private set; }
+    public static EvolutionState i { get; private set; }
 
     private void Awake()
     {
@@ -23,7 +21,9 @@ public class EvolutionManager : MonoBehaviour
     }
     public IEnumerator Evolve (Monster monster, Evolution evolution)
     {
-        OnStartEvolution?.Invoke();
+        var gc = GameController.Instance;
+        gc.StateMachine.Push(this);
+
         evolutionUI.SetActive (true);
 
         AudioManager.i.PlayMusic (evolutionMusic);
@@ -39,6 +39,10 @@ public class EvolutionManager : MonoBehaviour
         yield return DialogManager.Instance.ShowDialogText($"{oldMonster} evolved into {monster.Base.Name}");
     
         evolutionUI.SetActive(false);
-        OnCompleteEvolution?.Invoke();
+
+        gc.PartyScreen.SetPartyData();
+
+        AudioManager.i.PlayMusic(gc.CurrentScene.SceneMusic, fade: true);
+        gc.StateMachine.Pop();
     }
 }

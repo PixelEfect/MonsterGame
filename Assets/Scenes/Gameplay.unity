@@ -134,17 +134,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 306e1a29fa08e224b9612fc561106326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &391144666 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9026086966437466623, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
-  m_PrefabInstance: {fileID: 1631108287}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16498f07772b7cb4da72e6301aa2efe9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &451153846
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,15 +242,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wildMonsters:
-  - monster: {fileID: 11400000, guid: 8b46b821f9b26024c9961f1bcd7a263d, type: 2}
+  - monster: {fileID: 11400000, guid: 1d31f8737d243904ab8b519a0539201f, type: 2}
     levelRange: {x: 2, y: 4}
-    chancePercentage: 45
-  - monster: {fileID: 11400000, guid: 74d885e366ad31d4d9e38b94610137b7, type: 2}
+    chancePercentage: 5
+  - monster: {fileID: 11400000, guid: 8bce7b58b09396846a7813926d89183f, type: 2}
     levelRange: {x: 5, y: 6}
-    chancePercentage: 45
+    chancePercentage: 5
   - monster: {fileID: 11400000, guid: cc28416e05a35374dbb897a7d267126d, type: 2}
-    levelRange: {x: 44, y: 56}
-    chancePercentage: 10
+    levelRange: {x: 4, y: 5}
+    chancePercentage: 5
+  - monster: {fileID: 11400000, guid: 34a785894b533f5409f2cc721ce96c0d, type: 2}
+    levelRange: {x: 3, y: 5}
+    chancePercentage: 40
+  - monster: {fileID: 11400000, guid: ea9628c608405df46a2f5e9d2e048335, type: 2}
+    levelRange: {x: 3, y: 5}
+    chancePercentage: 40
+  - monster: {fileID: 11400000, guid: 34190a8d859d8114d88d8755b874dfba, type: 2}
+    levelRange: {x: 3, y: 5}
+    chancePercentage: 5
   wildMonstersInWater: []
   totalChance: 100
   totalChanceWater: -1
@@ -423,11 +421,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d19462b60b5b865459b72b9c630212a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shopCameraOffset: {x: 4, y: 0}
-  inventoryUI: {fileID: 1923669859}
-  shopUI: {fileID: 1631108288}
-  walletUI: {fileID: 391144666}
-  countSelectorUI: {fileID: 118125482}
 --- !u!114 &758589734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1923,12 +1916,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1935116543668925263, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
+      propertyPath: monsters.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1935116543668925263, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
       propertyPath: monsters.Array.data[0]._base
       value: 
       objectReference: {fileID: 11400000, guid: 8b46b821f9b26024c9961f1bcd7a263d, type: 2}
     - target: {fileID: 1935116543668925263, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
       propertyPath: monsters.Array.data[0].level
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1935116543668925263, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
       propertyPath: monsters.Array.data[1]._base
@@ -2073,31 +2070,31 @@ PrefabInstance:
     - target: {fileID: 2249572237989472607, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
       propertyPath: slots.Array.data[2].item
       value: 
-      objectReference: {fileID: 11400000, guid: 22d8821e9740c04488fd441d56eb5419, type: 2}
+      objectReference: {fileID: 11400000, guid: a5690c3fc9a507c4bbef82fa1e019e28, type: 2}
     - target: {fileID: 2249572237989472607, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
       propertyPath: slots.Array.data[3].item
       value: 
-      objectReference: {fileID: 11400000, guid: a5690c3fc9a507c4bbef82fa1e019e28, type: 2}
+      objectReference: {fileID: 11400000, guid: 22d8821e9740c04488fd441d56eb5419, type: 2}
     - target: {fileID: 2249572237989472607, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
       propertyPath: slots.Array.data[4].item
       value: 
-      objectReference: {fileID: 11400000, guid: 22d8821e9740c04488fd441d56eb5419, type: 2}
+      objectReference: {fileID: 11400000, guid: 3fde2cf1681e5594e825533a2a4329d0, type: 2}
     - target: {fileID: 2249572237989472607, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
       propertyPath: slots.Array.data[5].item
       value: 
-      objectReference: {fileID: 11400000, guid: 3fde2cf1681e5594e825533a2a4329d0, type: 2}
+      objectReference: {fileID: 11400000, guid: 27d29f5b23c02004cb9b2c317560026d, type: 2}
     - target: {fileID: 2249572237989472607, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
       propertyPath: slots.Array.data[6].item
       value: 
-      objectReference: {fileID: 11400000, guid: 27d29f5b23c02004cb9b2c317560026d, type: 2}
+      objectReference: {fileID: 11400000, guid: badd81070a6141d478b03e858dcc4587, type: 2}
     - target: {fileID: 2249572237989472607, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
       propertyPath: slots.Array.data[7].item
       value: 
-      objectReference: {fileID: 11400000, guid: badd81070a6141d478b03e858dcc4587, type: 2}
+      objectReference: {fileID: 11400000, guid: b9faeccf134647d47b0d597fc1e9d630, type: 2}
     - target: {fileID: 2249572237989472607, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
       propertyPath: slots.Array.data[8].item
       value: 
-      objectReference: {fileID: 11400000, guid: b9faeccf134647d47b0d597fc1e9d630, type: 2}
+      objectReference: {fileID: 11400000, guid: 16a2da74b9b27f247bd09935116bc005, type: 2}
     - target: {fileID: 2249572237989472607, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
       propertyPath: slots.Array.data[9].item
       value: 
@@ -2120,15 +2117,15 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: badd81070a6141d478b03e858dcc4587, type: 2}
     - target: {fileID: 2249572237989472607, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
       propertyPath: slots.Array.data[2].count
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2249572237989472607, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
-      propertyPath: slots.Array.data[3].count
       value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2249572237989472607, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
-      propertyPath: slots.Array.data[4].count
+      propertyPath: slots.Array.data[3].count
       value: 444
+      objectReference: {fileID: 0}
+    - target: {fileID: 2249572237989472607, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
+      propertyPath: slots.Array.data[4].count
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2249572237989472607, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
       propertyPath: slots.Array.data[5].count
@@ -2136,7 +2133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2249572237989472607, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
       propertyPath: slots.Array.data[6].count
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2249572237989472607, guid: dbf5f93906518a94387def5e364e17d5, type: 3}
       propertyPath: slots.Array.data[7].count
@@ -7594,13 +7591,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wildMonsters:
+  - monster: {fileID: 11400000, guid: fa50cd69e84e4af4fbbb504b8c33f565, type: 2}
+    levelRange: {x: 4, y: 6}
+    chancePercentage: 33
   - monster: {fileID: 11400000, guid: 8b46b821f9b26024c9961f1bcd7a263d, type: 2}
     levelRange: {x: 4, y: 6}
-    chancePercentage: 100
+    chancePercentage: 34
+  - monster: {fileID: 11400000, guid: e292e31b299fe2442a3f2a29fc889046, type: 2}
+    levelRange: {x: 4, y: 6}
+    chancePercentage: 33
   wildMonstersInWater:
-  - monster: {fileID: 11400000, guid: cc28416e05a35374dbb897a7d267126d, type: 2}
+  - monster: {fileID: 11400000, guid: f7f98bf22e4a08048bcb6eb9e01a6f52, type: 2}
     levelRange: {x: 4, y: 5}
-    chancePercentage: 100
+    chancePercentage: 50
+  - monster: {fileID: 11400000, guid: db4f8b2be16b0c648949afcf549fe8e5, type: 2}
+    levelRange: {x: 4, y: 5}
+    chancePercentage: 30
+  - monster: {fileID: 11400000, guid: 43105d2aaba48ec48bc786b722fdd272, type: 2}
+    levelRange: {x: 4, y: 5}
+    chancePercentage: 20
   totalChance: 100
   totalChanceWater: 100
 --- !u!114 &1923669859 stripped

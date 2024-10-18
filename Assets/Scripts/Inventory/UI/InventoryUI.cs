@@ -101,6 +101,8 @@ public class InventoryUI : SelectionUI<TextSlot>
         var slots = inventory.GetSlotsByCategory(selectedCategory);
         if (slots.Count > 0)
         {
+            selectedItem = Mathf.Clamp(selectedItem, 0, slots.Count - 1);
+
             var item = slots[selectedItem].Item;
             itemIcon.sprite = item.Icon;
             itemDescription.text = item.Description;

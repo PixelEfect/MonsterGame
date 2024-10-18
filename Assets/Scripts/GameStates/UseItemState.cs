@@ -9,6 +9,9 @@ public class UseItemState : State<GameController>
     [SerializeField] PartyScreen partyScreen;
     [SerializeField] InventoryUI inventoryUI;
 
+    //Output
+    public bool ItemUsed { get; private set; }
+
     public static UseItemState i { get; private set; }
     Inventory inventory;
     private void Awake()
@@ -20,7 +23,7 @@ public class UseItemState : State<GameController>
     public override void Enter(GameController owner)
     {
         gc = owner;
-
+        ItemUsed = false;
         StartCoroutine(UseItem());
     }
 
@@ -41,7 +44,7 @@ public class UseItemState : State<GameController>
                 var evolution = monster.CheckForEvolution(item);
                 if (evolution != null)
                 {
-                    yield return EvolutionManager.i.Evolve(monster, evolution);
+                    yield return EvolutionState.i.Evolve(monster, evolution);
                 }
                 else
                 {
@@ -54,6 +57,8 @@ public class UseItemState : State<GameController>
             var usedItem = inventory.UseItem(item, partyScreen.SelectedMember);
             if (usedItem != null)
             {
+                ItemUsed = true;
+
                 if (usedItem is RecoveryItem)
                 {
                     yield return DialogManager.Instance.ShowDialogText($"{usedItem.UseMassage}");
@@ -103,8 +108,8 @@ public class UseItemState : State<GameController>
             
             yield return DialogManager.Instance.ShowDialogText($"Choose a move you wan't to forget", true, false);
 
+            MoveToForgetState.i.CurrentMoves = monster.Moves.Select(m => m.Base).ToList();
             MoveToForgetState.i.NewMove = spItem.Move;
-            MoveToForgetState.i.CurrentMoves = monster.Moves.Select(m=>m.Base).ToList();
             yield return gc.StateMachine.PushAndWait(MoveToForgetState.i);
 
             int moveIndex = MoveToForgetState.i.Selection;

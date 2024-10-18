@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e35fa25d93f573a4f90506de749727bc, type: 3}
-  m_Name: Leshy
+  m_Name: Leshy3
   m_EditorClassIdentifier: 
-  monsterName: Leshy
+  monsterName: Elder Leshy
   description: Leshy is the guardian of the forests
-  frontSprite: {fileID: 21300000, guid: bcb63b9412f7a8e4db0dad05d0c3a316, type: 3}
-  backSprite: {fileID: 21300000, guid: e6ff1cb32b0747543876fff1e18172bb, type: 3}
+  frontSprite: {fileID: 21300000, guid: cc6b7d17ebf96a348b8edd6a3545f80d, type: 3}
+  backSprite: {fileID: 21300000, guid: 9a361530ddeaae64e997c6f7075f70c1, type: 3}
   type1: 15
   type2: 6
-  maxHp: 60
-  attack: 66
-  defense: 66
-  spAttack: 44
-  spDefense: 44
-  speed: 39
+  maxHp: 111
+  attack: 111
+  defense: 111
+  spAttack: 111
+  spDefense: 111
+  speed: 50
   expYield: 641
   growthRate: 1
   catchRate: 255
@@ -32,14 +32,13 @@ MonoBehaviour:
     level: 1
   - moveBase: {fileID: 11400000, guid: fbfcf8af76407cc478496a7e6581cbb0, type: 2}
     level: 5
-  - moveBase: {fileID: 11400000, guid: ba64608227447bf48bbef52fe94e569b, type: 2}
+  - moveBase: {fileID: 11400000, guid: 87c6c7f681564e641a511434ceae969e, type: 2}
     level: 6
   - moveBase: {fileID: 11400000, guid: bb7978d3345b83440a7742a350d952d7, type: 2}
     level: 7
+  - moveBase: {fileID: 11400000, guid: 0ff1c9a165ef8394f933a05bdda85bb3, type: 2}
+    level: 11
   learnableByItems:
   - {fileID: 11400000, guid: b20ba004140747e4999008d41032c6b4, type: 2}
   - {fileID: 11400000, guid: 730be92c11668b340aefc20ca12fe1aa, type: 2}
-  evolutions:
-  - evolvesInto: {fileID: 11400000, guid: cc28416e05a35374dbb897a7d267126d, type: 2}
-    requiredLevel: 11
-    requiredItem: {fileID: 11400000, guid: b9faeccf134647d47b0d597fc1e9d630, type: 2}
+  evolutions: []
