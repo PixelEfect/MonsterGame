@@ -65,7 +65,7 @@ public class NPCController : MonoBehaviour, Interactable, ISavable
                 yield return monsterGiver.GiveMonster(initiator.GetComponent<PlayerController>(), dialog, questToComplete, initiator);//dodany dialog
             }
 
-            if (itemGiver != null && itemGiver.CanBeGiven())
+            else if (itemGiver != null && itemGiver.CanBeGiven()) // zmieniono na else if zamiast if
             {
                 yield return itemGiver.GiveItem(initiator.GetComponent<PlayerController>());
             }

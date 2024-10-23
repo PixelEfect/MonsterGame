@@ -43,6 +43,13 @@ public class EvolutionState : State<GameController>
         gc.PartyScreen.SetPartyData();
 
         AudioManager.i.PlayMusic(gc.CurrentScene.SceneMusic, fade: true);
+
+        var prevState = gc.StateMachine.GetPrevState();
+
+        //if (prevState == CutsceneState.i)//chyba dziala ale do poprawy w przyszlosci
+        //{
+        //    gc.StateMachine.Pop();
+        //}
         gc.StateMachine.Pop();
     }
 }

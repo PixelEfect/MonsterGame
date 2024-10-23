@@ -62,7 +62,6 @@ public class BattleState : State<GameController>
             trainer.BattleLost();
             trainer = null;
         }
-
         gc.StateMachine.Pop();
     }
 

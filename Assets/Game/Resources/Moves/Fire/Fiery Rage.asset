@@ -29,3 +29,8 @@ MonoBehaviour:
     volatileStatus: 0
   target: 0
   secondaries: []
+  boostAdded: []
+  enhancementChance: 0
+  enhancementEffectDescription: 
+  enhancementMove: {fileID: 0}
+  sound: {fileID: 0}

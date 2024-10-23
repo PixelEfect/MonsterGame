@@ -27,4 +27,8 @@ MonoBehaviour:
     volatileStatus: 0
   target: 0
   secondaries: []
+  boostAdded: []
+  enhancementChance: 50
+  enhancementEffectDescription: takie tam sobie wzmocnienie
+  enhancementMove: {fileID: 11400000, guid: 730be92c11668b340aefc20ca12fe1aa, type: 2}
   sound: {fileID: 8300000, guid: 9f4d82e541a8c4243a5c6f520fc347f9, type: 3}

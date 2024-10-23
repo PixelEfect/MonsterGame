@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -69,6 +70,7 @@ public class TrainerController : MonoBehaviour, Interactable, ISavable
         yield return character.Move(moveVec);
 
         // Show dialog
+        GameController.Instance.StateMachine.Pop();
         yield return DialogManager.Instance.ShowDialog(dialog);
         GameController.Instance.StartBattle(BattleTrigger.LongGrass);
         GameController.Instance.StateMachine.Pop();

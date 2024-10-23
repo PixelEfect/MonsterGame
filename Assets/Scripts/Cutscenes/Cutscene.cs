@@ -8,6 +8,7 @@ public class Cutscene : MonoBehaviour, IPlayerTriggerable
     [SerializeReference]
     [SerializeField] List<CutsceneAction> actions;
 
+
     public bool TriggerRepeatedly => false;
 
     public IEnumerator Play()

@@ -137,11 +137,10 @@ public class RunTurnState : State<BattleSystem>
 
             AudioManager.i.PlaySfx(AudioId.Hit);
 
+
             if (move.Base.Category == MoveCategory.Status)
             {
                 yield return RunMoveEffects(move.Base.Effects, sourceUnit.Monster, targetUnit.Monster, move.Base.Target);
-
-
             }
             else
             {
@@ -151,7 +150,6 @@ public class RunTurnState : State<BattleSystem>
             }
 
             if (move.Base.Secondaries != null && move.Base.Secondaries.Count > 0 && targetUnit.Monster.HP > 0)
-
             {
                 foreach (var secondary in move.Base.Secondaries)
                 {
@@ -162,7 +160,17 @@ public class RunTurnState : State<BattleSystem>
                     }
                 }
             }
-
+            if (move.Base.EnhancementMove != null && move.Base.EnhancementMove.BoostAdded.Count > 0 && targetUnit.Monster.HP > 0)
+            {
+                foreach (var boost in move.Base.EnhancementMove.BoostAdded)
+                {
+                    var rnd = UnityEngine.Random.Range(1, 101);
+                    if (rnd <= boost.Chance)
+                    {
+                        yield return RunMoveEffects(boost, sourceUnit.Monster, targetUnit.Monster, boost.Target);
+                    }
+                }
+            }
             if (targetUnit.Monster.HP <= 0)
             {
                 targetUnit.Monster.CureStatus();    // moja implementacja

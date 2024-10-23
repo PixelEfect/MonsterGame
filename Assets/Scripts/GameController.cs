@@ -47,6 +47,7 @@ public class GameController : MonoBehaviour
 
         DialogManager.Instance.OnShowDialog += () =>
         {
+            
             StateMachine.Push(DialogueState.i);
         };
         DialogManager.Instance.OnDialogFinished += () =>
@@ -103,6 +104,7 @@ public class GameController : MonoBehaviour
 
         if (hasEvolutions)
         {
+            //StateMachine.Pop();
             StartCoroutine(playerParty.RunEvolutions());
         }
         else

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class CuttableTree : MonoBehaviour, Interactable
 {
@@ -22,6 +23,8 @@ public class CuttableTree : MonoBehaviour, Interactable
             {
                 // Yes
                 yield return DialogManager.Instance.ShowDialogText($"{monsterWithCut.Base.Name} used cut!");
+                
+                //player.GetComponent<Inventory>().AddItem(item, count);
                 gameObject.SetActive(false);
             }
         }

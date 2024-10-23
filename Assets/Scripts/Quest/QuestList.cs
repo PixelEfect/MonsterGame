@@ -25,7 +25,7 @@ public class QuestList : MonoBehaviour, ISavable
         return questStatus == QuestStatus.Started || questStatus == QuestStatus.Completed;
     }
 
-    public bool IsCompelted(string questName)
+    public bool IsCompleted(string questName)
     {
         var questStatus = quests.FirstOrDefault(q => q.Base.name == questName)?.Status;
         return questStatus == QuestStatus.Completed;

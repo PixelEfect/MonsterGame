@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Security.Cryptography.X509Certificates;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -103,6 +104,8 @@ public class BattleSystem : MonoBehaviour
         if (!IsTrainerBattle)
         {
             //Wild Monster Battle
+            trainerImage.gameObject.SetActive(false);
+            trainerImage.gameObject.SetActive(true);
             Debug.Log("rozpoczecie starcia");
             playerUnit.Setup(PlayerParty.GetHealthyMonster());
             Debug.Log("pobranie zdrowego okazu");

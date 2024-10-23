@@ -262,13 +262,26 @@ public class Monster
 
     public DamageDetails TakeDamage(Move move, Monster attacker)
     {
+        // Sprawdü, czy mamy aktywne wzmocnienie i jeúli tak, uøyjemy tego typu
+        var attackType = move.Base.Type;
+        if (move.Base.EnhancementMove != null)
+        {
+            var chance = UnityEngine.Random.value * 100;
+            if (chance <= move.Base.EnhancementMove.EnhancementChance)
+            {
+                Debug.Log($"Enhancement : {move.Base.EnhancementMove.EnhancementChance}  chance:  {chance}");
+                attackType = move.Base.EnhancementMove.Type;
+                Debug.Log($"Enhancement Active! Using type: {attackType}");
+            }
+        }
+
         float critical = 1f;
         if (UnityEngine.Random.value * 100f <= 6.25f)
         {
             critical = 2f; 
         }
 
-        float type = TypeChart.GetEffectiveness(move.Base.Type, this.Base.Type1) * TypeChart.GetEffectiveness(move.Base.Type, this.Base.Type2);
+        float type = TypeChart.GetEffectiveness(attackType, this.Base.Type1) * TypeChart.GetEffectiveness(attackType, this.Base.Type2);
 
         var damageDetails = new DamageDetails()
         {

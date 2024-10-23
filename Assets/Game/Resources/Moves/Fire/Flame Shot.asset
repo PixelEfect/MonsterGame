@@ -17,7 +17,7 @@ MonoBehaviour:
     damage.\nOgnisty Strza\u0142\r\nStrzela wroga pot\u0119\u017Cnym ognistym pociskiem,
     kt\xF3ry mo\u017Ce zada\u0107 dodatkowe obra\u017Cenia."
   type: 4
-  power: 10
+  power: 1
   accuracy: 100
   alwaysHits: 0
   pp: 25
@@ -34,4 +34,13 @@ MonoBehaviour:
     volatileStatus: 0
     chance: 30
     target: 0
+  boostAdded:
+  - boosts: []
+    status: 2
+    volatileStatus: 0
+    chance: 50
+    target: 0
+  enhancementChance: 50
+  enhancementEffectDescription: 
+  enhancementMove: {fileID: 11400000, guid: bd7e7e77a9278ef438dca1620af06bb0, type: 2}
   sound: {fileID: 8300000, guid: 027fcc67f2865b14da047cddd0e90430, type: 3}
