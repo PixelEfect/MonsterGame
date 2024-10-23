@@ -44,7 +44,7 @@ public class GameController : MonoBehaviour
 
         battleSystem.OnBattleOver += EndBattle;
         partyScreen.Init();
-
+        
         DialogManager.Instance.OnShowDialog += () =>
         {
             

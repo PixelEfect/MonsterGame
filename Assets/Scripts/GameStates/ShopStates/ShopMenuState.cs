@@ -49,6 +49,7 @@ public class ShopMenuState : State<GameController>
         {
             //Quit
         }
+        selectedChoice = -1;
         gc.StateMachine.Pop();
     }
 }

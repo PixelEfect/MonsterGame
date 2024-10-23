@@ -215,7 +215,7 @@ public class Monster
 
     public Evolution CheckForEvolution()
     {
-        return Base.Evolutions.FirstOrDefault(e => e.RequiredLevel <= level);
+        return Base.Evolutions.FirstOrDefault(e => e.RequiredLevel > 0 && e.RequiredLevel <= level);
     }
     public Evolution CheckForEvolution(ItemBase item)
     {

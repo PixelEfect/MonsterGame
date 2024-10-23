@@ -40,6 +40,11 @@ namespace GDE.GenericSelectionUI
 
             this.items = null;
         }
+        public void ClearSelection()
+        {
+            selectedItem = -1; // Ustawienie na brak zaznaczenia
+            UpdateSelectionInUI();
+        }
 
         public virtual void HandleUpdate()
         {
@@ -120,5 +125,6 @@ namespace GDE.GenericSelectionUI
                 selectionTimer = Mathf.Clamp(selectionTimer - Time.deltaTime, 0, selectionTimer);
             }
         }
+
     }
 }

@@ -105,7 +105,7 @@ public class BattleSystem : MonoBehaviour
         {
             //Wild Monster Battle
             trainerImage.gameObject.SetActive(false);
-            trainerImage.gameObject.SetActive(true);
+            playerImage.gameObject.SetActive(true);
             Debug.Log("rozpoczecie starcia");
             playerUnit.Setup(PlayerParty.GetHealthyMonster());
             Debug.Log("pobranie zdrowego okazu");

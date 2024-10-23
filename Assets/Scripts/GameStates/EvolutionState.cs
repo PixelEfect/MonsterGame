@@ -2,6 +2,7 @@ using GDEUtils.StateMachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,17 +40,11 @@ public class EvolutionState : State<GameController>
         yield return DialogManager.Instance.ShowDialogText($"{oldMonster} evolved into {monster.Base.Name}");
     
         evolutionUI.SetActive(false);
-
+        gc.PartyScreen.ClearSelection();
         gc.PartyScreen.SetPartyData();
 
         AudioManager.i.PlayMusic(gc.CurrentScene.SceneMusic, fade: true);
 
-        var prevState = gc.StateMachine.GetPrevState();
-
-        //if (prevState == CutsceneState.i)//chyba dziala ale do poprawy w przyszlosci
-        //{
-        //    gc.StateMachine.Pop();
-        //}
         gc.StateMachine.Pop();
     }
 }

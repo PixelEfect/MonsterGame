@@ -11,11 +11,13 @@ public class NPCController : MonoBehaviour, Interactable, ISavable
     [SerializeField] QuestBase questToComplete;
 
     [Header("Movement")]
-    [SerializeField] List<Vector2> movementPattern;
-    [SerializeField] float timeBetweenPattern;
+    [SerializeField] List<MovementStep> movementPattern;
+    //[Header("Movement")]
+    //[SerializeField] List<Vector2> movementPattern;
+    //[SerializeField] float timeBetweenPattern;
 
     NPCState state;
-    float idleTimer = 0f;
+    //float idleTimer = 0f;
     int currentPattern = 0;
     Quest activeQuest;
 
@@ -110,7 +112,7 @@ public class NPCController : MonoBehaviour, Interactable, ISavable
             {
                 yield return DialogManager.Instance.ShowDialog(dialog);
             }
-            idleTimer = 0f;
+            //idleTimer = 0f;
             state = NPCState.Idle;
         }
         //StartCoroutine(character.Move(new Vector2(0, 2)));  przesuwanie obiektu;)
@@ -120,14 +122,9 @@ public class NPCController : MonoBehaviour, Interactable, ISavable
     {
         if (state == NPCState.Idle)
         {
-            idleTimer += Time.deltaTime;
-            if (idleTimer > timeBetweenPattern) 
+            if (movementPattern.Count > 0)
             {
-                idleTimer = 0f;
-                if (movementPattern.Count > 0)
-                {
-                    StartCoroutine(Walk());
-                }
+                StartCoroutine(Walk());
             }
         }
         character.HandleUpdate();
@@ -136,12 +133,21 @@ public class NPCController : MonoBehaviour, Interactable, ISavable
     IEnumerator Walk()
     {
         state = NPCState.Walking;
+
+        // Pobierz obecny krok ruchu (kierunek + czas trwania)
+        var movementStep = movementPattern[currentPattern];
         var oldPos = transform.position;
 
-        yield return character.Move(movementPattern[currentPattern]);
+        // Rozpocznij ruch w danym kierunku
+        yield return character.Move(movementStep.direction);
 
+        // Po zakoñczeniu ruchu, jeœli NPC siê przemieœci³, zaktualizuj obecny wzorzec
         if (transform.position != oldPos)
         {
+            // Ustaw timer na czas trwania tego etapu ruchu
+            yield return new WaitForSeconds(movementStep.duration);
+
+            // PrzejdŸ do kolejnego kroku w patternie
             currentPattern = (currentPattern + 1) % movementPattern.Count;
         }
 
@@ -175,6 +181,12 @@ public class NPCController : MonoBehaviour, Interactable, ISavable
             questToComplete = (saveData.questToComplete != null) ? new Quest(saveData.questToComplete).Base : null;
         }
     }
+}
+[System.Serializable]
+public class MovementStep
+{
+    public Vector2 direction; // Kierunek ruchu
+    public float duration;    // Czas trwania tego ruchu (w sekundach)
 }
 
 [System.Serializable]

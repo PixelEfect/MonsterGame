@@ -8,7 +8,7 @@ public class InventoryState : State<GameController>
 {
     [SerializeField] InventoryUI inventoryUI;
     //Output
-    public ItemBase SelectedItem { get; private set; }
+    public ItemBase SelectedItem { get; private set; } = null;
 
     public static InventoryState i { get; private set; }
     private void Awake()
@@ -86,7 +86,7 @@ public class InventoryState : State<GameController>
         if (SelectedItem is SphereItem)
         {
             inventory.UseItem(SelectedItem, null);
-            SelectedItem = null;
+            //SelectedItem = null;
             gc.StateMachine.Pop();
             yield break;
         }

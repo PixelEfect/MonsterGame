@@ -292,7 +292,8 @@ GameObject:
   - component: {fileID: 569046360}
   - component: {fileID: 569046361}
   - component: {fileID: 569046362}
-  m_Layer: 7
+  - component: {fileID: 569046363}
+  m_Layer: 8
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -308,7 +309,7 @@ Transform:
   m_GameObject: {fileID: 569046359}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -82.5, y: -27.5, z: 0}
+  m_LocalPosition: {x: -82.5, y: -28.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -411,6 +412,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.625, y: 0.625}
   m_EdgeRadius: 0
+--- !u!114 &569046363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569046359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8160516cf50aba4e87ac3e670148ca1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialog:
+    lines:
+    - You have already chosen your companion!
 --- !u!1 &625591787
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,7 +438,8 @@ GameObject:
   - component: {fileID: 625591788}
   - component: {fileID: 625591790}
   - component: {fileID: 625591789}
-  m_Layer: 7
+  - component: {fileID: 625591791}
+  m_Layer: 8
   m_Name: GameObject (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -438,7 +455,7 @@ Transform:
   m_GameObject: {fileID: 625591787}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -80.5, y: -27.5, z: 0}
+  m_LocalPosition: {x: -80.5, y: -28.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -541,6 +558,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &625591791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625591787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8160516cf50aba4e87ac3e670148ca1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialog:
+    lines:
+    - You have already chosen your companion!
 --- !u!1001 &1045162911
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2835,7 +2867,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8203008462053637547, guid: 95d3b0166242e444ca3596211e0a4a61, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -27.5
+      value: -28.2
       objectReference: {fileID: 0}
     - target: {fileID: 8203008462053637547, guid: 95d3b0166242e444ca3596211e0a4a61, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2983,6 +3015,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 1758686233, guid: b9d401b981e33ad48ae1d0a9757792ab, type: 3}
+    - target: {fileID: 2097336692274357527, guid: 95d3b0166242e444ca3596211e0a4a61, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.625
+      objectReference: {fileID: 0}
+    - target: {fileID: 2097336692274357527, guid: 95d3b0166242e444ca3596211e0a4a61, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.625
+      objectReference: {fileID: 0}
     - target: {fileID: 4056293510950172399, guid: 95d3b0166242e444ca3596211e0a4a61, type: 3}
       propertyPath: uniqueId
       value: d6910667-bcc9-40d8-bff3-02c74e37a77c
@@ -3021,7 +3061,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8203008462053637547, guid: 95d3b0166242e444ca3596211e0a4a61, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -27.5
+      value: -28.2
       objectReference: {fileID: 0}
     - target: {fileID: 8203008462053637547, guid: 95d3b0166242e444ca3596211e0a4a61, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3215,7 +3255,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8203008462053637547, guid: 95d3b0166242e444ca3596211e0a4a61, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -27.5
+      value: -28.2
       objectReference: {fileID: 0}
     - target: {fileID: 8203008462053637547, guid: 95d3b0166242e444ca3596211e0a4a61, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3298,7 +3338,8 @@ GameObject:
   - component: {fileID: 2050621192}
   - component: {fileID: 2050621194}
   - component: {fileID: 2050621193}
-  m_Layer: 7
+  - component: {fileID: 2050621195}
+  m_Layer: 8
   m_Name: GameObject (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3314,7 +3355,7 @@ Transform:
   m_GameObject: {fileID: 2050621191}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -81.5, y: -27.5, z: 0}
+  m_LocalPosition: {x: -81.5, y: -28.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3417,6 +3458,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2050621195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050621191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8160516cf50aba4e87ac3e670148ca1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialog:
+    lines:
+    - You have already chosen your companion!
 --- !u!19719996 &232527894594030249
 TilemapCollider2D:
   m_ObjectHideFlags: 0

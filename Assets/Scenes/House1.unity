@@ -2303,6 +2303,10 @@ PrefabInstance:
       propertyPath: dialog.lines.Array.data[0]
       value: You look tired. Please take some rest.
       objectReference: {fileID: 0}
+    - target: {fileID: 8198709702854252224, guid: 95d3b0166242e444ca3596211e0a4a61, type: 3}
+      propertyPath: movementPattern.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8203008462053637547, guid: 95d3b0166242e444ca3596211e0a4a61, type: 3}
       propertyPath: m_LocalPosition.x
       value: -85.5
@@ -2392,6 +2396,10 @@ PrefabInstance:
       propertyPath: dialog.lines.Array.data[0]
       value: You look tired. Please take some rest.
       objectReference: {fileID: 0}
+    - target: {fileID: 8198709702854252224, guid: 95d3b0166242e444ca3596211e0a4a61, type: 3}
+      propertyPath: movementPattern.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8203008462053637547, guid: 95d3b0166242e444ca3596211e0a4a61, type: 3}
       propertyPath: m_LocalPosition.x
       value: -80.5
@@ -2432,7 +2440,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4902199195530979480, guid: 95d3b0166242e444ca3596211e0a4a61, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -2463,6 +2472,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 549592a3352836d4e8ccf4293b511d22, type: 2}
   - {fileID: 11400000, guid: 3fde2cf1681e5594e825533a2a4329d0, type: 2}
   - {fileID: 11400000, guid: db059d6ad61a6944fb002bc00e879007, type: 2}
+  - {fileID: 11400000, guid: badd81070a6141d478b03e858dcc4587, type: 2}
+  - {fileID: 11400000, guid: 16a2da74b9b27f247bd09935116bc005, type: 2}
 --- !u!19719996 &232527894594030249
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -27782,12 +27793,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wildMonsters:
-  - _base: {fileID: 11400000, guid: 8b46b821f9b26024c9961f1bcd7a263d, type: 2}
-    level: 4
-  - _base: {fileID: 11400000, guid: 8b46b821f9b26024c9961f1bcd7a263d, type: 2}
-    level: 5
-  - _base: {fileID: 11400000, guid: 74d885e366ad31d4d9e38b94610137b7, type: 2}
-    level: 6
+  - monster: {fileID: 0}
+    levelRange: {x: 0, y: 0}
+    chancePercentage: 0
+  - monster: {fileID: 0}
+    levelRange: {x: 0, y: 0}
+    chancePercentage: 0
+  - monster: {fileID: 0}
+    levelRange: {x: 0, y: 0}
+    chancePercentage: 0
+  wildMonstersInWater: []
+  totalChance: 0
+  totalChanceWater: -1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

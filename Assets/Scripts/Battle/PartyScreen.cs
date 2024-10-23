@@ -14,7 +14,8 @@ public class PartyScreen : SelectionUI<TextSlot>
     List<Monster> monsters;
     MonsterParty party;
 
-    public Monster SelectedMember => monsters[selectedItem];
+    public Monster SelectedMember =>
+    (selectedItem >= 0 && selectedItem < monsters.Count) ? monsters[selectedItem] : null;
 
     public void Init()
     {
@@ -31,7 +32,7 @@ public class PartyScreen : SelectionUI<TextSlot>
     public void SetPartyData()
     {
         monsters = party.Monsters;
-
+        selectedItem = -1;
         for (int i = 0; i < memberSlots.Length; i++)
         {
             if (i < monsters.Count)
@@ -66,8 +67,6 @@ public class PartyScreen : SelectionUI<TextSlot>
             memberSlots[i].SetMessage("");
         }
     }
-
-
     public void SetMessageText(string message)
     {
         messegeText.text = message;

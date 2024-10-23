@@ -126,7 +126,6 @@ public class InventoryUI : SelectionUI<TextSlot>
 
     void ResetSelection()
     {
-        selectedItem = 0;
 
         UpArrow.gameObject.SetActive(false);
         DownArrow.gameObject.SetActive(false);

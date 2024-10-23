@@ -20,10 +20,10 @@ public class PartyState : State<GameController>
     {
         gc = owner;
         SelectedMonster = null;
+        partyScreen.ClearSelection();
         partyScreen.gameObject.SetActive(true);
         partyScreen.OnSelected += OnMonsterSelected;
         partyScreen.OnBack += OnBack;
-
     }
 
     public override void Execute()

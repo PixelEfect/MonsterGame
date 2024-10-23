@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12496f086cbf7744aa3f3e2282bb6af2, type: 3}
+  m_Name: FaintedMonster 1
+  m_EditorClassIdentifier: 
+  questName: FaintedMonster
+  description: 
+  startDialogue:
+    lines:
+    - My monster is fainted ;(
+    - Can you bring me a revive?
+  inProgressDialogue:
+    lines:
+    - Please bring me a revive
+  completedDialogue:
+    lines:
+    - Oh you got it! You're a life saver
+    - You can have this as a reward!
+  requiredItem: {fileID: 11400000, guid: 549592a3352836d4e8ccf4293b511d22, type: 2}
+  rewardItem: {fileID: 11400000, guid: d6f9986a73f6ad24a82365dfb79c2992, type: 2}
